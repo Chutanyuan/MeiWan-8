@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="Myorder">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40g-9k-O5a">
+                    <rect key="frame" x="288" y="47" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="BdC-tq-5cx"/>
+                        <constraint firstAttribute="width" constant="22" id="bOI-Xs-GEX"/>
+                    </constraints>
+                    <connections>
+                        <action selector="userDetail:" destination="iN0-l3-epB" eventType="touchUpInside" id="die-S2-AME"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFk-WR-roO">
+                    <rect key="frame" x="0.0" y="470" width="320" height="10"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="1f7-v4-LXN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="40g-9k-O5a" secondAttribute="trailing" constant="10" id="1Dq-Ye-8Ni"/>
+                <constraint firstItem="EFk-WR-roO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GbQ-3t-zA1"/>
+                <constraint firstItem="40g-9k-O5a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="47" id="GyG-Mq-AcA"/>
+                <constraint firstAttribute="bottom" secondItem="EFk-WR-roO" secondAttribute="bottom" id="PHa-y5-lUO"/>
+                <constraint firstAttribute="trailing" secondItem="EFk-WR-roO" secondAttribute="trailing" id="gwd-9N-haT"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="AEW-Z6-Oxz" appends="YES" id="fd1-Ut-PDW"/>
+            </connections>
+            <point key="canvasLocation" x="550" y="332"/>
+        </view>
+        <tapGestureRecognizer id="AEW-Z6-Oxz">
+            <connections>
+                <action selector="detailOrder:" destination="iN0-l3-epB" id="SRw-KY-iLS"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>
