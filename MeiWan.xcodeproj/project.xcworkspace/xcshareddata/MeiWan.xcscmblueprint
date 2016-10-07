@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E46CF2FEB2CC518596F0AD90F2584A91E4C8DFB8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6C1BEAF85F986B88224CFF3B4C8F8484B22A3AB6" : 0,
+    "E20CABCA1622A24514AA062721D3B1BA85FACD6C" : 0,
+    "E46CF2FEB2CC518596F0AD90F2584A91E4C8DFB8" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FDAEA3F0-18F6-46B5-963D-695ED6A6C7AA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6C1BEAF85F986B88224CFF3B4C8F8484B22A3AB6" : "peiwan-ios9.3",
+    "E20CABCA1622A24514AA062721D3B1BA85FACD6C" : "meiwan-ios\/",
+    "E46CF2FEB2CC518596F0AD90F2584A91E4C8DFB8" : "Meiwan\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MeiWan",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MeiWan.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/liuwei2\/peiwan-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6C1BEAF85F986B88224CFF3B4C8F8484B22A3AB6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/liuwei2\/meiwan-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E20CABCA1622A24514AA062721D3B1BA85FACD6C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/groupCJK\/CreatMeiWan.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E46CF2FEB2CC518596F0AD90F2584A91E4C8DFB8"
+    }
+  ]
+}
