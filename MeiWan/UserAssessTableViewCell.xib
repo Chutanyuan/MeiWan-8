@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="UserAssessTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CqB-16-cDE">
+                        <rect key="frame" x="20" y="5" width="70" height="70"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="CAb-SH-N6i"/>
+                            <constraint firstAttribute="width" constant="70" id="gEF-9K-GJe"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="GeN-FQ-Eys" appends="YES" id="Aou-NN-O82"/>
+                        </connections>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评分：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzN-5J-3lM">
+                        <rect key="frame" x="100" y="15" width="36" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WaB-KP-cby">
+                        <rect key="frame" x="300" y="23" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBg-Bz-v7r">
+                        <rect key="frame" x="20" y="78" width="70" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="Zvq-vq-Cfe"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMM-gq-DBZ">
+                        <rect key="frame" x="136" y="15" width="70" height="12"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="1aa-Yf-OYP"/>
+                            <constraint firstAttribute="height" constant="12" id="Sdo-a8-zuw"/>
+                        </constraints>
+                    </view>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anb-HG-vOc">
+                        <rect key="frame" x="100" y="35" width="200" height="54"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="WaB-KP-cby" secondAttribute="trailing" constant="20" id="029-4l-38a"/>
+                    <constraint firstItem="anb-HG-vOc" firstAttribute="leading" secondItem="CqB-16-cDE" secondAttribute="trailing" constant="10" id="5oE-Py-5Ff"/>
+                    <constraint firstItem="wzN-5J-3lM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="6tP-Rg-T3U"/>
+                    <constraint firstItem="vBg-Bz-v7r" firstAttribute="top" secondItem="CqB-16-cDE" secondAttribute="bottom" constant="3" id="7So-eT-BEl"/>
+                    <constraint firstItem="CqB-16-cDE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="DJR-M5-XiW"/>
+                    <constraint firstItem="wzN-5J-3lM" firstAttribute="centerY" secondItem="QMM-gq-DBZ" secondAttribute="centerY" constant="2" id="Dbi-ur-BUS"/>
+                    <constraint firstItem="WaB-KP-cby" firstAttribute="centerY" secondItem="wzN-5J-3lM" secondAttribute="centerY" id="DcZ-vE-Apd"/>
+                    <constraint firstItem="vBg-Bz-v7r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Ehu-6t-ovg"/>
+                    <constraint firstItem="wzN-5J-3lM" firstAttribute="leading" secondItem="CqB-16-cDE" secondAttribute="trailing" constant="10" id="MK7-La-Iw3"/>
+                    <constraint firstAttribute="trailing" secondItem="anb-HG-vOc" secondAttribute="trailing" constant="20" id="PKx-9O-UHe"/>
+                    <constraint firstItem="CqB-16-cDE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="SKA-7U-ydl"/>
+                    <constraint firstAttribute="bottom" secondItem="anb-HG-vOc" secondAttribute="bottom" constant="10" id="Sis-kf-7k2"/>
+                    <constraint firstItem="anb-HG-vOc" firstAttribute="top" secondItem="wzN-5J-3lM" secondAttribute="bottom" constant="5" id="cI6-kL-lkW"/>
+                    <constraint firstItem="QMM-gq-DBZ" firstAttribute="leading" secondItem="wzN-5J-3lM" secondAttribute="trailing" id="gBj-j7-LK1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="assess" destination="wzN-5J-3lM" id="bUO-is-24B"/>
+                <outlet property="assessText" destination="anb-HG-vOc" id="808-NR-NnQ"/>
+                <outlet property="assessTime" destination="WaB-KP-cby" id="n0g-aS-9nT"/>
+                <outlet property="headIg" destination="CqB-16-cDE" id="YgK-1U-rwh"/>
+                <outlet property="nicename" destination="vBg-Bz-v7r" id="jOn-Kn-yei"/>
+                <outlet property="starView" destination="QMM-gq-DBZ" id="UwS-8a-0xw"/>
+            </connections>
+            <point key="canvasLocation" x="184" y="82"/>
+        </tableViewCell>
+        <tapGestureRecognizer id="GeN-FQ-Eys">
+            <connections>
+                <action selector="UserAssessTap:" destination="KGk-i7-Jjw" id="RZP-6c-9GK"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>
