@@ -284,6 +284,7 @@
 		2B0C707D1D546F84001AB100 /* OrderLiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C707C1D546F84001AB100 /* OrderLiseCell.m */; };
 		2B0C70821D547394001AB100 /* creatAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C70811D547394001AB100 /* creatAlbum.m */; };
 		2B0C70861D5481D1001AB100 /* GuildRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C70851D5481D1001AB100 /* GuildRankCell.m */; };
+		2B159AD91DAB7A1400AEA055 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B159AD81DAB7A1400AEA055 /* PersonViewController.m */; };
 		2B1C111E1D751B0100184BD3 /* ChatTOPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C111D1D751B0100184BD3 /* ChatTOPView.m */; };
 		2B1C11221D752DE000184BD3 /* chatOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C11211D752DE000184BD3 /* chatOrderView.m */; };
 		2B28F1931D82617800EF5EFD /* schoolChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B28F1921D82617800EF5EFD /* schoolChooseVC.m */; };
@@ -1084,6 +1085,8 @@
 		2B0C70811D547394001AB100 /* creatAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = creatAlbum.m; sourceTree = "<group>"; };
 		2B0C70841D5481D1001AB100 /* GuildRankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuildRankCell.h; sourceTree = "<group>"; };
 		2B0C70851D5481D1001AB100 /* GuildRankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuildRankCell.m; sourceTree = "<group>"; };
+		2B159AD71DAB7A1400AEA055 /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewController.h; sourceTree = "<group>"; };
+		2B159AD81DAB7A1400AEA055 /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewController.m; sourceTree = "<group>"; };
 		2B1C111C1D751B0100184BD3 /* ChatTOPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTOPView.h; sourceTree = "<group>"; };
 		2B1C111D1D751B0100184BD3 /* ChatTOPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTOPView.m; sourceTree = "<group>"; };
 		2B1C11201D752DE000184BD3 /* chatOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chatOrderView.h; sourceTree = "<group>"; };
@@ -2710,6 +2713,8 @@
 			children = (
 				27587CB71CF5A7A500B78F92 /* PersonTableViewController.h */,
 				27587CB61CF5A7A500B78F92 /* PersonTableViewController.m */,
+				2B159AD71DAB7A1400AEA055 /* PersonViewController.h */,
+				2B159AD81DAB7A1400AEA055 /* PersonViewController.m */,
 				183D53401B871C6900500663 /* UserInfoViewController.h */,
 				183D53411B871C6900500663 /* UserInfoViewController.m */,
 				2BE542021D7E9BED00BB5C43 /* 编辑昵称 */,
@@ -4879,6 +4884,7 @@
 				18841F301B8C390700E2728B /* UMUUploaderOperation.m in Sources */,
 				2BD3C5F31D73DCC0008CFE23 /* MJRefreshBackStateFooter.m in Sources */,
 				18E579F71B7DDDB000771063 /* UIWebView+AFNetworking.m in Sources */,
+				2B159AD91DAB7A1400AEA055 /* PersonViewController.m in Sources */,
 				18F6D2C81B8FF47300B1F0C3 /* MyMoveActionTableViewController.m in Sources */,
 				18841F2D1B8C390700E2728B /* NSString+Base64Encode.m in Sources */,
 				1882252B1BA025C3004EBEEB /* AssessViewController.m in Sources */,
