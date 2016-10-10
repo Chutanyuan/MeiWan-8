@@ -134,20 +134,25 @@
     // 开始定位
     [_locationManager startUpdatingLocation];
 }
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
     [self initializeLocationService];
     
+
     
+    NSLog(@"famliyname:%@",[UIFont familyNames]);
+    
+  
     
     tagIndexNumber = [[NSNumber alloc]init];
     tagIndexNumber = nil;
     titlelabel = @[@"线上点歌",@"视屏聊天",@"聚餐",@"线下K歌",@"夜店达人",@"叫醒服务",@"影伴",@"运动健身",@"LOL",@"全部"];
     imageArray =  @[@"sing",@"video-chat",@"dining",@"sing-expert",@"go-nightclubbing",@"clock",@"shadow-with",@"sports",@"lol",@"all"];
     [self loginHuanxin];
-    
+//    HanziPenSC-W3
     self.infoCount = 6;
     self.playerviews = [NSMutableArray array];
     self.myRandNumber = [[RandNumber alloc]init];

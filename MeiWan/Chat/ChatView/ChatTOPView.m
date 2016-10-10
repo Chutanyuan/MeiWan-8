@@ -18,11 +18,13 @@
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(dtScreenWidth-10-70, frame.size.height/2-20, 70, 30);
         [button setTitle:@"邀请" forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont fontWithName:@"华文仿宋" size:15.0];
+
         button.backgroundColor = [CorlorTransform colorWithHexString:@"#87CEFA"];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         button.layer.cornerRadius = 5;
         button.clipsToBounds = YES;
-        button.titleLabel.font = [UIFont systemFontOfSize:15.0];
+
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         

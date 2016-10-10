@@ -69,13 +69,10 @@
     self.dataArray = [NSMutableArray arrayWithArray:conversations];
     [HUD hide:YES afterDelay:0];
     self.view.frame = CGRectMake(0, 0, dtScreenWidth, dtScreenHeight);
-
-    NSLog(@"%f",self.view.frame.size.height);
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
-
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -143,7 +140,7 @@
                     [userDefaults setObject:user forKey:userIdStr];
                     model.title=[user objectForKey:@"nickname"];
                     model.avatarURLPath=[user objectForKey:@"headUrl"];
-
+                    
                 }
                 
             }else{
@@ -186,7 +183,7 @@
     
     EaseConversationModel *model = [self.dataArray objectAtIndex:indexPath.row];
     ChatViewController *viewController = [[ChatViewController alloc] initWithConversationChatter:model.conversation.conversationId conversationType:model.conversation.type];
-
+    
     viewController.title = [NSString stringWithFormat:@"与%@会话",model.title];
     [self.navigationController pushViewController:viewController animated:YES];
 }

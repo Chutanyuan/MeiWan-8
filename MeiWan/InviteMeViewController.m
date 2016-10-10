@@ -173,7 +173,7 @@
         self.inviteMeorder = [[[NSBundle mainBundle]loadNibNamed:@"Myorder" owner:self options:nil]firstObject];
         self.inviteMeorder.mytag = 666;
         self.inviteMeorder.orderDic = self.inviteMeOrder[i];
-        self.inviteMeorder.frame = CGRectMake(0, 160*i, self.inSv.bounds.size.width, 150);
+        self.inviteMeorder.frame = CGRectMake(0, 160*i, self.inSv.bounds.size.width, 190);
         self.inviteMeorder.delegate = self;
         [self.inSv addSubview:self.inviteMeorder];
         [self.inSvSubViews addObject:self.inviteMeorder];

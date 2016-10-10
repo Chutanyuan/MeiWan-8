@@ -577,8 +577,6 @@
 		98EFD3671D4AF19A002A1913 /* Myorder.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EFD3651D4AF19A002A1913 /* Myorder.xib */; };
 		98F57EF01D4F409F001D3703 /* black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 98F57EEF1D4F409F001D3703 /* black2.png */; };
 		C12454D4E5FAE708A007C06C /* libPods-MeiWan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E78385184BB25331F6F840D7 /* libPods-MeiWan.a */; };
-		D038104D1DA4D6540067E082 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D038104C1DA4D6540067E082 /* ChatListViewController.m */; };
-		D03810511DA4DE680067E082 /* ChatListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D03810501DA4DE680067E082 /* ChatListTableViewCell.m */; };
 		D076DAC91D9E06BA002B0CAE /* HTMView.m in Sources */ = {isa = PBXBuildFile; fileRef = D076DAC81D9E06BA002B0CAE /* HTMView.m */; };
 		D09C0FF01D9D072B00D2C8F5 /* useruse_protocol.htm in Resources */ = {isa = PBXBuildFile; fileRef = D09C0FEF1D9D072B00D2C8F5 /* useruse_protocol.htm */; };
 /* End PBXBuildFile section */
@@ -1172,6 +1170,7 @@
 		2B7E9F7E1D5D6F9100207CB7 /* findPeiWanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findPeiWanCell.h; sourceTree = "<group>"; };
 		2B7E9F7F1D5D6F9100207CB7 /* findPeiWanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = findPeiWanCell.m; sourceTree = "<group>"; };
 		2B7E9F811D5DAEC500207CB7 /* sharefenxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharefenxiang@2x.png"; sourceTree = "<group>"; };
+		2B9458491DA9EA0800C89845 /* Hanzipen.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hanzipen.ttc; sourceTree = "<group>"; };
 		2BA4F75B1D4DCB6700A6F68C /* fansCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fansCell.h; sourceTree = "<group>"; };
 		2BA4F75C1D4DCB6700A6F68C /* fansCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fansCell.m; sourceTree = "<group>"; };
 		2BB14A3B1D72891E00F6425D /* EMCallLocalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallLocalView.h; sourceTree = "<group>"; };
@@ -1693,10 +1692,6 @@
 		98EFD3641D4AF19A002A1913 /* Myorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Myorder.m; sourceTree = "<group>"; };
 		98EFD3651D4AF19A002A1913 /* Myorder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Myorder.xib; sourceTree = "<group>"; };
 		98F57EEF1D4F409F001D3703 /* black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black2.png; path = ../black2.png; sourceTree = "<group>"; };
-		D038104B1DA4D6540067E082 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
-		D038104C1DA4D6540067E082 /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
-		D038104F1DA4DE680067E082 /* ChatListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListTableViewCell.h; sourceTree = "<group>"; };
-		D03810501DA4DE680067E082 /* ChatListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListTableViewCell.m; sourceTree = "<group>"; };
 		D076DAC71D9E06BA002B0CAE /* HTMView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMView.h; sourceTree = "<group>"; };
 		D076DAC81D9E06BA002B0CAE /* HTMView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMView.m; sourceTree = "<group>"; };
 		D09C0FEF1D9D072B00D2C8F5 /* useruse_protocol.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = useruse_protocol.htm; path = Source/useruse_protocol.htm; sourceTree = "<group>"; };
@@ -2233,9 +2228,6 @@
 			children = (
 				18875B761BC5F592002E7224 /* ConnectTableViewController.h */,
 				18875B771BC5F592002E7224 /* ConnectTableViewController.m */,
-				D038104B1DA4D6540067E082 /* ChatListViewController.h */,
-				D038104C1DA4D6540067E082 /* ChatListViewController.m */,
-				D038104E1DA4DE4D0067E082 /* chatcell */,
 				18824A0F1B85CB990063EC03 /* subviews */,
 			);
 			name = "消息";
@@ -2469,6 +2461,7 @@
 			children = (
 				18EF7A2D1B74B67F005A4F64 /* Images.xcassets */,
 				18EF7A211B74B67F005A4F64 /* Info.plist */,
+				2B9458491DA9EA0800C89845 /* Hanzipen.ttc */,
 				2794E51C1D07D87700CD50FE /* Localizable.strings */,
 				18EF7A221B74B67F005A4F64 /* main.m */,
 			);
@@ -4293,15 +4286,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D038104E1DA4DE4D0067E082 /* chatcell */ = {
-			isa = PBXGroup;
-			children = (
-				D038104F1DA4DE680067E082 /* ChatListTableViewCell.h */,
-				D03810501DA4DE680067E082 /* ChatListTableViewCell.m */,
-			);
-			name = chatcell;
-			sourceTree = "<group>";
-		};
 		D076DAC61D9E0699002B0CAE /* 自定义网页选择 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4647,7 +4631,6 @@
 				18E57A131B7DE22700771063 /* AFURLResponseSerialization.m in Sources */,
 				98EFD3661D4AF19A002A1913 /* Myorder.m in Sources */,
 				2BD3C6461D73DCC0008CFE23 /* EaseBubbleView.m in Sources */,
-				D038104D1DA4D6540067E082 /* ChatListViewController.m in Sources */,
 				18E57A111B7DE22700771063 /* AFURLConnectionOperation.m in Sources */,
 				2BD3C5DE1D73DCC0008CFE23 /* EMCDDeviceManager+Microphone.m in Sources */,
 				2BD3C6001D73DCC0008CFE23 /* MWPhotoBrowser.m in Sources */,
@@ -4685,7 +4668,6 @@
 				2BE39EB51D729E0D00CC3F0F /* SearchChatViewController.m in Sources */,
 				2BE39EF41D72A04000CC3F0F /* UIResponder+Router.m in Sources */,
 				2BE39EE51D729F4A00CC3F0F /* EMTextView.m in Sources */,
-				D03810511DA4DE680067E082 /* ChatListTableViewCell.m in Sources */,
 				2BD3C6341D73DCC0008CFE23 /* EaseConversationListViewController.m in Sources */,
 				18A4CE691C03EC2F00701516 /* rankingView.m in Sources */,
 				2BD3C5E81D73DCC0008CFE23 /* MBProgressHUD.m in Sources */,

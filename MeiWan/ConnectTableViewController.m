@@ -76,23 +76,23 @@
     for (EMConversation *conversation in conversations) {
         unreadCount += conversation.unreadMessagesCount;
     }
-
-    self.unreadImLab.text = [NSString stringWithFormat:@"%ld",(long)unreadCount];
+    
+    self.unreadImLab.text = [NSString stringWithFormat:@"%d",unreadCount];
     self.unreadImLab.hidden = NO;
     [self.messageTableView reloadData];
 }
 
 - (void)viewDidLoad {
     
-//    NSLog(@"消息");
+    //    NSLog(@"消息");
     [super viewDidLoad];
-
+    
     self.unreadImLab.layer.cornerRadius = 7;
     [self.unreadImLab.layer setMasksToBounds:YES];
     [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
     self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]           forKey:NSForegroundColorAttributeName];
-
+    
     NSDictionary *userInfo = [PersistenceManager getLoginUser];
     NSString *thesame = [NSString stringWithFormat:@"%ld",[[userInfo objectForKey:@"id"]longValue]];
     int isAudit = [[userInfo objectForKey:@"isAudit"]intValue];
@@ -119,15 +119,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-
+        
         __block BOOL show;
         
         EaseConversationListViewController *conversationList = [[EaseConversationListViewController alloc] init];
         conversationList.title = @"消息";
-//        conversationList.hidesBottomBarWhenPushed = YES;
+        conversationList.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:conversationList animated:YES];
-            show = [setting canOpen];
-            [setting getOpen];
+        show = [setting canOpen];
+        [setting getOpen];
     }
 }
 
@@ -180,7 +180,7 @@
     [UserConnector findPeiwanById:session userId:[NSNumber numberWithInteger:userId]receiver:^(NSData * data, NSError * error) {
         if (error) {
             [ShowMessage showMessage:@"服务器未响应"];
-
+            
         }else{
             SBJsonParser *parser = [[SBJsonParser alloc]init];
             NSDictionary *json = [parser objectWithData:data];
@@ -198,7 +198,7 @@
             }
         }
     }];
-
+    
 }
 
 - (void)getNicknameBySession:(NSString *)mysession result:(void(^)(NSString *nickname))result{
@@ -243,7 +243,7 @@
         pv.hidesBottomBarWhenPushed = YES;
         pv.playerInfo = sender;
     }
-
+    
 }
 
 @end

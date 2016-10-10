@@ -35,7 +35,7 @@
   
     [self addSubview:invitImage];
     
-    UILabel * contentText = [[UILabel alloc]initWithFrame:CGRectMake(invitImage.frame.origin.x+invitImage.frame.size.width+10, invitImage.center.y-10, dtScreenWidth-10-80-(invitImage.frame.origin.x+invitImage.frame.size.width+10), 20)];
+    UILabel * contentText = [[UILabel alloc]init];
     
     contentText.font = [UIFont systemFontOfSize:14.0];
     [self addSubview:contentText];
@@ -100,7 +100,8 @@
         default:
             break;
     }
-    
+//    WithFrame:CGRectMake(invitImage.frame.origin.x+invitImage.frame.size.width+10, invitImage.center.y-10, dtScreenWidth-10-80-(invitImage.frame.origin.x+invitImage.frame.size.width+10), 20)
+    contentText.frame = CGRectMake(invitImage.frame.origin.x+invitImage.frame.size.width+10, invitImage.center.y-10, dtScreenWidth-10-80-(invitImage.frame.origin.x+invitImage.frame.size.width+20), 20);
     
     //
     UIButton * rightButton = [UIButton buttonWithType:UIButtonTypeCustom];

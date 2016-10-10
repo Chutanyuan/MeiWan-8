@@ -70,14 +70,9 @@
 
 @implementation ChatViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"%f",self.view.frame.size.height);
-    NSLog(@"%f",[UIScreen mainScreen].bounds.size.height);
-    NSLog(@"%f",dtScreenHeight);
-    
-    self.chatToolbar.frame = CGRectMake(0, dtScreenHeight-40, dtScreenWidth, 40);
     
     UIApplication * app = [UIApplication sharedApplication];
     //获得未读信息数量
@@ -87,6 +82,8 @@
         unreadCount += conversation.unreadMessagesCount;
     }
     app.applicationIconBadgeNumber = unreadCount;
+    self.tabBarController.tabBar.hidden = YES;
+    
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 40, 40);
     [button setTitle:@"更多" forState:UIControlStateNormal];
@@ -183,7 +180,7 @@
                 if (face.count>0) {
                     
                     [self creatView];
-                
+                    
                 }else{
                     [self pushToPersonPage];
                 }
@@ -193,7 +190,7 @@
                 
                 
             }];
-
+            
         }
     }];
     
@@ -716,9 +713,10 @@
     }
     
     if (messageType == EMMessageBodyTypeText) {
-        [self.menuController setMenuItems:@[_copyMenuItem, _deleteMenuItem,_transpondMenuItem]];
+        //        [self.menuController setMenuItems:@[_copyMenuItem, _deleteMenuItem,_transpondMenuItem]];
+        [self.menuController setMenuItems:@[_copyMenuItem, _deleteMenuItem]];
     } else if (messageType == EMMessageBodyTypeImage){
-        [self.menuController setMenuItems:@[_deleteMenuItem,_transpondMenuItem]];
+        [self.menuController setMenuItems:@[_deleteMenuItem]];
     } else {
         [self.menuController setMenuItems:@[_deleteMenuItem]];
     }
@@ -953,7 +951,9 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action){
         
     }];
-    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"撤销" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+        
         
         NSString * session = [PersistenceManager getLoginSession];
         [UserConnector backOrder:session orderId:self.OrderDic[@"id"] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
@@ -981,7 +981,7 @@
     [alertController addAction:cancelAction];
     [alertController addAction:sureAction];
     [self presentViewController:alertController animated:YES completion:nil];
-
+    
 }
 #pragma mark----举报
 - (void)reportButton:(UIButton *)sender
