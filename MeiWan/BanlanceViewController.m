@@ -43,8 +43,8 @@
     UITextField *inputTF = [alertView textFieldAtIndex:0];
     NSString *input = inputTF.text;
     int inputNum = [input intValue];
-    if (inputNum < 300) {
-        [ShowMessage showMessage:@"提现金额最低金额为300元"];
+    if (inputNum < 100) {
+        [ShowMessage showMessage:@"提现金额最低金额为100元"];
         return;
     }
     if (buttonIndex == 1) {

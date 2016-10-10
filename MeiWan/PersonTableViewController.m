@@ -49,8 +49,6 @@
 }
 @property (weak, nonatomic) IBOutlet UITableViewCell *mallCell;
 /** 今日收益 */
-@property (weak, nonatomic) IBOutlet UILabel *todayMoneyUnion;
-
 @property (weak, nonatomic) IBOutlet UIView *userInfoHeaderView;
 @property (strong, nonatomic) IBOutlet UILabel *askfor;
 @property (strong, nonatomic) IBOutlet UILabel *mywallet;
@@ -82,7 +80,7 @@
     _mallCell.hidden = YES;
     //设置标题 标题颜色 导航栏颜色
     self.title = @"个人";
-    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
+    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]forKey:NSForegroundColorAttributeName];
     
     
@@ -496,7 +494,7 @@
     
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
-    if ([mediaType isEqualToString:@"kUTTypeImage"]){
+    if ([mediaType isEqualToString:@"public.image"]){
         
         UIImage *originImage = [info objectForKey:UIImagePickerControllerEditedImage];
         
