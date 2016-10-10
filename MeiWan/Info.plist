@@ -4,8 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Hanzipen.ttc</string>
-		<string></string>
+		<string>FZZDXJW.TTF</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许App访问您的媒体库</string>

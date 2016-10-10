@@ -30,6 +30,8 @@
 
 #import "CorlorTransform.h"
 
+#import "FontOutSystem.h"
+
 #import "MBProgressHUD.h"
 
 #endif

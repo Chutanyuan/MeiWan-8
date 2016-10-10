@@ -141,12 +141,6 @@
     
     [self initializeLocationService];
     
-
-    
-    NSLog(@"famliyname:%@",[UIFont familyNames]);
-    
-  
-    
     tagIndexNumber = [[NSNumber alloc]init];
     tagIndexNumber = nil;
     titlelabel = @[@"线上点歌",@"视屏聊天",@"聚餐",@"线下K歌",@"夜店达人",@"叫醒服务",@"影伴",@"运动健身",@"LOL",@"全部"];
