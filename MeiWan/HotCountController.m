@@ -41,7 +41,7 @@
     HUD.delegate = self;
     HUD.labelText = @"加载中";
     //设置导航条颜色 标题颜色
-    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
+    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]           forKey:NSForegroundColorAttributeName];
     //获取数据
     self.infoCount = 10;

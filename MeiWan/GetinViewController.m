@@ -82,6 +82,10 @@
      限制手机号码位数更改 目前不限制手机号码
      
      */
+    MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD.delegate = self;
+    HUD.labelText = @"登录中";
+
     
     NSString *password = [NSString stringWithString:[MD5 md5:self.password.text]];
     [UserConnector login:self.phone.text password:password receiver:^(NSData *data,NSError *error){
@@ -95,31 +99,46 @@
                 [self showMessage:@"账号或密码错误"];
             }else{
                 
-                MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                HUD.delegate = self;
-                HUD.labelText = @"登录中";
                 
                 NSDictionary *userDict = [json objectForKey:@"entity"];
                 NSString *session=[json objectForKey:@"extra"];
-                [PersistenceManager setLoginUser:userDict];
                 [PersistenceManager setLoginSession:session];
-                [[NSUserDefaults standardUserDefaults]setObject:self.phone.text forKey:@"username"];
-                [[NSUserDefaults standardUserDefaults]synchronize];
+                [UserConnector getLoginedUser:session receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+                    if (!error) {
+                        
+                        SBJsonParser*parser=[[SBJsonParser alloc]init];
+                        
+                        NSMutableDictionary *json = [parser objectWithData:data];
+                        
+                        int status = [[json objectForKey:@"status"]intValue];
+                        
+                        if (status == 0) {
+                            
+                            [PersistenceManager setLoginUser:json[@"entity"]];
+                            
+                            [[NSUserDefaults standardUserDefaults]setObject:self.phone.text forKey:@"username"];
+                            [[NSUserDefaults standardUserDefaults]synchronize];
+                            
+                            NSString * product = [NSString stringWithFormat:@"product_%@",userDict[@"id"]];
+                            NSString * passMD5 = [NSString stringWithString:[MD5 md5:product]];
+                            
+                            //环信用户组
+                            EMError *errorhuanxin = [[EMClient sharedClient] loginWithUsername:product password:passMD5];
+                            if (!errorhuanxin) {
+                                NSLog(@"登录成功");
+                                [self performSegueWithIdentifier:@"players" sender:nil];
+                                [HUD hide:YES afterDelay:0];
+                                [[EMClient sharedClient].chatManager getAllConversations];
+                            }else{
+                                [ShowMessage showMessage:@"登录失败，请重新登录"];
+                            }
                 
-                NSString * product = [NSString stringWithFormat:@"product_%@",userDict[@"id"]];
-                NSString * passMD5 = [NSString stringWithString:[MD5 md5:product]];
+                            
+                        }
+                    }
+                }];
                 
-                //环信用户组
-                EMError *error = [[EMClient sharedClient] loginWithUsername:product password:passMD5];
-                if (!error) {
-                    NSLog(@"登录成功");
-                    [self performSegueWithIdentifier:@"players" sender:nil];
-                    [HUD hide:YES afterDelay:0];
-                    [[EMClient sharedClient].chatManager getAllConversations];
-                }else{
-                    [ShowMessage showMessage:@"登录失败，请重新登录"];
-                }
-                
+             
             }
         }
     }];

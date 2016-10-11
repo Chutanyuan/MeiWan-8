@@ -219,13 +219,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="EA1-yB-y1T">
-                            <rect key="frame" x="0.0" y="66" width="375" height="0.0"/>
+                            <rect key="frame" x="0.0" y="130" width="375" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="mycell" id="G0q-Hk-5kp" customClass="MoveActionViewCell">
-                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G0q-Hk-5kp" id="tla-Ru-1Tp">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -943,7 +943,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="sT0-Ph-tcY">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="247"/>
+                            <rect key="frame" x="0.0" y="64" width="375" height="247"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YmF-CB-5Tm">
@@ -1103,13 +1103,13 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="JAE-Ry-iNg">
-                            <rect key="frame" x="0.0" y="313" width="375" height="0.0"/>
+                            <rect key="frame" x="0.0" y="377" width="375" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="News Cell" rowHeight="44" id="P9p-1b-kR4" customClass="ExploitsTableViewCell">
-                                <rect key="frame" x="0.0" y="269" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="333" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P9p-1b-kR4" id="til-An-Bth">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -2340,7 +2340,7 @@
         <!--Person View Controller-->
         <scene sceneID="psa-Lr-npe">
             <objects>
-                <viewController id="PkF-0Y-vEu" customClass="PersonViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="personview" id="PkF-0Y-vEu" customClass="PersonViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="id5-Ku-KMb"/>
                         <viewControllerLayoutGuide type="bottom" id="7uP-zn-LUQ"/>
@@ -2351,10 +2351,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="R2j-ne-ZhF"/>
+                    <connections>
+                        <segue destination="G3c-ye-bFr" kind="push" identifier="dongtai" id="uFR-HL-DJQ"/>
+                        <segue destination="6e8-S1-ELO" kind="push" identifier="fans" id="n5L-K4-Shu"/>
+                        <segue destination="uEh-I1-g35" kind="push" identifier="focus" id="RQZ-0O-fkT"/>
+                        <segue destination="L3Y-GO-ZP2" kind="push" identifier="askfor" id="8Sz-SD-foz"/>
+                        <segue destination="Qlw-Gt-jOk" kind="push" identifier="setting" id="lGY-Gc-Us4"/>
+                        <segue destination="ECs-If-LFX" kind="push" identifier="walllet" id="MEJ-iN-VCG"/>
+                        <segue destination="boZ-bE-ZtE" kind="push" identifier="invite" id="l4B-qi-WYg"/>
+                        <segue destination="f7r-ze-Stv" kind="push" identifier="gonghuiguanli" id="ua3-wA-c6p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9R-41-T7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="822" y="1842"/>
+            <point key="canvasLocation" x="1009" y="1843"/>
         </scene>
         <!--Person Table View Controller-->
         <scene sceneID="vgH-pU-mE9">
@@ -2626,7 +2636,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1118" y="1842"/>
+            <point key="canvasLocation" x="1556" y="1843"/>
         </scene>
         <!--Player Being Table View Controller-->
         <scene sceneID="FWe-gA-dFw">
@@ -2673,7 +2683,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kku-hM-hKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1268" y="5161"/>
+            <point key="canvasLocation" x="542" y="3574"/>
         </scene>
         <!--Add Play Game View Controller-->
         <scene sceneID="c2m-6C-MiW">
@@ -2748,13 +2758,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="cee-vh-lSn">
-                            <rect key="frame" x="0.0" y="66" width="375" height="0.0"/>
+                            <rect key="frame" x="0.0" y="130" width="375" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="mycell" rowHeight="44" id="7uh-e6-Hxl" customClass="MoveActionViewCell">
-                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7uh-e6-Hxl" id="65x-6f-vCf">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -3271,13 +3281,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="OYI-GK-JP1">
-                            <rect key="frame" x="0.0" y="72" width="375" height="0.0"/>
+                            <rect key="frame" x="0.0" y="136" width="375" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="N95-BW-iwN" customClass="RecordTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N95-BW-iwN" id="HTe-qc-9CR">
                                     <frame key="frameInset" width="375" height="49"/>
@@ -4157,7 +4167,7 @@
         <image name="coin.png" width="64" height="64"/>
         <image name="dongtai.png" width="20" height="21"/>
         <image name="dongtai2.png" width="20" height="21"/>
-        <image name="gonghui" width="128" height="128"/>
+        <image name="gonghui" width="24" height="24"/>
         <image name="gonghuiSearch.png" width="18" height="18"/>
         <image name="information.png" width="20" height="20"/>
         <image name="information2.png" width="20" height="20"/>
@@ -4190,17 +4200,24 @@
         <image name="yuanjiao-ju-xing.png" width="574" height="176"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="G1e-fu-sL2"/>
         <segue reference="a2L-pk-feb"/>
-        <segue reference="0pE-Uk-ivr"/>
-        <segue reference="S0y-tW-KPA"/>
+        <segue reference="uFR-HL-DJQ"/>
+        <segue reference="lGY-Gc-Us4"/>
+        <segue reference="MEJ-iN-VCG"/>
+        <segue reference="8Sz-SD-foz"/>
+        <segue reference="n5L-K4-Shu"/>
+        <segue reference="ua3-wA-c6p"/>
+        <segue reference="l4B-qi-WYg"/>
+        <segue reference="RQZ-0O-fkT"/>
+        <segue reference="g80-2p-wku"/>
+        <segue reference="eH8-oc-G9W"/>
+        <segue reference="2kF-w6-CmH"/>
         <segue reference="TgU-ON-UTc"/>
-        <segue reference="BEs-nO-Em4"/>
-        <segue reference="paO-aE-i4M"/>
-        <segue reference="T0n-fg-bJC"/>
         <segue reference="765-rk-Vfn"/>
         <segue reference="Cbe-BK-afe"/>
-        <segue reference="GI5-Ug-Nan"/>
-        <segue reference="lkr-Fs-pVo"/>
+        <segue reference="T0n-fg-bJC"/>
+        <segue reference="paO-aE-i4M"/>
+        <segue reference="G1e-fu-sL2"/>
+        <segue reference="S0y-tW-KPA"/>
     </inferredMetricsTieBreakers>
 </document>

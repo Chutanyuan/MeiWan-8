@@ -89,7 +89,7 @@
     
     self.unreadImLab.layer.cornerRadius = 7;
     [self.unreadImLab.layer setMasksToBounds:YES];
-    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
+    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
     self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]           forKey:NSForegroundColorAttributeName];
     

@@ -55,7 +55,7 @@
     [HUD showAnimated:YES whileExecutingBlock:^{
         //NSLog(@"什么时候调用");
     }];
-    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
+    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]           forKey:NSForegroundColorAttributeName];
     self.stateCount = 5;
     //self.moveActionFrames = [NSMutableArray array];

@@ -8,11 +8,28 @@
 
 #import "PersonViewController.h"
 #import "MeiWan-Swift.h"
+#import "UMUUploaderManager.h"
+#import "NSString+NSHash.h"
+#import "NSString+Base64Encode.h"
+#import "ShowMessage.h"
+#import "setting.h"
+#import "RandNumber.h"
+#import "SBJson.h"
+#import "UIImageView+WebCache.h"
+#import "MBProgressHUD.h"
+#import "CompressImage.h"
+#import "creatAlbum.h"
+#import "MJRefresh.h"
+#import "AFNetworking/AFNetworking.h"
 
-@interface PersonViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "LoginViewController.h"
+
+@interface PersonViewController ()<UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property(nonatomic,strong)NSArray * cellTitleArray;
 @property(nonatomic,strong)NSDictionary * userMessage;
+@property(nonatomic,strong)UIImageView * headerImage;
+@property(nonatomic,strong)UITableView * tableview;
 
 @end
 
@@ -23,8 +40,8 @@
     self.title = @"个人";
     [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]forKey:NSForegroundColorAttributeName];
-    
     self.userMessage = [PersistenceManager getLoginUser];
+    [self loadUserData];
     self.cellTitleArray =@[
                            @{@"title":@"我要出售时间",@"image":@"chushou"},
                            @{@"title":@"我的钱包",@"image":@"qianbao"},
@@ -33,16 +50,55 @@
                            @{@"title":@"设置",@"image":@"shezhi"}
                            ];
     UITableView * tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenHeight) style:UITableViewStylePlain];
+    self.tableview = tableview;
     tableview.delegate = self;
     tableview.dataSource = self;
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     UIView * view = [self headeView];
     tableview.tableHeaderView = view;
     tableview.showsHorizontalScrollIndicator = NO;
+    tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [tableview.mj_header beginRefreshing];
+        [self loadUserData];
+    }];
     [self.view addSubview:tableview];
 
     // Do any additional setup after loading the view.
 }
+- (void)loadUserData{
+    //获得个人信息，更新界面
+    NSString *sesstion = [PersistenceManager getLoginSession];
+    [UserConnector getLoginedUser:sesstion receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+        
+        if (error) {
+            
+            [ShowMessage showMessage:@"服务器未响应"];
+            
+        }else{
+            
+            SBJsonParser*parser=[[SBJsonParser alloc]init];
+            
+            NSMutableDictionary *json = [parser objectWithData:data];
+            
+            int status = [[json objectForKey:@"status"]intValue];
+            
+            if (status == 0) {
+
+                [PersistenceManager setLoginUser:json[@"entity"]];
+                self.userMessage = json[@"entity"];
+                [self.tableview.mj_header endRefreshing];
+                [self.tableview.tableHeaderView updateConstraints];
+                [self.tableview reloadData];
+                
+            }else if (status == 1){
+                
+                [self touchOpinitonBtn];
+                
+            }
+        }
+    }];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -58,6 +114,13 @@
     }
     cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",_cellTitleArray[indexPath.row][@"image"]]];
     cell.textLabel.text =[NSString stringWithFormat:@"%@",_cellTitleArray[indexPath.row][@"title"]];
+    if([self.userMessage[@"isAudit"] intValue] == 0){
+        
+    }else{
+        if (indexPath.row==0) {
+            cell.textLabel.text = @"设置专属标签";
+        }
+    }
     cell.textLabel.font = [FontOutSystem fontWithFangZhengSize:15.0];
     
     return cell;
@@ -71,7 +134,7 @@
     UIView * view  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, 170)];
     UIImageView * imageview = [[UIImageView alloc]initWithFrame:view.frame];
     imageview.image = [UIImage imageNamed:@"beijin"];
-//    imageview.contentMode = UIViewContentModeScaleAspectFill;
+//    imageview.contentMode = UIViewContentModeScaleAspectFill;
     [view addSubview:imageview];
 
     UIImageView * headerBord = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 90, 100)];
@@ -81,6 +144,10 @@
     [headerImage sd_setImageWithURL:[NSURL URLWithString:self.userMessage[@"headUrl"]]];
     headerImage.layer.cornerRadius = 43;
     headerImage.clipsToBounds = YES;
+    headerImage.userInteractionEnabled =  YES;
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headerimageTapGesture:)];
+    [headerImage addGestureRecognizer:tapGesture];
+    self.headerImage = headerImage;
     [view addSubview:headerImage];
     
     UIImageView * bianji = [[UIImageView alloc]initWithFrame:CGRectMake(dtScreenWidth-10-20, 50, 20, 20)];
@@ -105,10 +172,22 @@
         
         UILabel * threeNumber = [[UILabel alloc]initWithFrame:CGRectMake((dtScreenWidth/6+17)+i*(dtScreenWidth/3), 138, 24, 24)];
         threeNumber.font = [FontOutSystem fontWithFangZhengSize:15.0];
-        threeNumber.text = @"0";
+        
+        if (i==0) {
+            threeNumber.text = [NSString stringWithFormat:@"%@",self.userMessage[@"stateCount"]];
+        }else if (i==1){
+            threeNumber.text = [NSString stringWithFormat:@"%@",self.userMessage[@"watchCount"]];
+        }else{
+            threeNumber.text = [NSString stringWithFormat:@"%@",self.userMessage[@"followCount"]];
+        }
+        
         threeNumber.textColor = [UIColor whiteColor];
         [view addSubview:threeNumber];
         
+        threeImage.userInteractionEnabled = YES;
+        threeImage.tag = i;
+        UITapGestureRecognizer * tapGestureThree = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(threeImageTapGestuer:)];
+        [threeImage addGestureRecognizer:tapGestureThree];
     }
     
     UILabel * nickname = [[UILabel alloc]init];
@@ -160,5 +239,223 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row==0) {
+        if([self.userMessage[@"isAudit"] intValue] == 0){
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"如果亲通过了美玩达人申请，亲就可以选择自己的专属标签，出售自己的闲暇时间" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self performSegueWithIdentifier:@"askfor" sender:nil];
+            }];
+            [alertController addAction:cancelAction];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        }else{
+            [self performSegueWithIdentifier:@"setting" sender:self.userMessage];
+        }
+
+    }else if (indexPath.row==1){
+        [self performSegueWithIdentifier:@"walllet" sender:nil];
+    }else if (indexPath.row==2){
+        [self performSegueWithIdentifier:@"invite" sender:nil];
+    }else if (indexPath.row==3){
+        [self performSegueWithIdentifier:@"gonghuiguanli" sender:nil];
+        
+    }else{
+        [self exitAction];
+    }
+
+}
+#pragma mark----退出登录
+- (void)exitAction
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"退出登录" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action){
+        
+    }];
+    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self touchOpinitonBtn];
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:sureAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+-(void)touchOpinitonBtn{
+    //注销环信登录
+    EMError *error = [[EMClient sharedClient] logout:YES];
+    if (!error) {
+         [PersistenceManager setLoginSession:@""];
+        LoginViewController *lv = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+        lv.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:lv animated:YES];
+    }
+}
+
+#pragma mark----用户头像被点击
+-(void)headerimageTapGesture:(UITapGestureRecognizer *)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"选择图片" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选取", nil];
+    [alert show];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc]init];
+    ipc.delegate = self;
+    [[ipc navigationBar] setTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
+    if (buttonIndex == 1) {
+        //NSLog(@"1");
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            [ipc setSourceType:UIImagePickerControllerSourceTypeCamera];
+            ipc.allowsEditing = YES;
+            ipc.showsCameraControls  = YES;
+            [self presentViewController:ipc animated:YES completion:nil];
+            
+        }else{
+            //NSLog(@"硬件不支持");
+        }
+    }
+    if (buttonIndex == 2) {
+        [ipc setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        ipc.allowsEditing = YES;
+        [self presentViewController:ipc animated:YES completion:nil];
+    }
+    
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary*)info{
+    
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    if ([mediaType isEqualToString:@"public.image"]){
+        
+        UIImage *originImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        
+        UIImage *scaleImage = [CompressImage compressImage:originImage];
+        if (scaleImage == nil) {
+            [ShowMessage showMessage:@"不支持该类型图片"];
+        }else{
+            [self passImage:scaleImage];
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+#pragma mark 图片上传
+-(void)passImage:(UIImage *)image{
+    MBProgressHUD*HUDImage = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUDImage.delegate = self;
+    HUDImage.labelText = @"正在上传";
+    HUDImage.dimBackground = YES;
+    
+    NSData *data = UIImagePNGRepresentation(image);
+    NSDictionary * fileInfo = [UMUUploaderManager fetchFileInfoDictionaryWith:data];
+    NSDictionary * signaturePolicyDic =[self constructingSignatureAndPolicyWithFileInfo:fileInfo];
+    
+    NSString * signature = signaturePolicyDic[@"signature"];
+    NSString * policy = signaturePolicyDic[@"policy"];
+    NSString * bucket = signaturePolicyDic[@"bucket"];
+    
+    UMUUploaderManager * manager = [UMUUploaderManager managerWithBucket:bucket];
+    [manager uploadWithFile:data policy:policy signature:signature progressBlock:^(CGFloat percent, long long requestDidSendBytes) {
+        //NSLog(@"%f",percent);
+    } completeBlock:^(NSError *error, NSDictionary *result, BOOL completed) {
+        if (completed) {
+            //[ShowMessage showMessage:@"头像上传成功"];
+            NSString *headUrl;
+            if (isTest){
+                headUrl = [NSString stringWithFormat:@"http://chuangjike-img.b0.upaiyun.com%@",[result objectForKey:@"path"]];
+            }else{
+                headUrl = [NSString stringWithFormat:@"http://chuangjike-img-real.b0.upaiyun.com%@",[result objectForKey:@"path"]];
+            }
+            NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:headUrl,@"headUrl", nil];
+            NSString *session = [PersistenceManager getLoginSession];
+            [UserConnector update:session parameters:userInfoDic receiver:^(NSData *data, NSError *error){
+                if (error) {
+                    [ShowMessage showMessage:@"服务器未响应"];
+                }else{
+                    SBJsonParser*parser=[[SBJsonParser alloc]init];
+                    NSMutableDictionary *json=[parser objectWithData:data];
+                    //NSLog(@"%@",json);
+                    int status = [[json objectForKey:@"status"]intValue];
+                    if (status == 0) {
+                        [HUDImage hide:YES afterDelay:0];
+                        self.headerImage.image = image;
+                        [ShowMessage showMessage:@"头像上传成功"];
+                        self.userMessage = [json objectForKey:@"entity"];
+                        [PersistenceManager setLoginUser:self.userMessage];
+                        [self.tableview reloadData];
+                    }else if(status == 1){
+                        [PersistenceManager setLoginSession:@""];
+                        
+                        LoginViewController *lv = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                        lv.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:lv animated:YES];
+                    }
+                }
+            }];
+            
+            //NSLog(@"%@",result);
+        }else {
+            [HUDImage hide:YES afterDelay:0];
+            [ShowMessage showMessage:@"头像上传失败"];
+            //NSLog(@"%@",error);
+        }
+        
+    }];
+}
+- (NSDictionary *)constructingSignatureAndPolicyWithFileInfo:(NSDictionary *)fileInfo
+{
+    //#warning 您需要加上自己的bucket和secret
+    NSString * bucket = [setting getImgBuketName];
+    NSString * secret = [setting getSecret];
+    
+    NSMutableDictionary * mutableDic = [[NSMutableDictionary alloc]initWithDictionary:fileInfo];
+    [mutableDic setObject:@(ceil([[NSDate date] timeIntervalSince1970])+60) forKey:@"expiration"];//设置授权过期时间
+    UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
+    NSString *time = [NSString stringWithFormat:@"%lld",recordTime];
+    //NSLog(@"%lld",recordTime);
+    NSString *strNumber = [RandNumber getRandNumberString];
+    //NSLog(@"%@,%d",strNumber,strNumber.length);
+    NSString *headUrl = [NSString stringWithFormat:@"%@_%@.jpeg",time,strNumber];
+    [mutableDic setObject:headUrl forKey:@"path"];//设置保存路径
+    /**
+     *  这个 mutableDic 可以塞入其他可选参数 见：     */
+    NSString * signature = @"";
+    NSArray * keys = [mutableDic allKeys];
+    keys= [keys sortedArrayUsingSelector:@selector(compare:)];
+    for (NSString * key in keys) {
+        NSString * value = mutableDic[key];
+        signature = [NSString stringWithFormat:@"%@%@%@",signature,key,value];
+    }
+    signature = [signature stringByAppendingString:secret];
+    
+    return @{@"signature":[signature MD5],
+             @"policy":[self dictionaryToJSONStringBase64Encoding:mutableDic],
+             @"bucket":bucket};
+}
+
+- (NSString *)dictionaryToJSONStringBase64Encoding:(NSDictionary *)dic
+{
+    id paramesData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:paramesData encoding:NSUTF8StringEncoding];
+    return [jsonString base64encode];
+}
+
+
+#pragma mark----动态、关注、粉丝 👍点击
+
+-(void)threeImageTapGestuer:(UITapGestureRecognizer *)sender
+{
+    UIImageView * imageview = (UIImageView *)[sender view];
+    if (imageview.tag==0) {
+        [self performSegueWithIdentifier:@"dongtai" sender:self.userMessage];
+    }else if (imageview.tag==1){
+        [self performSegueWithIdentifier:@"fans" sender:self.userMessage];
+    }else if (imageview.tag==2){
+        [self performSegueWithIdentifier:@"focus" sender:self.userMessage];
+    }
 }
 @end

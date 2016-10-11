@@ -40,6 +40,7 @@
     [self setupRefresh];
     //self.tableView.backgroundColor = [UIColor redColor];
     //NSLog(@"%@",self.myUserInfo);
+    self.myUserInfo = [PersistenceManager getLoginUser];
     //添加长按删除动作
     UILongPressGestureRecognizer * longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
     longPressGr.minimumPressDuration = 1.0;

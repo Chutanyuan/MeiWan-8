@@ -32,6 +32,7 @@
 #import "AccusationViewController.h"
 #import "LoginViewController.h"
 #import "PersonTableViewController.h"
+#import "PersonViewController.h"
 #import "AFNetworking.h"
 
 @interface ChatViewController ()<UIAlertViewDelegate,EMClientDelegate,chatInviteDelegate,ChatOrderViewDelegate>
@@ -159,40 +160,46 @@
     
     NSDictionary * userdic = [PersistenceManager getLoginUser];
     NSString * session = [PersistenceManager getLoginSession];
-    [UserConnector findPeiwanById:session userId:userdic[@"id"] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
-        if (!error) {
-            SBJsonParser * parserData = [[SBJsonParser alloc]init];
-            NSDictionary * json = [parserData objectWithData:data];
-            NSDictionary * loginUser = json[@"entity"];
-            NSString * loginUserHeaderImage = loginUser[@"headUrl"];
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",loginUserHeaderImage]];
-            
-            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-            
-            [manager GET:[NSString stringWithFormat:@"http://api.cn.faceplusplus.com/detection/detect?api_key=c18c7df55febcf39feeb52681d40d9a3&api_secret=2QlutmPkapTPUTIPjINh5UaVC4Ex8SSU&url=%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if ([userdic[@"id"] doubleValue]==100000) {
+        
+        //啥也不做
+        
+    }else{
+        [UserConnector findPeiwanById:session userId:userdic[@"id"] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+            if (!error) {
+                SBJsonParser * parserData = [[SBJsonParser alloc]init];
+                NSDictionary * json = [parserData objectWithData:data];
+                NSDictionary * loginUser = json[@"entity"];
+                NSString * loginUserHeaderImage = loginUser[@"headUrl"];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",loginUserHeaderImage]];
                 
-                SBJsonParser * parser = [[SBJsonParser alloc]init];
-                NSDictionary * json = [parser objectWithData:responseObject];
-                NSLog(@"%@",json);
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                manager.responseSerializer = [AFHTTPResponseSerializer serializer];
                 
-                NSArray * face = json[@"face"];
-                if (face.count>0) {
+                [manager GET:[NSString stringWithFormat:@"http://api.cn.faceplusplus.com/detection/detect?api_key=c18c7df55febcf39feeb52681d40d9a3&api_secret=2QlutmPkapTPUTIPjINh5UaVC4Ex8SSU&url=%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     
-                    [self creatView];
+                    SBJsonParser * parser = [[SBJsonParser alloc]init];
+                    NSDictionary * json = [parser objectWithData:responseObject];
                     
-                }else{
-                    [self pushToPersonPage];
-                }
+                    NSArray * face = json[@"face"];
+                    if (face.count>0) {
+                        
+                        [self creatView];
+                        
+                    }else{
+                        [self pushToPersonPage];
+                    }
+                    
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                    
+                }];
                 
-                
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                
-                
-            }];
-            
-        }
-    }];
+            }
+        }];
+
+    }
     
 }
 /** 没有头像跳转到个人界面设置头像 */
@@ -207,7 +214,7 @@
     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        PersonTableViewController *personvc = [mainStoryboard instantiateViewControllerWithIdentifier:@"persontableview"];
+        PersonViewController *personvc = [mainStoryboard instantiateViewControllerWithIdentifier:@"personview"];
         [self.navigationController pushViewController:personvc animated:YES];
         
         

@@ -69,6 +69,8 @@
     
     usertimeTags = [[NSMutableArray alloc]initWithCapacity:0];
     NSString *session = [PersistenceManager getLoginSession];
+    self.userInfo = [[UserInfo alloc]initWithDictionary:[PersistenceManager getLoginUser]];
+    
     [UserConnector findPeiwanById:session userId:[NSNumber numberWithInteger:self.userInfo.userId]receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (!error) {
             SBJsonParser*parser=[[SBJsonParser alloc]init];

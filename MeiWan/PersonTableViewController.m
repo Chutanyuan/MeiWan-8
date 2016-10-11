@@ -698,6 +698,7 @@
     }
     
     if (indexPath.row==2) {
+        
         findFriendViewController * findVC = [[findFriendViewController alloc]init];
         findVC.title = @"搜索好友";
         findVC.hidesBottomBarWhenPushed = YES;
@@ -705,13 +706,17 @@
         
     }
     if (indexPath.row==3){
+        
         [self showMessageAlert:@"分享" image:self.headimage.image];
+        
     }
     if (indexPath.row==6){
+        
         MallViewController * mallVC = [[MallViewController alloc]init];
         mallVC.hidesBottomBarWhenPushed = YES;
         mallVC.title = @"商城";
         [self.navigationController pushViewController:mallVC animated:YES];
+        
     }
 }
 
@@ -719,7 +724,7 @@
     //注销环信登录
     EMError *error = [[EMClient sharedClient] logout:YES];
     if (!error) {
-        NSLog(@"退出成功");
+
         [self.clearView removeFromSuperview];
         [self.reloginView removeFromSuperview];
         ////    [[ECDeviceKit sharedInstance] logout:^(ECError *error) {
