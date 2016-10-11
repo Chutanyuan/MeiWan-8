@@ -46,7 +46,7 @@
     if (session.length != 0) {
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         UITabBarController *tv = [story instantiateViewControllerWithIdentifier:@"tabbar"];
-        tv.tabBar.tintColor=[CorlorTransform colorWithHexString:@"#3f90a4"];
+        tv.tabBar.tintColor=[CorlorTransform colorWithHexString:@"78cdf8"];
         self.window.rootViewController = tv;
     }
     [MAMapServices sharedServices].apiKey = @"d61267a8c21f9991feb021e3244749b0";

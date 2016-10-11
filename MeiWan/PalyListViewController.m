@@ -219,31 +219,24 @@
     //设置tabbarItem图片
     NSArray *items = self.tabBarController.tabBar.items;
     UITabBarItem *homeItem = items[0];
-    //homeItem.imageInsets = UIEdgeInsetsMake(6,0,-6,0);
-    [homeItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"#3f90a4"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
+    [homeItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"78cdf8"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     homeItem.image = [[UIImage imageNamed:@"near@2x"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     homeItem.selectedImage = [[UIImage imageNamed:@"near2@2x"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UITabBarItem *stateItem = items[1];
-    //stateItem.imageInsets = UIEdgeInsetsMake(6,0,-6,0);
-    [stateItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"#3f90a4"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
+    [stateItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"78cdf8"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     stateItem.image = [[UIImage imageNamed:@"dongtai2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     stateItem.selectedImage = [[UIImage imageNamed:@"dongtai"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UITabBarItem *hotItem = items[2];
-    //hotItem.imageInsets = UIEdgeInsetsMake(6,6,6,6);
-    [hotItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"#3f90a4"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
-    
-    //    hotItem.image = [[UIImage imageNamed:@"peiwan_rank"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //    hotItem.selectedImage = [[UIImage imageNamed:@"peiwan_rank_dark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+    [hotItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"78cdf8"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     hotItem.image = [[UIImage imageNamed:@"pai-hang-bang@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     hotItem.selectedImage = [[UIImage imageNamed:@"pai-hang-bang2@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     
     UITabBarItem *chatItem = items[3];
     //chatItem.imageInsets = UIEdgeInsetsMake(6,6,6, 6);
-    [chatItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"#3f90a4"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
+    [chatItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"78cdf8"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     
     
     chatItem.image = [[UIImage imageNamed:@"information"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -253,10 +246,10 @@
     
     UITabBarItem *personItem = items[4];
     //personItem.imageInsets = UIEdgeInsetsMake(6,6,6,6);
-    [personItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"#3f90a4"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
+    [personItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:[CorlorTransform colorWithHexString:@"78cdf8"] forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     
     personItem.image = [[UIImage imageNamed:@"personal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    personItem.selectedImage = [[UIImage imageNamed:@"personal2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    personItem.selectedImage = [[UIImage imageNamed:@"personal2"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 #pragma mark - Set up Refresh

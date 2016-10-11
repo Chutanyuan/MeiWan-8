@@ -313,7 +313,7 @@
             <objects>
                 <navigationController id="u9Z-Bj-BhG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="  " image="peiwan_rank.png" selectedImage="peiwan_rank_dark.png" id="S8I-fm-TDe"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xAh-jz-TjW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xAh-jz-TjW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1378,7 +1378,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HvD-9s-yEk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="附近" image="near.png" selectedImage="near2.png" id="u5h-b4-iSS"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0eo-S0-Mif">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0eo-S0-Mif">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2237,7 +2237,7 @@
             <objects>
                 <navigationController id="bNO-FH-4W7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="动态" image="dongtai2.png" selectedImage="dongtai.png" id="P90-ki-ru6"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FRu-aw-pGO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FRu-aw-pGO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2257,7 +2257,7 @@
                 <navigationController storyboardIdentifier="nav" automaticallyAdjustsScrollViewInsets="NO" id="NVb-KD-vB3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="2" title="消息" image="information.png" selectedImage="information2.png" id="p8P-Yw-8sr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nZP-0o-tq5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nZP-0o-tq5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2278,7 +2278,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bRl-bz-4Ij" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="3" title="个人" image="personal.png" selectedImage="personal2.png" id="W2u-ad-JVs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4rz-MB-Fsw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4rz-MB-Fsw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3132,8 +3132,8 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已绑定支付宝账号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMs-mD-FBd">
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="LeQ-ft-Wh1"/>
                                     <constraint firstAttribute="height" constant="18" id="gqY-UX-r6I"/>
-                                    <constraint firstAttribute="width" constant="120" id="o7o-9n-E1n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3166,8 +3166,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkZ-kw-29q">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="R2p-55-F1n"/>
                                     <constraint firstAttribute="height" constant="50" id="V8W-aB-tR1"/>
+                                    <constraint firstAttribute="width" constant="34" id="rTk-bO-ZxW"/>
                                 </constraints>
                                 <state key="normal" title="更换">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3270,7 +3270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rzw-s3-Eft" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="542" y="2816"/>
+            <point key="canvasLocation" x="541.60000000000002" y="2815.1424287856075"/>
         </scene>
         <!--提现记录-->
         <scene sceneID="oV2-o5-y18">
@@ -4147,7 +4147,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uaj-XS-CqX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="amf-Dx-CKK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="amf-Dx-CKK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
