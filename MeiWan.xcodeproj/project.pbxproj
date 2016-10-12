@@ -474,6 +474,8 @@
 		2BDAF79C1D2271FE008B05EA /* list_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BDAF79B1D2271FE008B05EA /* list_icon.png */; };
 		2BDAF79F1D2272B8008B05EA /* BlacknameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAF79E1D2272B8008B05EA /* BlacknameController.m */; };
 		2BDAF7A31D228762008B05EA /* blackNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAF7A21D228762008B05EA /* blackNameTableViewCell.m */; };
+		2BDD84EB1DAE14E100541F5D /* EditPersonalMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD84EA1DAE14E100541F5D /* EditPersonalMessageVC.m */; };
+		2BDD84EE1DAE36EF00541F5D /* photosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD84ED1DAE36EF00541F5D /* photosView.m */; };
 		2BDEE3091D5ABCFB00767F8B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BDEE3081D5ABCFB00767F8B /* SystemConfiguration.framework */; };
 		2BDEE4261D5B0BF800767F8B /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BDEE40B1D5B0BF800767F8B /* UMSocialLocalizable.strings */; };
 		2BDEE4271D5B0BF800767F8B /* libUMSocial_Sdk_5.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BDEE4191D5B0BF800767F8B /* libUMSocial_Sdk_5.2.1.a */; };
@@ -1501,6 +1503,10 @@
 		2BDAF79E1D2272B8008B05EA /* BlacknameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlacknameController.m; sourceTree = "<group>"; };
 		2BDAF7A11D228762008B05EA /* blackNameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blackNameTableViewCell.h; sourceTree = "<group>"; };
 		2BDAF7A21D228762008B05EA /* blackNameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = blackNameTableViewCell.m; sourceTree = "<group>"; };
+		2BDD84E91DAE14E100541F5D /* EditPersonalMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPersonalMessageVC.h; sourceTree = "<group>"; };
+		2BDD84EA1DAE14E100541F5D /* EditPersonalMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPersonalMessageVC.m; sourceTree = "<group>"; };
+		2BDD84EC1DAE36EF00541F5D /* photosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photosView.h; sourceTree = "<group>"; };
+		2BDD84ED1DAE36EF00541F5D /* photosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photosView.m; sourceTree = "<group>"; };
 		2BDEE3081D5ABCFB00767F8B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2BDEE30A1D5ABF5500767F8B /* libUMSocial_Sdk_5.2.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUMSocial_Sdk_5.2.1.a; path = Pods/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/libUMSocial_Sdk_5.2.1.a; sourceTree = "<group>"; };
 		2BDEE30C1D5ABFBD00767F8B /* libSocialWechat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSocialWechat.a; path = Pods/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_Extra_Frameworks/Wechat/libSocialWechat.a; sourceTree = "<group>"; };
@@ -2227,6 +2233,7 @@
 		18ABFEDC1BF98804000F96FF /* 个人 */ = {
 			isa = PBXGroup;
 			children = (
+				2BDD84E51DAE092A00541F5D /* 更改界面－个人 */,
 				27E0A0C51CE1759F00D5FE31 /* Control */,
 				18E911B51B7D8E90002BB75F /* subviews */,
 			);
@@ -2693,8 +2700,6 @@
 			children = (
 				27587CB71CF5A7A500B78F92 /* PersonTableViewController.h */,
 				27587CB61CF5A7A500B78F92 /* PersonTableViewController.m */,
-				2B159AD71DAB7A1400AEA055 /* PersonViewController.h */,
-				2B159AD81DAB7A1400AEA055 /* PersonViewController.m */,
 				183D53401B871C6900500663 /* UserInfoViewController.h */,
 				183D53411B871C6900500663 /* UserInfoViewController.m */,
 				2BE542021D7E9BED00BB5C43 /* 编辑昵称 */,
@@ -3908,6 +3913,35 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		2BDD84E51DAE092A00541F5D /* 更改界面－个人 */ = {
+			isa = PBXGroup;
+			children = (
+				2BDD84E71DAE096400541F5D /* controller */,
+				2BDD84E81DAE097700541F5D /* view */,
+			);
+			name = "更改界面－个人";
+			sourceTree = "<group>";
+		};
+		2BDD84E71DAE096400541F5D /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				2B159AD71DAB7A1400AEA055 /* PersonViewController.h */,
+				2B159AD81DAB7A1400AEA055 /* PersonViewController.m */,
+				2BDD84E91DAE14E100541F5D /* EditPersonalMessageVC.h */,
+				2BDD84EA1DAE14E100541F5D /* EditPersonalMessageVC.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		2BDD84E81DAE097700541F5D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				2BDD84EC1DAE36EF00541F5D /* photosView.h */,
+				2BDD84ED1DAE36EF00541F5D /* photosView.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		2BDEE40A1D5B0BF800767F8B /* UMSocial_Sdk_5.2.1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4785,6 +4819,7 @@
 				2BE236BB1D508F6600D7A859 /* WGS84TOGCJ02.m in Sources */,
 				18C05CD11BC89A8C0028A220 /* BanlanceViewController.m in Sources */,
 				18CC8EEA1BC39CE1000281CE /* Validation.swift in Sources */,
+				2BDD84EB1DAE14E100541F5D /* EditPersonalMessageVC.m in Sources */,
 				18A319681C02A493005E9010 /* HotCountController.m in Sources */,
 				2BDAF7A31D228762008B05EA /* blackNameTableViewCell.m in Sources */,
 				2B2D08651D530CFC00139467 /* GuildRankListViewController.m in Sources */,
@@ -4816,6 +4851,7 @@
 				2B28F1991D8261A100EF5EFD /* bookChooseVC.m in Sources */,
 				18E579F21B7DDDB000771063 /* UIAlertView+AFNetworking.m in Sources */,
 				04B138A81BA07EAF00AAD93F /* DataSigner.m in Sources */,
+				2BDD84EE1DAE36EF00541F5D /* photosView.m in Sources */,
 				2BE39E671D7297F100CC3F0F /* ChatroomDetailViewController.m in Sources */,
 				2BD3C6021D73DCC0008CFE23 /* MWTapDetectingView.m in Sources */,
 				18EB4E491B802C72000AE087 /* PlayerBeingTableViewController.m in Sources */,

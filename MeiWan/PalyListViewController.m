@@ -631,7 +631,7 @@
     [self.playersScollview addSubview:iconImage];
     
     iconlabel = [[UILabel alloc]initWithFrame:CGRectMake(iconImage.frame.origin.x+iconImage.frame.size.width+10, iconImage.center.y-6, 60, 12)];
-    iconlabel.font = [UIFont systemFontOfSize:11.0];
+    iconlabel.font = [FontOutSystem fontWithFangZhengSize:11.0];
     iconlabel.textColor = [CorlorTransform colorWithHexString:@"#6e6e6e"];
     iconlabel.text = @"全部";
     [self.playersScollview addSubview:iconlabel];

@@ -21,15 +21,18 @@
 #import "creatAlbum.h"
 #import "MJRefresh.h"
 #import "AFNetworking/AFNetworking.h"
+#import "UMSocial.h"
 
 #import "LoginViewController.h"
-
+#import "EditPersonalMessageVC.h"
 @interface PersonViewController ()<UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property(nonatomic,strong)NSArray * cellTitleArray;
 @property(nonatomic,strong)NSDictionary * userMessage;
 @property(nonatomic,strong)UIImageView * headerImage;
 @property(nonatomic,strong)UITableView * tableview;
+@property(nonatomic,assign) UIImage * shareImage;
+
 
 @end
 
@@ -47,7 +50,8 @@
                            @{@"title":@"我的钱包",@"image":@"qianbao"},
                            @{@"title":@"记录中心",@"image":@"jilu"},
                            @{@"title":@"公会管理",@"image":@"gonghui"},
-                           @{@"title":@"设置",@"image":@"shezhi"}
+                           @{@"title":@"设置",@"image":@"shezhi"},
+                           @{@"title":@"分享",@"image":@"fenxinag2"}
                            ];
     UITableView * tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenHeight) style:UITableViewStylePlain];
     self.tableview = tableview;
@@ -152,6 +156,10 @@
     
     UIImageView * bianji = [[UIImageView alloc]initWithFrame:CGRectMake(dtScreenWidth-10-20, 50, 20, 20)];
     bianji.image = [UIImage imageNamed:@"bianji"];
+    UITapGestureRecognizer * tapGestureBianji = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(EditUserMessage:)];
+    bianji.userInteractionEnabled = YES;
+    [bianji addGestureRecognizer:tapGestureBianji];
+
     [view addSubview:bianji];
     
     UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 130, dtScreenWidth, 40)];
@@ -263,8 +271,10 @@
     }else if (indexPath.row==3){
         [self performSegueWithIdentifier:@"gonghuiguanli" sender:nil];
         
-    }else{
+    }else if (indexPath.row==4){
         [self exitAction];
+    }else{
+        [self showMessageAlert:@"分享" image:self.headerImage.image];
     }
 
 }
@@ -443,6 +453,74 @@
     NSString *jsonString = [[NSString alloc] initWithData:paramesData encoding:NSUTF8StringEncoding];
     return [jsonString base64encode];
 }
+#pragma mark----分享到朋友圈
+- (void)showMessageAlert:(NSString *)message image:(UIImage *)image
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action){
+        
+    }];
+    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"保存到相册(头像)" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        self.shareImage = image;
+        
+        [creatAlbum createAlbumSaveImage:image];
+    }];
+    
+    
+    NSString * URLString = [NSString stringWithFormat:@"http://web.chuangjk.com:8083/promoter/sing.html?userId=%@",self.userMessage[@"id"]];
+    NSString * contentext = @"一首歌告诉我你对我的感觉";
+    NSString * titleString = @"貌美如花也能赚钱养家";
+    
+    UIAlertAction * shareAction = [UIAlertAction actionWithTitle:@"分享到微信好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [UMSocialData defaultData].extConfig.wechatSessionData.title = titleString;
+        [UMSocialData defaultData].extConfig.wechatSessionData.url = URLString;
+        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:[NSString stringWithFormat:@"%@。你选歌词，我给你唱",contentext] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+            if (response.responseCode == UMSResponseCodeSuccess) {
+                NSLog(@"分享成功！");
+            }
+        }];
+    }];
+    
+    UIAlertAction * share2Action = [UIAlertAction actionWithTitle:@"分享到微信朋友圈" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [UMSocialData defaultData].extConfig.wechatTimelineData.title = contentext;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = URLString;
+        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:[NSString stringWithFormat:@"%@。你选歌词，我给你唱",contentext] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+            if (response.responseCode == UMSResponseCodeSuccess) {
+                NSLog(@"分享成功！");
+            }
+        }];
+        
+    }];
+    
+    UIAlertAction * share3Action = [UIAlertAction actionWithTitle:@"分享到QQ好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [UMSocialData defaultData].extConfig.qqData.title = titleString;
+        [UMSocialData defaultData].extConfig.qqData.url = URLString;
+        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:[NSString stringWithFormat:@"%@。你选歌词，我给你唱",contentext] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+            if (response.responseCode == UMSResponseCodeSuccess) {
+                NSLog(@"分享成功！");
+            }
+        }];
+    }];
+    /***/
+    UIAlertAction * share4Action = [UIAlertAction actionWithTitle:@"分享到QQ空间" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [UMSocialData defaultData].extConfig.qzoneData.title = contentext;
+        [UMSocialData defaultData].extConfig.qzoneData.url = URLString;
+        
+        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQzone] content:@"你选歌词，我给你唱" image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+            if (response.responseCode == UMSResponseCodeSuccess) {
+                NSLog(@"分享成功！");
+            }
+        }];
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:sureAction];
+    [alertController addAction:shareAction];
+    [alertController addAction:share2Action];
+    [alertController addAction:share3Action];
+    [alertController addAction:share4Action];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 
 #pragma mark----动态、关注、粉丝 👍点击
@@ -458,4 +536,14 @@
         [self performSegueWithIdentifier:@"focus" sender:self.userMessage];
     }
 }
+
+#pragma mark----编辑图标点击
+- (void)EditUserMessage:(UITapGestureRecognizer *)sender
+{
+    EditPersonalMessageVC * personal = [[EditPersonalMessageVC alloc]init];
+    personal.title = @"个人编辑";
+    personal.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:personal animated:YES];
+}
+
 @end

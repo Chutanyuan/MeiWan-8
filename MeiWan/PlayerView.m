@@ -35,7 +35,8 @@
     
 //达人昵称
     self.nicename.text = [playerInfo objectForKey:@"nickname"];
-    self.nicename.font = [UIFont systemFontOfSize:12.0];;
+    //self.nicename.font = [UIFont systemFontOfSize:12.0];
+    self.nicename.font = [FontOutSystem fontWithFangZhengSize:12.0];
     CGSize size = [self.nicename.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.nicename.font,NSFontAttributeName, nil]];
     CGFloat nameH = size.height;
     CGFloat nameW = size.width;
@@ -58,7 +59,8 @@
     NSString *userAge = [NSString stringWithFormat:@"%d",age];
     self.age.textColor = RGB(174, 174, 174);
     self.age.text = userAge;
-    self.age.font = [UIFont systemFontOfSize:12.0];
+    //self.age.font = [UIFont systemFontOfSize:12.0];
+    self.age.font = [FontOutSystem fontWithFangZhengSize:12.0];
     CGSize ageSize = [self.age.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.age.font,NSFontAttributeName, nil]];
     self.age.frame = CGRectMake(self.nicename.frame.size.width+self.nicename.frame.origin.x+5, self.nicename.frame.origin.y, ageSize.width+2, ageSize.height);
     [self addSubview:self.age];
@@ -89,7 +91,8 @@
         self.distance.text = [NSString stringWithFormat:@"%.1f m", [[playerInfo objectForKey:@"distance"] doubleValue]];
     }
     self.distance.textColor = self.age.textColor;
-    self.distance.font = [UIFont systemFontOfSize:12.0];
+    //self.distance.font = [UIFont systemFontOfSize:12.0];
+    self.distance.font = [FontOutSystem fontWithFangZhengSize:12.0];
     CGSize locationSize = [self.distance.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.distance.font,NSFontAttributeName, nil]];
     self.distance.frame = CGRectMake(dtScreenWidth/2-5-locationSize.width, self.age.frame.origin.y, locationSize.width, locationSize.height);
     [self addSubview:self.distance];
