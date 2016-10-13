@@ -64,10 +64,40 @@
     tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [tableview.mj_header beginRefreshing];
         [self loadUserData];
+        [self headerImageCherk];
     }];
     [self.view addSubview:tableview];
 
+    
     // Do any additional setup after loading the view.
+}
+#pragma mark----头像检查
+- (void)headerImageCherk
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.userMessage[@"headUrl"]]];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager GET:[NSString stringWithFormat:@"http://api.cn.faceplusplus.com/detection/detect?api_key=c18c7df55febcf39feeb52681d40d9a3&api_secret=2QlutmPkapTPUTIPjINh5UaVC4Ex8SSU&url=%@",url] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        SBJsonParser * parser = [[SBJsonParser alloc]init];
+        NSDictionary * json = [parser objectWithData:responseObject];
+        NSLog(@"%@",json);
+        
+        NSArray * face = json[@"face"];
+        if (face.count>0) {
+            
+        }else{
+            [showAlertView showAlertView:@"注意！请上传一张本人可看清脸的真实头像。"];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"%@",error);
+        NSLog(@"---");
+    }];
+
 }
 - (void)loadUserData{
     //获得个人信息，更新界面
@@ -138,14 +168,13 @@
     UIView * view  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, 170)];
     UIImageView * imageview = [[UIImageView alloc]initWithFrame:view.frame];
     imageview.image = [UIImage imageNamed:@"beijin"];
-//    imageview.contentMode = UIViewContentModeScaleAspectFill;
     [view addSubview:imageview];
 
     UIImageView * headerBord = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 90, 100)];
     headerBord.image = [UIImage imageNamed:@"zhuangshi"];
     [view addSubview:headerBord];
     UIImageView * headerImage = [[UIImageView alloc]initWithFrame:CGRectMake(12, 17, 86, 86)];
-    [headerImage sd_setImageWithURL:[NSURL URLWithString:self.userMessage[@"headUrl"]]];
+    [headerImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@!1",self.userMessage[@"headUrl"]]]];
     headerImage.layer.cornerRadius = 43;
     headerImage.clipsToBounds = YES;
     headerImage.userInteractionEnabled =  YES;

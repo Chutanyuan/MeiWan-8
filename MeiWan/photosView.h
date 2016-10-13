@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol photosTouchUpdataDelegate <NSObject>
+
+- (void)phototsTouch:(UIImageView *)imageview;
+
+@end
+
 @interface photosView : UIView
+
+@property(nonatomic,strong)NSDictionary * UserMessage;
+
+@property(nonatomic,weak)id<photosTouchUpdataDelegate>delegate;
 
 @end

@@ -332,6 +332,8 @@
 		2B7E9F801D5D6F9100207CB7 /* findPeiWanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E9F7F1D5D6F9100207CB7 /* findPeiWanCell.m */; };
 		2B7E9F821D5DAEC500207CB7 /* sharefenxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7E9F811D5DAEC500207CB7 /* sharefenxiang@2x.png */; };
 		2BA4F75D1D4DCB6700A6F68C /* fansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F75C1D4DCB6700A6F68C /* fansCell.m */; };
+		2BA773601DAF3BBB00C76A6D /* showAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7735F1DAF3BBB00C76A6D /* showAlertView.m */; };
+		2BA773631DAF7BDE00C76A6D /* EditPersonalFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA773621DAF7BDE00C76A6D /* EditPersonalFootView.m */; };
 		2BB14A631D72891E00F6425D /* libHyphenateFullSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB14A621D72891E00F6425D /* libHyphenateFullSDK.a */; };
 		2BB14C061D728B0D00F6425D /* ConversationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB14C021D728B0D00F6425D /* ConversationListController.m */; };
 		2BB14C071D728B0D00F6425D /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB14C051D728B0D00F6425D /* ChatViewController.m */; };
@@ -1168,6 +1170,10 @@
 		2B7E9F811D5DAEC500207CB7 /* sharefenxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharefenxiang@2x.png"; sourceTree = "<group>"; };
 		2BA4F75B1D4DCB6700A6F68C /* fansCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fansCell.h; sourceTree = "<group>"; };
 		2BA4F75C1D4DCB6700A6F68C /* fansCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fansCell.m; sourceTree = "<group>"; };
+		2BA7735E1DAF3BBB00C76A6D /* showAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showAlertView.h; sourceTree = "<group>"; };
+		2BA7735F1DAF3BBB00C76A6D /* showAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showAlertView.m; sourceTree = "<group>"; };
+		2BA773611DAF7BDE00C76A6D /* EditPersonalFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPersonalFootView.h; sourceTree = "<group>"; };
+		2BA773621DAF7BDE00C76A6D /* EditPersonalFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPersonalFootView.m; sourceTree = "<group>"; };
 		2BB14A3B1D72891E00F6425D /* EMCallLocalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallLocalView.h; sourceTree = "<group>"; };
 		2BB14A3C1D72891E00F6425D /* EMCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallManagerDelegate.h; sourceTree = "<group>"; };
 		2BB14A3D1D72891E00F6425D /* EMCallRemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallRemoteView.h; sourceTree = "<group>"; };
@@ -2437,6 +2443,7 @@
 		18EF7A1F1B74B67F005A4F64 /* MeiWan */ = {
 			isa = PBXGroup;
 			children = (
+				2BA7735D1DAF3BA100C76A6D /* alertView */,
 				2BE3BC921D780F720004501D /* 微信支付 */,
 				2B1C111A1D75188A00184BD3 /* 环信 */,
 				27CA5A7A1CEEAD2400CC6956 /* Tool */,
@@ -3123,6 +3130,15 @@
 				2B7E9F7F1D5D6F9100207CB7 /* findPeiWanCell.m */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		2BA7735D1DAF3BA100C76A6D /* alertView */ = {
+			isa = PBXGroup;
+			children = (
+				2BA7735E1DAF3BBB00C76A6D /* showAlertView.h */,
+				2BA7735F1DAF3BBB00C76A6D /* showAlertView.m */,
+			);
+			name = alertView;
 			sourceTree = "<group>";
 		};
 		2BB14A391D72891E00F6425D /* HyphenateFullSDK */ = {
@@ -3938,6 +3954,8 @@
 			children = (
 				2BDD84EC1DAE36EF00541F5D /* photosView.h */,
 				2BDD84ED1DAE36EF00541F5D /* photosView.m */,
+				2BA773611DAF7BDE00C76A6D /* EditPersonalFootView.h */,
+				2BA773621DAF7BDE00C76A6D /* EditPersonalFootView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -4944,6 +4962,7 @@
 				18E579F61B7DDDB000771063 /* UIRefreshControl+AFNetworking.m in Sources */,
 				2BD3C6471D73DCC0008CFE23 /* EaseChatToolbar.m in Sources */,
 				2BD3C5F21D73DCC0008CFE23 /* MJRefreshBackNormalFooter.m in Sources */,
+				2BA773631DAF7BDE00C76A6D /* EditPersonalFootView.m in Sources */,
 				98EFD3531D4AE816002A1913 /* FocusViewController.m in Sources */,
 				18EF7A231B74B67F005A4F64 /* main.m in Sources */,
 				0446C71F1D0946EB005A3684 /* AddPlayGameViewController.m in Sources */,
@@ -4956,6 +4975,7 @@
 				2BE39EE41D729F4A00CC3F0F /* EMSearchBar.m in Sources */,
 				2B2D084F1D519E4D00139467 /* guildCenterViewController.m in Sources */,
 				2BD3C60D1D73DCC0008CFE23 /* NSData+EMImageContentType.m in Sources */,
+				2BA773601DAF3BBB00C76A6D /* showAlertView.m in Sources */,
 				18CC8EE71BC39CE1000281CE /* ServerTrustPolicy.swift in Sources */,
 				2BD3C63D1D73DCC0008CFE23 /* EaseMessageCell.m in Sources */,
 				2BD3C5FF1D73DCC0008CFE23 /* MWPhoto.m in Sources */,
