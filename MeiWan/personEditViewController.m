@@ -195,7 +195,13 @@
 - (void)save
 {
     /** 提交新密码 */
-    [self.view1.textfiled endEditing:YES];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view1.textfiled endEditing:YES];
+        self.navigationItem.title = @"个人设置";
+        self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+
+        
+    }];
 }
 - (void)saveUpdata
 {
