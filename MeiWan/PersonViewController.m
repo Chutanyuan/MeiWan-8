@@ -25,6 +25,7 @@
 
 #import "LoginViewController.h"
 #import "EditPersonalMessageVC.h"
+#import "personEditViewController.h"
 @interface PersonViewController ()<UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property(nonatomic,strong)NSArray * cellTitleArray;
@@ -41,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人";
-    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
+    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#5EC8F5"]];
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]forKey:NSForegroundColorAttributeName];
     self.userMessage = [PersistenceManager getLoginUser];
     [self loadUserData];
@@ -126,8 +127,11 @@
                 
             }else if (status == 1){
                 
-                [self touchOpinitonBtn];
-                
+                [PersistenceManager setLoginSession:@""];
+                LoginViewController *lv = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+                lv.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:lv animated:YES];
+
             }
         }
     }];
@@ -301,37 +305,19 @@
         [self performSegueWithIdentifier:@"gonghuiguanli" sender:nil];
         
     }else if (indexPath.row==4){
-        [self exitAction];
+//        [self exitAction];
+        
+        /** 设置 */
+        personEditViewController * personal = [[personEditViewController alloc]init];
+        personal.hidesBottomBarWhenPushed = YES;
+        personal.title = @"个人设置";
+        [self.navigationController pushViewController:personal animated:YES];
+    
     }else{
         [self showMessageAlert:@"分享" image:self.headerImage.image];
     }
 
 }
-#pragma mark----退出登录
-- (void)exitAction
-{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"退出登录" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action){
-        
-    }];
-    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [self touchOpinitonBtn];
-    }];
-    [alertController addAction:cancelAction];
-    [alertController addAction:sureAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
--(void)touchOpinitonBtn{
-    //注销环信登录
-    EMError *error = [[EMClient sharedClient] logout:YES];
-    if (!error) {
-         [PersistenceManager setLoginSession:@""];
-        LoginViewController *lv = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
-        lv.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:lv animated:YES];
-    }
-}
-
 #pragma mark----用户头像被点击
 -(void)headerimageTapGesture:(UITapGestureRecognizer *)sender
 {

@@ -331,6 +331,11 @@
 		2B6D634D1D6045E600B3E3BC /* pw_hide.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6D634C1D6045E600B3E3BC /* pw_hide.png */; };
 		2B7E9F801D5D6F9100207CB7 /* findPeiWanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E9F7F1D5D6F9100207CB7 /* findPeiWanCell.m */; };
 		2B7E9F821D5DAEC500207CB7 /* sharefenxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7E9F811D5DAEC500207CB7 /* sharefenxiang@2x.png */; };
+		2B7F4CA91DB0D42600A86D88 /* UIView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F4CA81DB0D42600A86D88 /* UIView1.m */; };
+		2B7F4CAC1DB0D4B900A86D88 /* UIView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F4CAB1DB0D4B900A86D88 /* UIView2.m */; };
+		2B7F4CAF1DB0D4CF00A86D88 /* UIView3.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F4CAE1DB0D4CF00A86D88 /* UIView3.m */; };
+		2B7F4CB21DB0D4DD00A86D88 /* UIView4.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F4CB11DB0D4DD00A86D88 /* UIView4.m */; };
+		2B96E1B01DB07F7600B1DF1E /* personEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B96E1AF1DB07F7600B1DF1E /* personEditViewController.m */; };
 		2BA4F75D1D4DCB6700A6F68C /* fansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F75C1D4DCB6700A6F68C /* fansCell.m */; };
 		2BA773601DAF3BBB00C76A6D /* showAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7735F1DAF3BBB00C76A6D /* showAlertView.m */; };
 		2BA773631DAF7BDE00C76A6D /* EditPersonalFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA773621DAF7BDE00C76A6D /* EditPersonalFootView.m */; };
@@ -1168,6 +1173,16 @@
 		2B7E9F7E1D5D6F9100207CB7 /* findPeiWanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findPeiWanCell.h; sourceTree = "<group>"; };
 		2B7E9F7F1D5D6F9100207CB7 /* findPeiWanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = findPeiWanCell.m; sourceTree = "<group>"; };
 		2B7E9F811D5DAEC500207CB7 /* sharefenxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharefenxiang@2x.png"; sourceTree = "<group>"; };
+		2B7F4CA71DB0D42600A86D88 /* UIView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView1.h; sourceTree = "<group>"; };
+		2B7F4CA81DB0D42600A86D88 /* UIView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView1.m; sourceTree = "<group>"; };
+		2B7F4CAA1DB0D4B900A86D88 /* UIView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView2.h; sourceTree = "<group>"; };
+		2B7F4CAB1DB0D4B900A86D88 /* UIView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView2.m; sourceTree = "<group>"; };
+		2B7F4CAD1DB0D4CF00A86D88 /* UIView3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView3.h; sourceTree = "<group>"; };
+		2B7F4CAE1DB0D4CF00A86D88 /* UIView3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView3.m; sourceTree = "<group>"; };
+		2B7F4CB01DB0D4DD00A86D88 /* UIView4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView4.h; sourceTree = "<group>"; };
+		2B7F4CB11DB0D4DD00A86D88 /* UIView4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView4.m; sourceTree = "<group>"; };
+		2B96E1AE1DB07F7600B1DF1E /* personEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personEditViewController.h; sourceTree = "<group>"; };
+		2B96E1AF1DB07F7600B1DF1E /* personEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personEditViewController.m; sourceTree = "<group>"; };
 		2BA4F75B1D4DCB6700A6F68C /* fansCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fansCell.h; sourceTree = "<group>"; };
 		2BA4F75C1D4DCB6700A6F68C /* fansCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fansCell.m; sourceTree = "<group>"; };
 		2BA7735E1DAF3BBB00C76A6D /* showAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showAlertView.h; sourceTree = "<group>"; };
@@ -3132,6 +3147,15 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
+		2B96E1AD1DB07F4D00B1DF1E /* 个人设置 */ = {
+			isa = PBXGroup;
+			children = (
+				2B96E1AE1DB07F7600B1DF1E /* personEditViewController.h */,
+				2B96E1AF1DB07F7600B1DF1E /* personEditViewController.m */,
+			);
+			name = "个人设置";
+			sourceTree = "<group>";
+		};
 		2BA7735D1DAF3BA100C76A6D /* alertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3945,6 +3969,7 @@
 				2B159AD81DAB7A1400AEA055 /* PersonViewController.m */,
 				2BDD84E91DAE14E100541F5D /* EditPersonalMessageVC.h */,
 				2BDD84EA1DAE14E100541F5D /* EditPersonalMessageVC.m */,
+				2B96E1AD1DB07F4D00B1DF1E /* 个人设置 */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -3956,6 +3981,14 @@
 				2BDD84ED1DAE36EF00541F5D /* photosView.m */,
 				2BA773611DAF7BDE00C76A6D /* EditPersonalFootView.h */,
 				2BA773621DAF7BDE00C76A6D /* EditPersonalFootView.m */,
+				2B7F4CA71DB0D42600A86D88 /* UIView1.h */,
+				2B7F4CA81DB0D42600A86D88 /* UIView1.m */,
+				2B7F4CAA1DB0D4B900A86D88 /* UIView2.h */,
+				2B7F4CAB1DB0D4B900A86D88 /* UIView2.m */,
+				2B7F4CAD1DB0D4CF00A86D88 /* UIView3.h */,
+				2B7F4CAE1DB0D4CF00A86D88 /* UIView3.m */,
+				2B7F4CB01DB0D4DD00A86D88 /* UIView4.h */,
+				2B7F4CB11DB0D4DD00A86D88 /* UIView4.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -4679,6 +4712,7 @@
 				2BBB51BA1D596F5B007045EC /* newViewController.m in Sources */,
 				2B2D095F1D532BC300139467 /* qrencode.c in Sources */,
 				2BE39ECB1D729EEB00CC3F0F /* ApplyFriendCell.m in Sources */,
+				2B7F4CB21DB0D4DD00A86D88 /* UIView4.m in Sources */,
 				18EB4E501B8081C5000AE087 /* AssesserInfoViewController.m in Sources */,
 				2BD3C6121D73DCC0008CFE23 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				2B2D085F1D530CBF00139467 /* GuildMembersViewController.m in Sources */,
@@ -4811,6 +4845,7 @@
 				2BD3C6171D73DCC0008CFE23 /* PSTCollectionViewCell.m in Sources */,
 				18F14BD11B8DE20000C74E37 /* PayInfo.m in Sources */,
 				2BE39EB41D729E0D00CC3F0F /* PublicGroupListViewController.m in Sources */,
+				2B7F4CAC1DB0D4B900A86D88 /* UIView2.m in Sources */,
 				2B5B12601D815F3C006E2A32 /* JobChooseViewController.m in Sources */,
 				2BD3C6211D73DCC0008CFE23 /* PSTGridLayoutSection.m in Sources */,
 				2BE542151D7ECEA800BB5C43 /* changeImageCollectionViewCell.m in Sources */,
@@ -4889,6 +4924,7 @@
 				2B28F1931D82617800EF5EFD /* schoolChooseVC.m in Sources */,
 				2BD3C6051D73DCC0008CFE23 /* EMSDImageCache.m in Sources */,
 				18C05CDA1BC8FA700028A220 /* FindPassWordViewController.m in Sources */,
+				2B7F4CAF1DB0D4CF00A86D88 /* UIView3.m in Sources */,
 				2BA4F75D1D4DCB6700A6F68C /* fansCell.m in Sources */,
 				2BD3C61B1D73DCC0008CFE23 /* PSTCollectionViewItemKey.m in Sources */,
 				2BD3C4B51D73D799008CFE23 /* RobotManager.m in Sources */,
@@ -4964,6 +5000,7 @@
 				2BD3C5F21D73DCC0008CFE23 /* MJRefreshBackNormalFooter.m in Sources */,
 				2BA773631DAF7BDE00C76A6D /* EditPersonalFootView.m in Sources */,
 				98EFD3531D4AE816002A1913 /* FocusViewController.m in Sources */,
+				2B96E1B01DB07F7600B1DF1E /* personEditViewController.m in Sources */,
 				18EF7A231B74B67F005A4F64 /* main.m in Sources */,
 				0446C71F1D0946EB005A3684 /* AddPlayGameViewController.m in Sources */,
 				18824A4B1B85D5920063EC03 /* SBJsonStreamParser.m in Sources */,
@@ -4995,6 +5032,7 @@
 				18824A4C1B85D5920063EC03 /* SBJsonStreamParserAccumulator.m in Sources */,
 				27587CB81CF5A7A500B78F92 /* PersonTableViewController.m in Sources */,
 				2BCE86231D77DB2E007B0358 /* EMAlertView.m in Sources */,
+				2B7F4CA91DB0D42600A86D88 /* UIView1.m in Sources */,
 				2BD3C6161D73DCC0008CFE23 /* PSTCollectionView.m in Sources */,
 				2BE39E691D7297F100CC3F0F /* MyChatroomListViewController.m in Sources */,
 				2B2D095E1D532BC300139467 /* QRCodeGenerator.m in Sources */,
