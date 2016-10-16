@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol UIView2Delegate <NSObject>
+
+-(void)textViewEndEdit:(UITextView *)textView;
+
+@end
+
 @interface UIView2 : UIView
+
+@property(nonatomic,strong)UITextView * textview;
+@property(nonatomic,weak)id<UIView2Delegate>delegate;
 
 @end

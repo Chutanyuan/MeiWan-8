@@ -13,13 +13,16 @@
 #import "UIView2.h"
 #import "UIView3.h"
 #import "UIView4.h"
-@interface personEditViewController ()<UITableViewDelegate,UITableViewDataSource,UIView1Delegate>
+
+@interface personEditViewController ()<UITableViewDelegate,UITableViewDataSource,UIView1Delegate,UIView2Delegate>
 
 @property(nonatomic,strong)UITableView * tableview;
 @property(nonatomic,strong)UIView1 * view1;
 @property(nonatomic,strong)UIView2 * view2;
 @property(nonatomic,strong)UIView3 * view3;
 @property(nonatomic,strong)UIView4 * view4;
+
+@property(nonatomic,strong)NSString * filesize;
 
 
 @end
@@ -44,6 +47,7 @@
     
     UIView2 * view2 = [[UIView2 alloc]initWithFrame:CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight)];
     view2.backgroundColor = [CorlorTransform colorWithHexString:@"78cdf8"];
+    view2.delegate = self;
     [self.view addSubview:view2];
     
     UIView3 * view3 = [[UIView3 alloc]initWithFrame:CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight)];
@@ -59,7 +63,109 @@
     self.view2 = view2;
     self.view1 = view1;
     
+    self.filesize = [NSString stringWithFormat : @"%.2fM" , [ self filePath ]];
+
 }
+
+- ( void )clearFile
+
+{
+    
+    NSString * cachPath = [ NSSearchPathForDirectoriesInDomains ( NSCachesDirectory , NSUserDomainMask , YES ) firstObject ];
+    
+    NSArray * files = [[ NSFileManager defaultManager ] subpathsAtPath :cachPath];
+    
+    NSLog ( @"cachpath = %@" , cachPath);
+    
+    for ( NSString * p in files) {
+        
+        NSError * error = nil ;
+        
+        NSString * path = [cachPath stringByAppendingPathComponent :p];
+        
+        if ([[ NSFileManager defaultManager ] fileExistsAtPath :path]) {
+            
+            [[ NSFileManager defaultManager ] removeItemAtPath :path error :&error];
+            
+        }
+        
+    }
+    [ self performSelectorOnMainThread : @selector (clearCachSuccess) withObject :nil waitUntilDone : YES ];
+    
+}
+
+- ( void )clearCachSuccess
+
+{
+    
+    UIAlertController * alertviewcon = [UIAlertController alertControllerWithTitle:@"提示" message:@"缓存清理完毕" preferredStyle:UIAlertControllerStyleAlert];
+    [alertviewcon addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }]];
+    
+    [self presentViewController:alertviewcon animated:YES completion:nil];
+    self.filesize = [NSString stringWithFormat : @"(%.2fM)" , [ self filePath ]];
+}
+
+
+
+//1:首先我们计算一下 单个文件的大小
+
+- ( long long ) fileSizeAtPath:( NSString *) filePath{
+    
+    NSFileManager * manager = [ NSFileManager defaultManager ];
+    
+    if ([manager fileExistsAtPath :filePath]){
+        
+        return [[manager attributesOfItemAtPath :filePath error : nil ] fileSize ];
+        
+    }
+    
+    return 0 ;
+    
+}
+
+//2: 遍历文件夹获得文件夹大小，返回多少 M（提示：你可以在工程界设置（)m）
+
+- ( float ) folderSizeAtPath:( NSString *) folderPath{
+    
+    NSFileManager * manager = [ NSFileManager defaultManager ];
+    
+    if (![manager fileExistsAtPath :folderPath]) return 0 ;
+    
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath :folderPath] objectEnumerator ];
+    
+    NSString * fileName;
+    
+    long long folderSize = 0 ;
+    
+    while ((fileName = [childFilesEnumerator nextObject ]) != nil ){
+        
+        NSString * fileAbsolutePath = [folderPath stringByAppendingPathComponent :fileName];
+        
+        folderSize += [ self fileSizeAtPath :fileAbsolutePath];
+        
+    }
+    
+    return folderSize/( 1024.0 * 1024.0 );
+    
+}
+
+// 显示缓存大小
+
+- ( float )filePath
+
+{
+    
+    NSString * cachPath = [ NSSearchPathForDirectoriesInDomains ( NSCachesDirectory , NSUserDomainMask , YES ) firstObject ];
+    
+    return [ self folderSizeAtPath :cachPath];
+    
+}
+
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -90,7 +196,7 @@
         }
     }else{
         cell.textLabel.text = @"清除缓存";
-        rightlabel.text = @"0.3M";
+        rightlabel.text = [NSString stringWithFormat:@"%@",self.filesize];
     }
     cell.selectedBackgroundView = [[UIView alloc]initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor = [CorlorTransform colorWithHexString:@"78cdf8"];
@@ -178,15 +284,8 @@
 
         }
     }else{
-        [UIView animateWithDuration:0.3 animations:^{
-            self.navigationItem.title = @"清除缓存";
-            self.view4.frame = CGRectMake(100, 0, dtScreenWidth-100, dtScreenHeight);
-            self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-            self.view2.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-            self.view3.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(exitBar)];
-
-        }];
+       
+        [self clearFile];
 
     }
     
@@ -199,13 +298,20 @@
         [self.view1.textfiled endEditing:YES];
         self.navigationItem.title = @"个人设置";
         self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-
+        
         
     }];
 }
 - (void)saveUpdata
 {
     /** 提交意见 */
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view2.textview endEditing:YES];
+        self.navigationItem.title = @"个人设置";
+        self.view2.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+        
+        
+    }];
 }
 - (void)exitBar
 {
@@ -253,5 +359,9 @@
         
     }
     NSLog(@"%@",textField.text);
+}
+-(void)textViewEndEdit:(UITextView *)textView
+{
+    NSLog(@"%@",textView.text);
 }
 @end

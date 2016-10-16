@@ -18,6 +18,13 @@
 #import "NSString+NSHash.h"
 #import "NSString+Base64Encode.h"
 #import "EditPersonalFootView.h"
+#import "editOwnMessage.h"
+#import "editdescription.h"
+#import "JobChooseViewController.h"
+#import "emotionalState.h"
+#import "schoolChooseVC.h"
+#import "insterestChooseVC.h"
+#import "MJRefresh.h"
 
 @interface EditPersonalMessageVC ()<UITableViewDelegate,UITableViewDataSource,photosTouchUpdataDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MBProgressHUDDelegate>
 
@@ -35,23 +42,37 @@
 @implementation EditPersonalMessageVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    self.UserMessage = [[NSDictionary alloc]init];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    NSDictionary * loginUserMessage = [PersistenceManager getLoginUser];
-    self.loginUserMessage = loginUserMessage;
-    
-    self.ID_number = [NSNumber numberWithDouble:[loginUserMessage[@"id"] doubleValue]];
-    [self UseMessageNetWorking];
-
+ 
     self.tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenHeight) style:UITableViewStyleGrouped];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     self.tableview.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tableview];
+    
+    self.UserMessage = [[NSDictionary alloc]init];
+    NSDictionary * loginUserMessage = [PersistenceManager getLoginUser];
+    self.loginUserMessage = loginUserMessage;
+    self.ID_number = [NSNumber numberWithDouble:[loginUserMessage[@"id"] doubleValue]];
+    
+    [self UseMessageNetWorking];
 
+    
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishSaveNickname:) name:@"finish_nickname" object:nil];
+
+}
+- (void)finishSaveNickname:(NSNotification *)test
+{
+    [self.tableview reloadData];
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 #pragma mark----网络请求
 - (void)UseMessageNetWorking
@@ -64,6 +85,7 @@
             int status = [json[@"status"] intValue];
             if (status==0) {
                 self.UserMessage = json[@"entity"];
+                [PersistenceManager setLoginUser:self.UserMessage];
                 [self.tableview reloadData];
             }
         }
@@ -91,17 +113,15 @@
                 rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"nickname"]];
         
         }else if (indexPath.row==1){
-                rightlabel.text = @"";
+                rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"love"]];
         
         }else if (indexPath.row==2){
-                rightlabel.text = @"";
+                rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"weight"]];
         
         }else if (indexPath.row==3){
                 rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"description"]];
         
         }
-
-        
         
     }else if (indexPath.section==1){
         cell.textLabel.text = onename[indexPath.row];
@@ -109,7 +129,7 @@
         if (indexPath.row==0) {
             rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"job"]];
         }else if (indexPath.row==1){
-            
+            rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"interest"]];
         }else if (indexPath.row==2){
             rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"jobLocation"]];
         }
@@ -121,6 +141,80 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.section) {
+        case 0:
+        {
+            switch (indexPath.row) {
+                case 0:
+                {
+                    editOwnMessage * editVC = [[editOwnMessage alloc]init];
+                    editVC.title = @"编辑昵称";
+                    [self.navigationController pushViewController:editVC animated:YES];
+                }
+                    break;
+                case 1:
+                {
+//身高
+                    emotionalState * emotional = [[emotionalState alloc]init];
+                    emotional.title = @"身高";
+                    [self.navigationController pushViewController:emotional animated:YES];
+                }
+                    break;
+                case 2:
+                {
+//体重
+                    schoolChooseVC * schoolVC = [[schoolChooseVC alloc]init];
+                    schoolVC.title = @"体重";
+                    [self.navigationController pushViewController:schoolVC animated:YES];
+                }
+                    break;
+                case 3:
+                {
+                    editdescription * description = [[editdescription alloc]init];
+                    description.title = @"编辑签名";
+                    [self.navigationController pushViewController:description animated:YES];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+            break;
+        case 1:
+        {
+            switch (indexPath.row) {
+                case 0:
+                {
+                    JobChooseViewController * jobChoose = [[JobChooseViewController alloc]init];
+                    jobChoose.title = @"职业";
+                    [self.navigationController pushViewController:jobChoose animated:YES];
+                }
+                    break;
+                case 1:
+                {
+//星座
+                    insterestChooseVC * insterest = [[ insterestChooseVC alloc]init];
+                    insterest.title = @"星座";
+                    [self.navigationController pushViewController:insterest animated:YES];
+                }
+                    break;
+                case 2:
+                {
+//所在地
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

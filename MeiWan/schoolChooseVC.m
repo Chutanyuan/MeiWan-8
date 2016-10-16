@@ -67,7 +67,7 @@
     }else{
         
         NSString * session = [PersistenceManager getLoginSession];
-        NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:textfile.text,@"school", nil];
+        NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:textfile.text,@"weight", nil];
         [UserConnector update:session parameters:userInfoDic receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
             if (!error) {
                 SBJsonParser * parser = [[SBJsonParser alloc]init];
