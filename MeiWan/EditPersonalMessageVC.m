@@ -25,6 +25,9 @@
 #import "schoolChooseVC.h"
 #import "insterestChooseVC.h"
 #import "MJRefresh.h"
+#import "EditpersonalMessageTableViewCell.h"
+
+
 
 @interface EditPersonalMessageVC ()<UITableViewDelegate,UITableViewDataSource,photosTouchUpdataDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MBProgressHUDDelegate>
 
@@ -44,10 +47,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
- 
     self.tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenHeight) style:UITableViewStyleGrouped];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
@@ -61,14 +64,56 @@
     
     [self UseMessageNetWorking];
 
-    
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishSaveNickname:) name:@"finish_nickname" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishSaveHeight:) name:@"finish_height" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishSaveWeight:) name:@"finish_weight" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishSaveSign:) name:@"finish_sign" object:nil];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishSaveJob:) name:@"finish_job" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishSaveZodiac:) name:@"finish_zodiac" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishSaveAddress:) name:@"finish_address" object:nil];
 
 }
 - (void)finishSaveNickname:(NSNotification *)test
 {
-    [self.tableview reloadData];
+    EditpersonalMessageTableViewCell * cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    cell.rightlabel.text = test.object;
+}
+- (void)finishSaveHeight:(NSNotification *)test
+{
+    EditpersonalMessageTableViewCell * cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    cell.rightlabel.text = test.object;
+
+}
+- (void)finishSaveWeight:(NSNotification *)test
+{
+    EditpersonalMessageTableViewCell * cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    cell.rightlabel.text = test.object;
+    
+}
+- (void)finishSaveSign:(NSNotification *)test
+{
+    EditpersonalMessageTableViewCell * cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    cell.rightlabel.text = test.object;
+    
+}
+- (void)finishSaveJob:(NSNotification *)test
+{
+    EditpersonalMessageTableViewCell * cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    cell.rightlabel.text = test.object;
+    
+}
+- (void)finishSaveZodiac:(NSNotification *)test
+{
+    EditpersonalMessageTableViewCell * cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    cell.rightlabel.text = test.object;
+    
+}
+- (void)finishSaveAddress:(NSNotification *)test
+{
+    EditpersonalMessageTableViewCell * cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];
+    cell.rightlabel.text = test.object;
+    
 }
 - (void)dealloc
 {
@@ -95,31 +140,25 @@
 {
     NSArray * zeroname = @[@"用户名",@"身高",@"体重",@"个性签名"];
     NSArray * onename = @[@"职业",@"星座",@"所在地"];
-    UILabel * rightlabel = [[UILabel alloc]initWithFrame:CGRectMake(dtScreenWidth/2, 0, dtScreenWidth/2-40, 44)];
-    rightlabel.font = [FontOutSystem fontWithFangZhengSize:15.0];
-    rightlabel.textAlignment = NSTextAlignmentRight;
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        EditpersonalMessageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[UITableViewCell  alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        UIImageView * jiantou = [[UIImageView alloc]initWithFrame:CGRectMake(dtScreenWidth-35, cell.frame.size.height/2-7.5, 15, 15)];
-        jiantou.image = [UIImage imageNamed:@"jiantou"];
-        [cell.contentView addSubview:jiantou];
-        [cell.contentView addSubview:rightlabel];
+        cell = [[EditpersonalMessageTableViewCell  alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+             
     }
     if (indexPath.section==0) {
         cell.textLabel.text = zeroname[indexPath.row];
         
         if (indexPath.row==0) {
-                rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"nickname"]];
+                cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"nickname"]];
         
         }else if (indexPath.row==1){
-                rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"love"]];
+                cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"love"]];
         
         }else if (indexPath.row==2){
-                rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"weight"]];
+                cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"weight"]];
         
         }else if (indexPath.row==3){
-                rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"description"]];
+                cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"description"]];
         
         }
         
@@ -127,13 +166,14 @@
         cell.textLabel.text = onename[indexPath.row];
         
         if (indexPath.row==0) {
-            rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"job"]];
+            cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"job"]];
         }else if (indexPath.row==1){
-            rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"interest"]];
+            cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"interest"]];
         }else if (indexPath.row==2){
-            rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"jobLocation"]];
+            cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"location"]];
         }
     }
+
     cell.textLabel.font = [FontOutSystem fontWithFangZhengSize:17.0];
     return cell;
 }

@@ -60,12 +60,12 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_nickname" object:textview.text];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_sign" object:textview.text];
 }
 - (void)saveButton:(UIButton *)sender
 {
     [self.view endEditing:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_nickname" object:textview.text];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_sign" object:textview.text];
     HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.labelText = @"加载中";
     HUD.delegate = self;
@@ -78,7 +78,6 @@
             }else{
                 SBJsonParser*parser=[[SBJsonParser alloc]init];
                 NSMutableDictionary *json=[parser objectWithData:data];
-                //NSLog(@"%@",json);
                 int status = [[json objectForKey:@"status"]intValue];
                 if (status == 0) {
                     [PersistenceManager setLoginUser:json[@"entity"]];

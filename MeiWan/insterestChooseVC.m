@@ -75,7 +75,7 @@
                 int status = [json[@"status"] intValue];
                 if (status==0) {
                     [PersistenceManager setLoginUser:json[@"entity"]];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_nickname" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_zodiac" object:textfile.text];
                     [self.navigationController popViewControllerAnimated:YES];
                 }
             }
@@ -94,7 +94,7 @@
             int status = [json[@"status"] intValue];
             if (status==0) {
                 [PersistenceManager setLoginUser:json[@"entity"]];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_nickname" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_zodiac" object:sender.titleLabel.text];
                 [self.navigationController popViewControllerAnimated:YES];
                 
             }

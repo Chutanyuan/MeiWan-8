@@ -353,6 +353,8 @@
 		2BCE86291D77DB2E007B0358 /* SRSlimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCE861B1D77DB2E007B0358 /* SRSlimeView.m */; };
 		2BCE862A1D77DB2E007B0358 /* TTGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCE861E1D77DB2E007B0358 /* TTGlobalUICommon.m */; };
 		2BCE862B1D77DB2E007B0358 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCE86201D77DB2E007B0358 /* libMobClickLibrary.a */; };
+		2BCF88201DB49EA600B7504C /* EditpersonalMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF881F1DB49EA600B7504C /* EditpersonalMessageTableViewCell.m */; };
+		2BCF88231DB4C8B800B7504C /* MXNavigationBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF88221DB4C8B800B7504C /* MXNavigationBarManager.m */; };
 		2BD3C4B11D73D799008CFE23 /* EMRobotChatTextBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C4A81D73D799008CFE23 /* EMRobotChatTextBubbleView.m */; };
 		2BD3C4B21D73D799008CFE23 /* EMRotbotChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C4AA1D73D799008CFE23 /* EMRotbotChatViewCell.m */; };
 		2BD3C4B31D73D799008CFE23 /* RobotChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C4AC1D73D799008CFE23 /* RobotChatViewController.m */; };
@@ -1252,6 +1254,10 @@
 		2BCE86201D77DB2E007B0358 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		2BCE86211D77DB2E007B0358 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		2BCE86221D77DB2E007B0358 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		2BCF881E1DB49EA600B7504C /* EditpersonalMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditpersonalMessageTableViewCell.h; sourceTree = "<group>"; };
+		2BCF881F1DB49EA600B7504C /* EditpersonalMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditpersonalMessageTableViewCell.m; sourceTree = "<group>"; };
+		2BCF88211DB4C8B800B7504C /* MXNavigationBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXNavigationBarManager.h; sourceTree = "<group>"; };
+		2BCF88221DB4C8B800B7504C /* MXNavigationBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXNavigationBarManager.m; sourceTree = "<group>"; };
 		2BD3C4A71D73D799008CFE23 /* EMRobotChatTextBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRobotChatTextBubbleView.h; sourceTree = "<group>"; };
 		2BD3C4A81D73D799008CFE23 /* EMRobotChatTextBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRobotChatTextBubbleView.m; sourceTree = "<group>"; };
 		2BD3C4A91D73D799008CFE23 /* EMRotbotChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRotbotChatViewCell.h; sourceTree = "<group>"; };
@@ -2744,6 +2750,8 @@
 		27E0A0C61CE1805100D5FE31 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				2BCF88211DB4C8B800B7504C /* MXNavigationBarManager.h */,
+				2BCF88221DB4C8B800B7504C /* MXNavigationBarManager.m */,
 				2BDFA94B1D32404400E33681 /* UICollectionViewWaterfallLayout.h */,
 				2BDFA94C1D32404400E33681 /* UICollectionViewWaterfallLayout.m */,
 				2BDFA94E1D3240E200E33681 /* CJKNavigationView.h */,
@@ -3969,6 +3977,8 @@
 				2B159AD81DAB7A1400AEA055 /* PersonViewController.m */,
 				2BDD84E91DAE14E100541F5D /* EditPersonalMessageVC.h */,
 				2BDD84EA1DAE14E100541F5D /* EditPersonalMessageVC.m */,
+				2BCF881E1DB49EA600B7504C /* EditpersonalMessageTableViewCell.h */,
+				2BCF881F1DB49EA600B7504C /* EditpersonalMessageTableViewCell.m */,
 				2B96E1AD1DB07F4D00B1DF1E /* 个人设置 */,
 			);
 			name = controller;
@@ -4714,6 +4724,7 @@
 				2BE39ECB1D729EEB00CC3F0F /* ApplyFriendCell.m in Sources */,
 				2B7F4CB21DB0D4DD00A86D88 /* UIView4.m in Sources */,
 				18EB4E501B8081C5000AE087 /* AssesserInfoViewController.m in Sources */,
+				2BCF88201DB49EA600B7504C /* EditpersonalMessageTableViewCell.m in Sources */,
 				2BD3C6121D73DCC0008CFE23 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				2B2D085F1D530CBF00139467 /* GuildMembersViewController.m in Sources */,
 				2BE39E6F1D72981D00CC3F0F /* InvitationManager.m in Sources */,
@@ -4769,6 +4780,7 @@
 				18F1CC091B948C51003EF78A /* JiHelper.swift in Sources */,
 				2B409A791D5C9CCA00408431 /* findFriendViewController.m in Sources */,
 				2BF43CE41D56D8F800C5B6C6 /* guildMementCell.m in Sources */,
+				2BCF88231DB4C8B800B7504C /* MXNavigationBarManager.m in Sources */,
 				18F359CF1B7ACC92005E3838 /* UserAssessTableViewCell.m in Sources */,
 				2BD3C61E1D73DCC0008CFE23 /* PSTGridLayoutInfo.m in Sources */,
 				2BD794EF1D6B0BC700F852E2 /* shopTableViewCell.m in Sources */,

@@ -56,7 +56,7 @@
             int status = [json[@"status"] intValue];
             if (status==0) {
                 [PersistenceManager setLoginUser:json[@"entity"]];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_nickname" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_height" object:sender.titleLabel.text];
                 [self.navigationController popViewControllerAnimated:YES];
                 
             }
