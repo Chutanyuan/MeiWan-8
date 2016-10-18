@@ -138,6 +138,7 @@
     
     [self.array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         self.imageview = [[UIImageView alloc]initWithFrame:CGRectMake(idx*dtScreenWidth, 0, dtScreenWidth, dtScreenWidth)];
+        self.imageview.contentMode = UIViewContentModeScaleAspectFill;
         [self.imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@!1",obj[@"url"]]]];
         [self.scrollview addSubview:self.imageview];
 
