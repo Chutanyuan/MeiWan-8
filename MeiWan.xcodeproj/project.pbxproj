@@ -240,7 +240,6 @@
 		27CA5A5E1CEEACCB00CC6956 /* peiwan_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CA5A151CEEACCB00CC6956 /* peiwan_location.png */; };
 		27CA5A5F1CEEACCB00CC6956 /* peiwan_location2.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CA5A161CEEACCB00CC6956 /* peiwan_location2.png */; };
 		27CA5A601CEEACCB00CC6956 /* peiwan_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CA5A171CEEACCB00CC6956 /* peiwan_locked.png */; };
-		27CA5A611CEEACCB00CC6956 /* peiwan_male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CA5A181CEEACCB00CC6956 /* peiwan_male@2x.png */; };
 		27CA5A621CEEACCB00CC6956 /* peiwan_me@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CA5A191CEEACCB00CC6956 /* peiwan_me@3x.png */; };
 		27CA5A631CEEACCB00CC6956 /* peiwan_me_dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CA5A1A1CEEACCB00CC6956 /* peiwan_me_dark@3x.png */; };
 		27CA5A641CEEACCB00CC6956 /* peiwan_message.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CA5A1B1CEEACCB00CC6956 /* peiwan_message.png */; };
@@ -569,6 +568,7 @@
 		2BF43CE41D56D8F800C5B6C6 /* guildMementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF43CE31D56D8F800C5B6C6 /* guildMementCell.m */; };
 		2BF43CE71D56D92C00C5B6C6 /* daRenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF43CE61D56D92C00C5B6C6 /* daRenCell.m */; };
 		2BF43CEA1D56D93E00C5B6C6 /* subGuildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF43CE91D56D93E00C5B6C6 /* subGuildCell.m */; };
+		2BF6E6E11DB5E1570050DD82 /* PhotosHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6E6E01DB5E1570050DD82 /* PhotosHeaderView.m */; };
 		987E7F811D4EE79C00613C6F /* UserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E7F801D4EE79C00613C6F /* UserInfoTableViewCell.m */; };
 		98BB8B811D570FCB001C79A4 /* GreatGuildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BB8B801D570FCB001C79A4 /* GreatGuildViewController.m */; };
 		98CCB9211D58369000BC86AA /* LastGuildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CCB9201D58369000BC86AA /* LastGuildViewController.m */; };
@@ -1045,7 +1045,6 @@
 		27CA5A151CEEACCB00CC6956 /* peiwan_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peiwan_location.png; sourceTree = "<group>"; };
 		27CA5A161CEEACCB00CC6956 /* peiwan_location2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peiwan_location2.png; sourceTree = "<group>"; };
 		27CA5A171CEEACCB00CC6956 /* peiwan_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peiwan_locked.png; sourceTree = "<group>"; };
-		27CA5A181CEEACCB00CC6956 /* peiwan_male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peiwan_male@2x.png"; sourceTree = "<group>"; };
 		27CA5A191CEEACCB00CC6956 /* peiwan_me@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peiwan_me@3x.png"; sourceTree = "<group>"; };
 		27CA5A1A1CEEACCB00CC6956 /* peiwan_me_dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peiwan_me_dark@3x.png"; sourceTree = "<group>"; };
 		27CA5A1B1CEEACCB00CC6956 /* peiwan_message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peiwan_message.png; sourceTree = "<group>"; };
@@ -1699,6 +1698,8 @@
 		2BF43CE61D56D92C00C5B6C6 /* daRenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = daRenCell.m; sourceTree = "<group>"; };
 		2BF43CE81D56D93E00C5B6C6 /* subGuildCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subGuildCell.h; sourceTree = "<group>"; };
 		2BF43CE91D56D93E00C5B6C6 /* subGuildCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = subGuildCell.m; sourceTree = "<group>"; };
+		2BF6E6DF1DB5E1570050DD82 /* PhotosHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosHeaderView.h; sourceTree = "<group>"; };
+		2BF6E6E01DB5E1570050DD82 /* PhotosHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosHeaderView.m; sourceTree = "<group>"; };
 		987E7F7F1D4EE79C00613C6F /* UserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewCell.h; sourceTree = "<group>"; };
 		987E7F801D4EE79C00613C6F /* UserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewCell.m; sourceTree = "<group>"; };
 		98BB8B7F1D570FCB001C79A4 /* GreatGuildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreatGuildViewController.h; sourceTree = "<group>"; };
@@ -2537,6 +2538,7 @@
 		18F359D11B7AF97F005E3838 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				2BF6E6DE1DB5E1080050DD82 /* 个人照片墙tableviewheader */,
 				18F1CC111B952A3D003EF78A /* NetBarViewController.h */,
 				18F1CC121B952A3D003EF78A /* NetBarViewController.m */,
 				18DDB9B81BB4E548003E4163 /* PeiwanHeadViewController.h */,
@@ -2668,7 +2670,6 @@
 				27CA5A151CEEACCB00CC6956 /* peiwan_location.png */,
 				27CA5A161CEEACCB00CC6956 /* peiwan_location2.png */,
 				27CA5A171CEEACCB00CC6956 /* peiwan_locked.png */,
-				27CA5A181CEEACCB00CC6956 /* peiwan_male@2x.png */,
 				27CA5A191CEEACCB00CC6956 /* peiwan_me@3x.png */,
 				27CA5A1A1CEEACCB00CC6956 /* peiwan_me_dark@3x.png */,
 				27CA5A1B1CEEACCB00CC6956 /* peiwan_message.png */,
@@ -4317,6 +4318,15 @@
 			name = collectionViewcell;
 			sourceTree = "<group>";
 		};
+		2BF6E6DE1DB5E1080050DD82 /* 个人照片墙tableviewheader */ = {
+			isa = PBXGroup;
+			children = (
+				2BF6E6DF1DB5E1570050DD82 /* PhotosHeaderView.h */,
+				2BF6E6E01DB5E1570050DD82 /* PhotosHeaderView.m */,
+			);
+			name = "个人照片墙tableviewheader";
+			sourceTree = "<group>";
+		};
 		45BCC003E365D0C4121A79F9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -4578,7 +4588,6 @@
 				27ADB8481CFEE53C00F11453 /* tabarBac.png in Resources */,
 				27CA5A661CEEACCB00CC6956 /* peiwan_praise.png in Resources */,
 				2BDEE42F1D5B0BF900767F8B /* UMSnsAccountViewController.xib in Resources */,
-				27CA5A611CEEACCB00CC6956 /* peiwan_male@2x.png in Resources */,
 				181B0BA21B79F9F600634B8D /* GameRloeTableViewCell.xib in Resources */,
 				27ADB8401CFEC50F00F11453 /* personal2@2x.png in Resources */,
 				2BDFA9581D33485F00E33681 /* PlayerView.xib in Resources */,
@@ -4993,6 +5002,7 @@
 				2BE39EF51D72A04000CC3F0F /* UIViewController+HUD.m in Sources */,
 				18F6D2BF1B8FF2CB00B1F0C3 /* MoveAction.m in Sources */,
 				2BE39EF31D72A04000CC3F0F /* UIImageView+HeadImage.m in Sources */,
+				2BF6E6E11DB5E1570050DD82 /* PhotosHeaderView.m in Sources */,
 				2BD3C5F11D73DCC0008CFE23 /* MJRefreshBackGifFooter.m in Sources */,
 				18E57A0E1B7DE22700771063 /* AFHTTPSessionManager.m in Sources */,
 				189F44B41B9D3143006BBC99 /* ImageViewController.m in Sources */,
