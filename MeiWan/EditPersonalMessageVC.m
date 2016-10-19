@@ -152,10 +152,10 @@
                 cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"nickname"]];
         
         }else if (indexPath.row==1){
-                cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"love"]];
+                cell.rightlabel.text = [NSString stringWithFormat:@"%@cm",self.loginUserMessage[@"height"]];
         
         }else if (indexPath.row==2){
-                cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"weight"]];
+                cell.rightlabel.text = [NSString stringWithFormat:@"%@kg",self.loginUserMessage[@"weight"]];
         
         }else if (indexPath.row==3){
                 cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"description"]];
@@ -168,7 +168,7 @@
         if (indexPath.row==0) {
             cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"job"]];
         }else if (indexPath.row==1){
-            cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"interest"]];
+            cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"xingzuo"]];
         }else if (indexPath.row==2){
             cell.rightlabel.text = [NSString stringWithFormat:@"%@",self.loginUserMessage[@"location"]];
         }

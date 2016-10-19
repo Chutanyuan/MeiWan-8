@@ -476,6 +476,7 @@
 		2BD3C64D1D73DCC0008CFE23 /* EaseChatBarMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C5D21D73DCC0008CFE23 /* EaseChatBarMoreView.m */; };
 		2BD3C64E1D73DCC0008CFE23 /* EaseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C5D51D73DCC0008CFE23 /* EaseRecordView.m */; };
 		2BD3C64F1D73DCC0008CFE23 /* EaseConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C5D81D73DCC0008CFE23 /* EaseConversationCell.m */; };
+		2BD712FA1DB771D8002ACCCF /* TAauthenticateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD712F91DB771D8002ACCCF /* TAauthenticateCell.m */; };
 		2BD794EB1D6B05DC00F852E2 /* shopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD794EA1D6B05DC00F852E2 /* shopViewController.m */; };
 		2BD794EF1D6B0BC700F852E2 /* shopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD794EE1D6B0BC700F852E2 /* shopTableViewCell.m */; };
 		2BDAF7991D226A17008B05EA /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAF7971D226A17008B05EA /* PlayerView.m */; };
@@ -1518,6 +1519,8 @@
 		2BD3C5D51D73DCC0008CFE23 /* EaseRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseRecordView.m; sourceTree = "<group>"; };
 		2BD3C5D71D73DCC0008CFE23 /* EaseConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationCell.h; sourceTree = "<group>"; };
 		2BD3C5D81D73DCC0008CFE23 /* EaseConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationCell.m; sourceTree = "<group>"; };
+		2BD712F81DB771D8002ACCCF /* TAauthenticateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAauthenticateCell.h; sourceTree = "<group>"; };
+		2BD712F91DB771D8002ACCCF /* TAauthenticateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAauthenticateCell.m; sourceTree = "<group>"; };
 		2BD794E91D6B05DC00F852E2 /* shopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shopViewController.h; sourceTree = "<group>"; };
 		2BD794EA1D6B05DC00F852E2 /* shopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shopViewController.m; sourceTree = "<group>"; };
 		2BD794ED1D6B0BC700F852E2 /* shopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shopTableViewCell.h; sourceTree = "<group>"; };
@@ -1899,6 +1902,7 @@
 			children = (
 				2B5B7D1C1D38932500CF5354 /* PlagerinfoViewController.h */,
 				2B5B7D1D1D38932500CF5354 /* PlagerinfoViewController.m */,
+				2BD712F71DB77127002ACCCF /* 认证cell */,
 				2B7D0EA11D6BF942009B4278 /* 展示图片 */,
 				2B5B7D1F1D38934500CF5354 /* cell */,
 				18F359D11B7AF97F005E3838 /* view */,
@@ -2341,8 +2345,8 @@
 			children = (
 				18CD05061B91538200B56288 /* connector */,
 				18824A551B85D7A10063EC03 /* UserInfo.h */,
-				04B138D01BA08B7F00AAD93F /* AliHelper.m */,
 				18824A561B85D7A10063EC03 /* UserInfo.m */,
+				04B138D01BA08B7F00AAD93F /* AliHelper.m */,
 				18F1CC141B952BCD003EF78A /* registInfo.h */,
 				18F1CC151B952BD4003EF78A /* registInfo.m */,
 			);
@@ -3944,6 +3948,15 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		2BD712F71DB77127002ACCCF /* 认证cell */ = {
+			isa = PBXGroup;
+			children = (
+				2BD712F81DB771D8002ACCCF /* TAauthenticateCell.h */,
+				2BD712F91DB771D8002ACCCF /* TAauthenticateCell.m */,
+			);
+			name = "认证cell";
+			sourceTree = "<group>";
+		};
 		2BD794EC1D6B0BB100F852E2 /* tableviewcell */ = {
 			isa = PBXGroup;
 			children = (
@@ -4875,6 +4888,7 @@
 				2B0C70861D5481D1001AB100 /* GuildRankCell.m in Sources */,
 				2BD3C63C1D73DCC0008CFE23 /* EaseCustomMessageCell.m in Sources */,
 				2BDFA9561D32416900E33681 /* firstPage_scrollViewCell.m in Sources */,
+				2BD712FA1DB771D8002ACCCF /* TAauthenticateCell.m in Sources */,
 				2BD3C5F91D73DCC0008CFE23 /* UIScrollView+MJExtension.m in Sources */,
 				2BD3C5FE1D73DCC0008CFE23 /* MWGridViewController.m in Sources */,
 				2BD3C5F81D73DCC0008CFE23 /* MJRefreshConst.m in Sources */,

@@ -43,7 +43,7 @@
 - (void)buttonClick:(UIButton *)sender
 {
     NSString * session = [PersistenceManager getLoginSession];
-    NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:sender.titleLabel.text,@"interest", nil];
+    NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:sender.titleLabel.text,@"xingzuo", nil];
     [UserConnector update:session parameters:userInfoDic receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (!error) {
             SBJsonParser * parser = [[SBJsonParser alloc]init];

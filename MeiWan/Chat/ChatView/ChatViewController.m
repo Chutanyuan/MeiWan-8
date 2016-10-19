@@ -74,7 +74,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     UIApplication * app = [UIApplication sharedApplication];
     //获得未读信息数量
     NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];

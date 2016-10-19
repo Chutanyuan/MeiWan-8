@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray * statusArray = @[@"单身",@"恋爱中",@"已婚",@"同性"];
+    NSArray * statusArray = @[@"165",@"175",@"185",@"195"];
     self.view.backgroundColor  = [UIColor whiteColor];
     CGFloat ButtonWidth = (dtScreenWidth-15)/3;
     for (int i = 0; i<4; i++) {
@@ -48,7 +48,7 @@
 - (void)buttonClick:(UIButton *)sender
 {
     NSString * session = [PersistenceManager getLoginSession];
-    NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:sender.titleLabel.text,@"love", nil];
+    NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:sender.titleLabel.text,@"height", nil];
     [UserConnector update:session parameters:userInfoDic receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (!error) {
             SBJsonParser * parser = [[SBJsonParser alloc]init];

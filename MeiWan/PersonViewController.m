@@ -33,6 +33,8 @@
 @property(nonatomic,strong)UIImageView * headerImage;
 @property(nonatomic,strong)UITableView * tableview;
 @property(nonatomic,assign) UIImage * shareImage;
+@property(nonatomic,strong)UIView * showView;
+@property(nonatomic,strong)UIView * showAlphaView;
 
 
 @end
@@ -42,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人";
+    
     [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#5EC8F5"]];
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]forKey:NSForegroundColorAttributeName];
     self.userMessage = [PersistenceManager getLoginUser];
@@ -68,6 +71,7 @@
         [self headerImageCherk];
     }];
     [self.view addSubview:tableview];
+    [self headerImageCherk];
 
     
     // Do any additional setup after loading the view.
@@ -90,7 +94,7 @@
         if (face.count>0) {
             
         }else{
-            [showAlertView showAlertView:@"注意！请上传一张本人可看清脸的真实头像。"];
+            [self ZDYshowAlertView:@"注意！请上传一张本人可看清脸的真实头像。"];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -559,6 +563,58 @@
     personal.title = @"个人编辑";
     personal.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:personal animated:YES];
+}
+#pragma mark----zhanshi
+-(void)ZDYshowAlertView:(NSString *)message
+{
+    UIView * alphaview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenHeight)];
+    alphaview.backgroundColor = [UIColor blackColor];
+    alphaview.alpha = 0.2;
+    [self.view addSubview:alphaview];
+    self.showAlphaView = alphaview;
+    UIView * view = [[UIView alloc]init];
+    view.center = CGPointMake(dtScreenWidth/2, dtScreenHeight/2);
+    view.bounds = CGRectMake(0, 0, dtScreenWidth-80, 200);
+    view.backgroundColor = [UIColor whiteColor];
+    view.layer.cornerRadius = 5;
+    view.clipsToBounds = YES;
+    view.layer.borderColor = [CorlorTransform colorWithHexString:@"#e8e8e8"].CGColor;
+    view.layer.borderWidth = 0.5;
+    [self.view addSubview:view];
+    self.showView = view;
+    
+    UILabel * titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view.frame.size.width, 40)];
+    titlelabel.font = [FontOutSystem fontWithFangZhengSize:17.0];
+    titlelabel.text = @"温馨提示";
+    titlelabel.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:titlelabel];
+    
+    UILabel * contentText = [[UILabel alloc]initWithFrame:CGRectMake(0, 40, view.frame.size.width, view.frame.size.height-44-40)];
+    contentText.textAlignment = NSTextAlignmentCenter;
+    contentText.numberOfLines = 0;
+    contentText.text = message;
+    contentText.backgroundColor = [CorlorTransform colorWithHexString:@"#e8e8e8"];
+    contentText.font = [FontOutSystem fontWithFangZhengSize:15.0];
+    [view addSubview:contentText];
+    UIButton * cancel = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancel.frame = CGRectMake(0,view.frame.size.height-44, view.frame.size.width/2, 44);
+    [cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [cancel setTitleColor:[CorlorTransform colorWithHexString:@"#b2b2b2"] forState:UIControlStateNormal];
+    [cancel addTarget:self action:@selector(sureButton:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:cancel];
+    
+    UIButton * sure = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sure setTitleColor:[CorlorTransform colorWithHexString:@"#78cdf8"] forState:UIControlStateNormal];
+    sure.frame = CGRectMake(view.frame.size.width/2, view.frame.size.height-44, view.frame.size.width/2, 44);
+    [sure setTitle:@"确定" forState:UIControlStateNormal];
+    [sure setBackgroundImage:[UIImage imageNamed:@"OK"] forState:UIControlStateHighlighted];
+    [sure addTarget:self action:@selector(sureButton:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:sure];
+}
+- (void)sureButton:(UIButton *)sender
+{
+    self.showAlphaView.alpha = 0;
+    self.showView.alpha = 0;
 }
 
 @end

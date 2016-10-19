@@ -14,6 +14,7 @@
 @interface schoolChooseVC ()
 {
     UITextField* textfile;
+    NSArray * statusArray;
 }
 @end
 
@@ -21,14 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray * statusArray = @[@"学前班",@"小学",@"初中",@"高中",@"大专",@"三本",@"二本",@"一本",@"超本"];
+    statusArray = @[@45,@50,@55,@60,@65,@70,@75,@80,@85];
     
     self.view.backgroundColor  = [UIColor whiteColor];
     CGFloat ButtonWidth = (dtScreenWidth-15)/3;
     for (int i = 0; i<statusArray.count; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(10+i%3*ButtonWidth, 74+i/3*45,ButtonWidth-5, 40);
-        [button setTitle:[NSString stringWithFormat:@"%@",statusArray[i]] forState:UIControlStateNormal];
+        button.tag = i;
+        [button setTitle:[NSString stringWithFormat:@"%@kg",statusArray[i]] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:15.0];
         [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         button.layer.cornerRadius = 3;
@@ -86,7 +88,7 @@
 - (void)buttonClick:(UIButton *)sender
 {
     NSString * session = [PersistenceManager getLoginSession];
-    NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:sender.titleLabel.text,@"school", nil];
+    NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:[statusArray[sender.tag] integerValue]],@"weight", nil];
     [UserConnector update:session parameters:userInfoDic receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (!error) {
             SBJsonParser * parser = [[SBJsonParser alloc]init];
@@ -94,7 +96,7 @@
             int status = [json[@"status"] intValue];
             if (status==0) {
                 [PersistenceManager setLoginUser:json[@"entity"]];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_nickname" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_weight" object:sender.titleLabel.text];
                 [self.navigationController popViewControllerAnimated:YES];
                 
             }
