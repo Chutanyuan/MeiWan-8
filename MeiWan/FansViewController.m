@@ -17,9 +17,12 @@
 #import "MJRefresh.h"
 #import "ShowMessage.h"
 
+#define limitNum 2
+
 @interface FansViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSDictionary * fansDic;
+    NSInteger _offset;
 }
 @property (nonatomic, strong) UITableView *fansTableView;
 @property (nonatomic, strong) NSMutableArray *fansArray;
@@ -34,13 +37,27 @@
     [super viewDidLoad];
     
     self.title = @"我的关注";
+    _offset = 0;
     fansDic = [[NSDictionary alloc]init];
     _fansTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenHeight) style:UITableViewStylePlain];
     _fansTableView.delegate = self;
     _fansTableView.dataSource = self;
     _fansTableView.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:_fansTableView];
-    [self fansFollowersBy];
+    [self fansFollowersByCount:_offset];
+    self.fansTableView.mj_header  = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _offset = 0;
+        [self.fansArray removeAllObjects];
+        [self.fansTableView.mj_header beginRefreshing];
+        [self fansFollowersByCount:_offset];
+    }];
+    self.fansTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+       
+        _offset+= limitNum;
+        [self.fansTableView.mj_footer beginRefreshing];
+        [self fansFollowersByCount:_offset];
+        
+    }];
 
     // Do any additional setup after loading the view.
 }
@@ -123,9 +140,9 @@
     }
 }
 
-- (void)fansFollowersBy{
+- (void)fansFollowersByCount:(NSInteger)offset{
     NSString *sesstion = [PersistenceManager getLoginSession];
-    [UserConnector findMyFriends:sesstion receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+    [UserConnector findMyFans:sesstion offset:offset limit:limitNum receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (error) {
             [ShowMessage showMessage:@"服务器未响应"];
         }else{
@@ -133,16 +150,23 @@
             NSMutableDictionary *json=[parser objectWithData:data];
             int status = [[json objectForKey:@"status"]intValue];
             if (status == 0) {
-                self.fansArray = [json objectForKey:@"entity"];
-                for (int i = 0;  i < self.fansArray.count; i++) {
-                    if ([self.fansArray[i] isKindOfClass:[NSNull class]]) {
-                        [self.fansArray removeObjectAtIndex:i];
+                
+                if (offset==0) {
+                    [self.fansArray removeAllObjects];
+                    self.fansArray = [json objectForKey:@"entity"];
+                    for (int i = 0;  i < self.fansArray.count; i++) {
+                        if ([self.fansArray[i] isKindOfClass:[NSNull class]]) {
+                            [self.fansArray removeObjectAtIndex:i];
+                        }
                     }
+                    [_fansTableView reloadData];
+                    [_fansTableView.mj_header endRefreshing];
+                    
+                }else{
+                    [self.fansArray addObjectsFromArray:json[@"entity"]];
+                    [_fansTableView reloadData];
+                    [_fansTableView.mj_footer endRefreshing];
                 }
-
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.fansTableView reloadData];
-                });
             }else if (status == 1){
                 [PersistenceManager setLoginSession:@""];
                 
@@ -155,6 +179,7 @@
             }
             
         }
+
     }];
 }
 

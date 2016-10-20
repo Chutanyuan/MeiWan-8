@@ -26,6 +26,9 @@
 #import "LoginViewController.h"
 #import "EditPersonalMessageVC.h"
 #import "personEditViewController.h"
+#import "FansViewController.h"
+#import "FocusViewController.h"
+
 @interface PersonViewController ()<UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property(nonatomic,strong)NSArray * cellTitleArray;
@@ -47,6 +50,7 @@
     
     [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#5EC8F5"]];
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]forKey:NSForegroundColorAttributeName];
+
     self.userMessage = [PersistenceManager getLoginUser];
     [self loadUserData];
     self.cellTitleArray =@[
@@ -67,6 +71,7 @@
     tableview.showsHorizontalScrollIndicator = NO;
     tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [tableview.mj_header beginRefreshing];
+        self.userMessage = nil;
         [self loadUserData];
         [self headerImageCherk];
     }];
@@ -126,9 +131,8 @@
                 [PersistenceManager setLoginUser:json[@"entity"]];
                 self.userMessage = json[@"entity"];
                 [self.tableview.mj_header endRefreshing];
-                [self.tableview.tableHeaderView updateConstraints];
                 [self.tableview reloadData];
-                
+
             }else if (status == 1){
                 
                 [PersistenceManager setLoginSession:@""];
@@ -286,17 +290,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row==0) {
         if([self.userMessage[@"isAudit"] intValue] == 0){
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"如果亲通过了美玩达人申请，亲就可以选择自己的专属标签，出售自己的闲暇时间" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                
-            }];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self performSegueWithIdentifier:@"askfor" sender:nil];
-            }];
-            [alertController addAction:cancelAction];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-            
+
+            [self ZDYshowAlertView:@"只要你够'亮'，只要你够'帅'，就可以通过美玩达人申请，获得属于自己的专属标签，打发自己无聊的闲暇时间，还在等什么，赶快申请，让自己与Ta人与众不同吧!"];
         }else{
             [self performSegueWithIdentifier:@"setting" sender:self.userMessage];
         }
@@ -309,8 +304,6 @@
         [self performSegueWithIdentifier:@"gonghuiguanli" sender:nil];
         
     }else if (indexPath.row==4){
-//        [self exitAction];
-        
         /** 设置 */
         personEditViewController * personal = [[personEditViewController alloc]init];
         personal.hidesBottomBarWhenPushed = YES;
@@ -608,13 +601,37 @@
     sure.frame = CGRectMake(view.frame.size.width/2, view.frame.size.height-44, view.frame.size.width/2, 44);
     [sure setTitle:@"确定" forState:UIControlStateNormal];
     [sure setBackgroundImage:[UIImage imageNamed:@"OK"] forState:UIControlStateHighlighted];
+    if (message.length>70) {
+        sure.tag = 100;
+    }else{
+        sure.tag = 0;
+    }
     [sure addTarget:self action:@selector(sureButton:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:sure];
+
 }
 - (void)sureButton:(UIButton *)sender
 {
     self.showAlphaView.alpha = 0;
     self.showView.alpha = 0;
+    if ([sender.titleLabel.text isEqualToString:@"确定"]) {
+        if (sender.tag==100) {
+            [self performSegueWithIdentifier:@"askfor" sender:nil];
+        }
+    }
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"fans"]) {
+        FansViewController *flv = segue.destinationViewController;
+        flv.hidesBottomBarWhenPushed = YES;
+    }
+    if ([segue.identifier isEqualToString:@"focus"]) {
+        FocusViewController *fov = segue.destinationViewController;
+        fov.hidesBottomBarWhenPushed = YES;
+    }
+}
+
 
 @end

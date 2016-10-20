@@ -1387,7 +1387,29 @@ import UIKit
                 receiver(data:data!.gunzippedData(), error:error)
         }
     }
-    
+    /**查看关注列表*/
+    public static func findMyFans(session:String!,offset:Int,limit:Int,receiver:(data:NSData?,error:NSError?)->()){
+        var parameters:Dictionary<String,AnyObject> = [:]
+        if (session != nil) {
+            parameters["session"]=session
+        }
+        parameters["offset"]=offset
+        parameters["limit"]=limit
+        
+        request(.GET, userUrl+"findMyFriends", parameters:parameters as? [String : NSObject])
+            .response { request, r, data, error in
+                
+                if (error==nil){
+                    
+                }else{
+                    setting .adjustIps()
+                    userUrl = setting.getIp()+"peiwan-server/rest/users/"
+                }
+                
+                receiver(data:data, error:error)
+        }
+    }
+
     //创建工会
     public static func createUnion(session:String!,name:String!,headUrl:String!, receiver:(data:NSData?,error:NSError?)->()){
         var parameters:Dictionary<String,AnyObject> = [:]

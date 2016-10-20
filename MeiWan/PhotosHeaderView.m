@@ -7,6 +7,9 @@
 //
 
 #import "PhotosHeaderView.h"
+#import "MeiWan-Swift.h"
+#import "SBJsonParser.h"
+#import "ShowMessage.h"
 
 @interface PhotosHeaderView ()<UIScrollViewDelegate>
 
@@ -20,15 +23,16 @@
 @property(nonatomic,strong)UIImageView * locationImage;
 @property(nonatomic,strong)UIButton * concern;//关注
 @property(nonatomic,strong)UILabel * ID;
-@property(nonatomic,assign)NSArray * array;
+@property(nonatomic,assign)NSMutableArray * array;
 @property(nonatomic,strong)UIView * bottomView;
-@property (strong, nonatomic) UILabel *biaoqian1;
-@property (strong, nonatomic) UILabel *biaoqian2;
-@property (strong, nonatomic) UILabel *biaoqian3;
 @property (strong, nonatomic) UIImageView *biaoqianImage1;
 @property (strong, nonatomic) UIImageView *biaoqianImage2;
 @property (strong, nonatomic) UIImageView *biaoqianImage3;
 @property(nonatomic,strong)UIView * redLine;
+
+@property (nonatomic, strong) NSMutableArray * MyfriendArray;
+@property(nonatomic,strong)NSDictionary * othersDic;
+
 
 @end
 
@@ -37,6 +41,8 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.MyfriendArray = [[NSMutableArray alloc]initWithCapacity:0];
+        self.othersDic = [[NSDictionary alloc]init];
         UIScrollView * scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenWidth)];
         [self addSubview:scrollview];
         scrollview.showsVerticalScrollIndicator = NO;
@@ -75,6 +81,7 @@
         [self addSubview:self.distance];
         
         self.concern = [UIButton buttonWithType:UIButtonTypeCustom];
+
         [self.concern setTitle:@"＋ 关注" forState:UIControlStateNormal];
         self.concern.titleLabel.font = [FontOutSystem fontWithFangZhengSize:17.0];
         self.concern.titleLabel.textColor = [UIColor whiteColor];
@@ -129,8 +136,37 @@
 }
 -(void)setUserMessage:(NSDictionary *)userMessage
 {
+    
+    NSString * session = [PersistenceManager getLoginSession];
+    [UserConnector findMyFriends:session receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (error) {
+            [ShowMessage showMessage:@"服务器未响应"];
+        }else{
+            SBJsonParser*parser=[[SBJsonParser alloc]init];
+            NSMutableDictionary *json=[parser objectWithData:data];
+            int status = [json[@"status"] intValue];
+            if (status == 0) {
+                
+                self.MyfriendArray = json[@"entity"];
+                [self.MyfriendArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ([obj isEqualToDictionary:userMessage]) {
+                        [self.concern setTitle:@"取消关注" forState:UIControlStateNormal];
+                    }
+                }];
+
+            }else{}
+            
+        }
+    }];
+
+    self.othersDic = userMessage;
     self.array = userMessage[@"userPhotos"];
+    if (self.array.count<1) {
+        
+    }
     self.scrollview.contentSize = CGSizeMake(dtScreenWidth*self.array.count, dtScreenWidth);
+    
     self.pagecontrol.numberOfPages = self.array.count;
     self.pagecontrol.currentPage = 0;
     [self.pagecontrol setCurrentPageIndicatorTintColor:[CorlorTransform colorWithHexString:@"#ed5b5b"]];
@@ -174,6 +210,12 @@
     }
     CGSize size_distance = [self.distance.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.distance.font,NSFontAttributeName, nil]];
     self.distance.frame = CGRectMake(31, self.locationImage.center.y-size_distance.height/2, size_distance.width, size_distance.height);
+    
+    
+    self.ID.text = [NSString stringWithFormat:@"ID:%@",userMessage[@"id"]];
+    CGSize size_id = [self.ID.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.ID.font,NSFontAttributeName, nil]];
+    self.ID.frame = CGRectMake(dtScreenWidth-10-size_id.width, dtScreenWidth-30+(30-size_id.height)/2, size_id.width, size_id.height);
+
     
     NSArray * titlelabel = @[@"线上点歌",@"视屏聊天",@"聚餐",@"线下K歌",@"夜店达人",@"叫醒服务",@"影伴",@"运动健身",@"LOL"];
 
@@ -255,10 +297,6 @@
         self.biaoqianImage3.frame = CGRectMake(self.biaoqian3.frame.origin.x-2,self.biaoqian3.frame.origin.y-6 , biao3size.width + 4, biao3size.height + 8);
         self.biaoqianImage3.image = [UIImage imageNamed:@"biaoqian"];
         
-        self.ID.text = [NSString stringWithFormat:@"ID:%@",userMessage[@"id"]];
-        CGSize size_id = [self.ID.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.ID.font,NSFontAttributeName, nil]];
-        self.ID.frame = CGRectMake(dtScreenWidth-10-size_id.width, dtScreenWidth-30+(30-size_id.height)/2, size_id.width, size_id.height);
-        
     }else{
         
     }
@@ -280,9 +318,51 @@
 }
 - (void)concernClick:(UIButton *)sender
 {
-    /** 
-     关注
-     */
+    NSString *sesstion = [PersistenceManager getLoginSession];
+    
+    if ([sender.titleLabel.text isEqualToString:@"取消关注"]) {
+        
+        [UserConnector deleteFriend:sesstion friendId:[self.othersDic objectForKey:@"id"] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+            if (error) {
+                [ShowMessage showMessage:@"服务器未响应"];
+            }else{
+                SBJsonParser*parser=[[SBJsonParser alloc]init];
+                NSMutableDictionary *json=[parser objectWithData:data];
+                int status = [[json objectForKey:@"status"]intValue];
+                if (status == 0) {
+                    [ShowMessage showMessage:@"取消关注成功"];
+                    [sender setTitle:@"关注" forState:UIControlStateNormal];
+                }else if (status == 1){
+
+                }else{
+                    
+                }
+            }
+        }];
+    }else{
+        NSLog(@"%@",self.othersDic);
+        [UserConnector addFriend:sesstion friendId:[self.othersDic objectForKey:@"id"] receiver:^(NSData *data,NSError *error){
+            if (error) {
+                [ShowMessage showMessage:@"服务器未响应"];
+            }else{
+                SBJsonParser*parser=[[SBJsonParser alloc]init];
+                NSMutableDictionary *json=[parser objectWithData:data];
+
+                int status = [[json objectForKey:@"status"]intValue];
+                if (status == 0) {
+                    [ShowMessage showMessage:@"关注成功"];
+                    [sender setTitle:@"取消关注" forState:UIControlStateNormal];
+                }else if (status == 1){
+
+                }else{
+                    
+                }
+            }
+        }];
+        
+    }
+
+    
 }
 
 - (void)fourButtonClickWithTitle:(UIButton *)sender

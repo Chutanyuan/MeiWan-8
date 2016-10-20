@@ -17,6 +17,9 @@
 @interface PhotosHeaderView : UIView
 
 @property(nonatomic,strong)NSDictionary * userMessage;
+@property (strong, nonatomic) UILabel *biaoqian1;
+@property (strong, nonatomic) UILabel *biaoqian2;
+@property (strong, nonatomic) UILabel *biaoqian3;
 
 @property(nonatomic,weak)id<PhohtsHeaderViewDelegate>delegate;
 

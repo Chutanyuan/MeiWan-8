@@ -72,7 +72,8 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                 self.getData = json[@"entity"];
                 [self initView];
                 self.headerImageView.userMessage = self.getData;
-
+                [self.tableview.mj_header endRefreshing];
+                
             }else{
                 
             }
@@ -89,6 +90,13 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableview];
     
+    //viewdidload的时候要独自写一次网络请求，只在里面写一次没有效果，因为没有下啦所以没有刷新不走里面的函数
+    self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.tableview.mj_header beginRefreshing];
+        //开始网络请求
+        self.getData = nil;
+        [self initBaseData];
+    }];
     self.headerImageView = [[PhotosHeaderView alloc] initWithFrame:CGRectMake(0,0,dtScreenWidth , dtScreenWidth+40)];
     self.headerImageView.delegate = self;
     self.tableview.tableHeaderView = self.headerImageView;
@@ -99,20 +107,20 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
     UILabel * label = [[UILabel alloc]init];
     label.text = @"个人";
     label.textColor = [UIColor whiteColor];
-    label.font = [FontOutSystem fontWithFangZhengSize:26];
+    label.font = [FontOutSystem fontWithFangZhengSize:20];
     CGSize size_label = [label.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:label.font,NSFontAttributeName, nil]];
     label.frame  =CGRectMake(self.alphaView.center.x-size_label.width/2, self.alphaView.center.y-size_label.height/2+10, size_label.width, size_label.height);
     [self.alphaView addSubview:label];
     
     UIButton * backbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backbutton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    backbutton.frame  = CGRectMake(10, 20, 40, 40);
+    backbutton.frame  = CGRectMake(10, 32, 20, 20);
     [backbutton addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
     [self.alphaView addSubview:backbutton];
     
     UIButton * moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [moreButton setImage:[UIImage imageNamed:@"MoreButtonImageW"] forState:UIControlStateNormal];
-    moreButton.frame = CGRectMake(dtScreenWidth-10-30, 25, 30, 30);
+    moreButton.frame = CGRectMake(dtScreenWidth-10-20, 32, 20, 20);
     [self.alphaView addSubview:moreButton];
     
     
@@ -207,7 +215,11 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
             if (indexPath.row%2==0) {
                 return 44;
             }else{
-                return 80;
+                if (indexPath.row==1) {
+                    return 120;
+                }else{
+                    return 200;
+                }
             }
         }
     }
@@ -239,7 +251,11 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                 ziliao.backgroundColor = [UIColor whiteColor];
                 ziliao.textLabel.textColor = [CorlorTransform colorWithHexString:@"#d5d5d5"];
             }
-            ziliao.textLabel.text = _array[indexPath.row];
+            if (indexPath.row==1) {
+                ziliao.textLabel.text = [NSString stringWithFormat:@"%@、%@、%@",self.headerImageView.biaoqian1.text,self.headerImageView.biaoqian2.text,self.headerImageView.biaoqian3.text];
+            }else{
+                ziliao.textLabel.text = _array[indexPath.row];
+            }
             ziliao.textLabel.font = [FontOutSystem fontWithFangZhengSize:17.0];
             
             if (indexPath.row==2){
@@ -271,6 +287,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
             }else if (indexPath.row==7){
                 rightlabel.text = self.getData[@"location"];
             }
+            
         }
         
         return ziliao;

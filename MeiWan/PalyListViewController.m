@@ -172,6 +172,7 @@
     HUD.delegate = self;
     HUD.labelText = @"加载中";
     [HUD showAnimated:YES whileExecutingBlock:^{
+       
         [self beginNetWorking];
         
     }];
