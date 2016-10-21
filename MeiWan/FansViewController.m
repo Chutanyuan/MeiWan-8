@@ -17,7 +17,7 @@
 #import "MJRefresh.h"
 #import "ShowMessage.h"
 
-#define limitNum 2
+#define limitNum 10
 
 @interface FansViewController ()<UITableViewDelegate,UITableViewDataSource>
 {

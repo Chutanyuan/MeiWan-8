@@ -71,7 +71,7 @@
     self.view.frame = CGRectMake(0, 0, dtScreenWidth, dtScreenHeight);
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
+    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
     
 }
 

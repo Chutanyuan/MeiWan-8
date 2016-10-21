@@ -36,6 +36,7 @@
     self.number.layer.cornerRadius = 6;
     self.makeSureButton.layer.masksToBounds = YES;
     self.makeSureButton.layer.cornerRadius = 6;
+    self.view.backgroundColor = [UIColor whiteColor];
 //    self.getcode.backgroundColor=[CorlorTransform colorWithHexString:@"F8F39F"];
 //    self.country.backgroundColor = [CorlorTransform colorWithHexString:@"#ffb6c1"];
     // Do any additional setup after loading the view.

@@ -12,7 +12,8 @@
 #import "UIView1.h"
 #import "UIView2.h"
 #import "UIView3.h"
-#import "UIView4.h"
+#import "FindPassWordViewController.h"
+
 
 @interface personEditViewController ()<UITableViewDelegate,UITableViewDataSource,UIView1Delegate,UIView2Delegate>
 
@@ -20,7 +21,7 @@
 @property(nonatomic,strong)UIView1 * view1;
 @property(nonatomic,strong)UIView2 * view2;
 @property(nonatomic,strong)UIView3 * view3;
-@property(nonatomic,strong)UIView4 * view4;
+//@property(nonatomic,strong)UIView4 * view4;
 
 @property(nonatomic,strong)NSString * filesize;
 
@@ -40,10 +41,10 @@
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableview];
 
-    UIView1 * view1 = [[UIView1 alloc]initWithFrame:CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight)];
-    view1.backgroundColor = [CorlorTransform colorWithHexString:@"78cdf8"];
-    view1.delegate = self;
-    [self.view addSubview:view1];
+//    UIView1 * view1 = [[UIView1 alloc]initWithFrame:CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight)];
+//    view1.backgroundColor = [CorlorTransform colorWithHexString:@"78cdf8"];
+//    view1.delegate = self;
+//    [self.view addSubview:view1];
     
     UIView2 * view2 = [[UIView2 alloc]initWithFrame:CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight)];
     view2.backgroundColor = [CorlorTransform colorWithHexString:@"78cdf8"];
@@ -54,14 +55,14 @@
     view3.backgroundColor = [CorlorTransform colorWithHexString:@"78cdf8"];
     [self.view addSubview:view3];
     
-    UIView4 * view4 = [[UIView4 alloc]initWithFrame:CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight)];
-    view4.backgroundColor = [CorlorTransform colorWithHexString:@"78cdf8"];
-    [self.view addSubview:view4];
+//    UIView4 * view4 = [[UIView4 alloc]initWithFrame:CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight)];
+//    view4.backgroundColor = [CorlorTransform colorWithHexString:@"78cdf8"];
+//    [self.view addSubview:view4];
     
-    self.view4 = view4;
+//    self.view4 = view4;
     self.view3 = view3;
     self.view2 = view2;
-    self.view1 = view1;
+//    self.view1 = view1;
     
     self.filesize = [NSString stringWithFormat : @"%.2fM" , [ self filePath ]];
 
@@ -249,24 +250,30 @@
 
     
     if (indexPath.section==0) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.navigationItem.title = @"修改密码";
-            self.view1.frame = CGRectMake(100, 0, dtScreenWidth-100, dtScreenHeight);
-            self.view2.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-            self.view3.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-            self.view4.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-            
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"确认" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
-
-        }];
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.navigationItem.title = @"修改密码";
+//            self.view1.frame = CGRectMake(100, 0, dtScreenWidth-100, dtScreenHeight);
+//            self.view2.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//            self.view3.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//            self.view4.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//            
+//            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"确认" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
+//
+//        }];
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        FindPassWordViewController *personvc = [mainStoryboard instantiateViewControllerWithIdentifier:@"changeUserPassWord"];
+        [self.navigationController pushViewController:personvc animated:YES];
+        
+        
     }else if (indexPath.section==1){
         if (indexPath.row==0) {
             [UIView animateWithDuration:0.3 animations:^{
                 self.navigationItem.title = @"产品反馈";
                 self.view2.frame = CGRectMake(100, 0, dtScreenWidth-100, dtScreenHeight);
-                self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//                self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
                 self.view3.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-                self.view4.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//                self.view4.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
                 self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(saveUpdata)];
 
             }];
@@ -275,9 +282,9 @@
             [UIView animateWithDuration:0.3 animations:^{
                 self.navigationItem.title = @"关于我们";
                 self.view3.frame = CGRectMake(100, 0, dtScreenWidth-100, dtScreenHeight);
-                self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//                self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
                 self.view2.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-                self.view4.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//                self.view4.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
                 self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(exitBar)];
 
             }];
@@ -340,8 +347,8 @@
 {
     [UIView animateWithDuration:0.3 animations:^{
         self.navigationItem.title = @"个人设置";
-        self.view4.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
-        self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//        self.view4.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
+//        self.view1.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
         self.view2.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
         self.view3.frame = CGRectMake(dtScreenWidth, 0, dtScreenWidth-100, dtScreenHeight);
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];

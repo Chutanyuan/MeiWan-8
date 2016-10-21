@@ -14,13 +14,19 @@
 #import "TAauthenticateCell.h"
 #import "ChatViewController.h"
 #import "InviteViewController.h"
+#import "ShowMessage.h"
+#import "LoginViewController.h"
+#import "FocusTableViewCell.h"
 
+#define limit_Num 2
 #define SCREEN_RECT [UIScreen mainScreen].bounds
 static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 
 
 @interface PlagerinfoViewController ()<UITableViewDelegate,UITableViewDataSource,PhohtsHeaderViewDelegate>{
     NSInteger flag;
+    int pages;
+    int statusPages;
 }
 @property(nonatomic,strong)UIView * alphaView;
 @property(nonatomic,strong)UIView * alphaView2;
@@ -29,8 +35,8 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 @property(nonatomic,strong)NSDictionary * getData;
 @property(nonatomic,strong)PhotosHeaderView *headerImageView;
 @property(nonatomic,strong)NSArray * array;
-@property(nonatomic,strong)NSArray * array2;
-@property(nonatomic,strong)NSArray * array3;
+@property(nonatomic,strong)NSMutableArray * statusArray;
+@property(nonatomic,strong)NSMutableArray * array3;
 @property(nonatomic,strong)NSArray * array4;
 
 
@@ -51,13 +57,17 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title  = @"个人详情";
+    pages=0;
+    statusPages=0;
     _array  =@[@"个人详情",@"当地向导",@"身高",@"体重",@"职业",@"星座",@"个性签名",@"常出没地"];
-    _array2 = @[@"动态"];
-    _array3 = @[@"粉丝"];
+    _statusArray = [[NSMutableArray alloc]initWithCapacity:0];
+    _array3 = [[NSMutableArray alloc]initWithCapacity:0];
     _array4 = @[@"Ta的认证",@"",@"商家认证",@""];
     flag = 1;
     [self initBaseData];
-
+    [self focusFollowersBy:pages];
+    [self findStatusBy:[NSNumber numberWithInt:statusPages] limit:[NSNumber numberWithInt:limit_Num]];
+    
     
 }
 - (void)initBaseData {
@@ -72,10 +82,11 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                 self.getData = json[@"entity"];
                 [self initView];
                 self.headerImageView.userMessage = self.getData;
+                self.headerImageView.redLine.frame = CGRectMake((flag-1)*dtScreenWidth/4, dtScreenWidth+39, dtScreenWidth/4, 2);
                 [self.tableview.mj_header endRefreshing];
                 
             }else{
-                
+                [ShowMessage showMessage:@"服务器未响应"];
             }
         }
     }];
@@ -96,6 +107,33 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         //开始网络请求
         self.getData = nil;
         [self initBaseData];
+
+        if (flag==1) {
+            
+        }else if (flag==2){
+            statusPages=0;
+            [self.statusArray removeAllObjects];
+            [self  findStatusBy:[NSNumber numberWithInt:statusPages] limit:[NSNumber numberWithInt:limit_Num]];
+        }else if (flag==3){
+            pages=0;
+            [self.array3 removeAllObjects];
+            [self focusFollowersBy:pages];
+
+        }else if (flag==4){
+        
+        }
+    }];
+    self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (flag==3) {
+            [self.tableview.mj_footer beginRefreshing];
+            pages+=limit_Num;
+            [self focusFollowersBy:pages];
+        }
+        if (flag==2) {
+            [self.tableview.mj_footer beginRefreshing];
+            statusPages+=limit_Num;
+            [self findStatusBy:[NSNumber numberWithInt:statusPages] limit:[NSNumber numberWithInt:limit_Num]];
+        }
     }];
     self.headerImageView = [[PhotosHeaderView alloc] initWithFrame:CGRectMake(0,0,dtScreenWidth , dtScreenWidth+40)];
     self.headerImageView.delegate = self;
@@ -193,9 +231,9 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
     if (flag==1) {
         return _array.count;
     }else if (flag==2){
-        return _array2.count;
+        return _statusArray.count+1;
     }else if (flag==3){
-        return _array3.count;
+        return _array3.count+1;
     }else{
         return _array4.count;
     }
@@ -210,7 +248,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         }else if (flag==2){
             return 70;
         }else if (flag==3){
-            return 100;
+            return 70;
         }else{
             if (indexPath.row%2==0) {
                 return 44;
@@ -252,7 +290,95 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                 ziliao.textLabel.textColor = [CorlorTransform colorWithHexString:@"#d5d5d5"];
             }
             if (indexPath.row==1) {
-                ziliao.textLabel.text = [NSString stringWithFormat:@"%@、%@、%@",self.headerImageView.biaoqian1.text,self.headerImageView.biaoqian2.text,self.headerImageView.biaoqian3.text];
+                if (self.headerImageView.biaoqian3.text != nil) {
+                    ziliao.textLabel.text = [NSString stringWithFormat:@"%@、%@、%@",self.headerImageView.biaoqian1.text,self.headerImageView.biaoqian2.text,self.headerImageView.biaoqian3.text];
+                    NSInteger a;
+                    if (self.headerImageView.biaoqian1.tag<=self.headerImageView.biaoqian2.tag) {
+                        
+                        if (self.headerImageView.biaoqian1.tag<=self.headerImageView.biaoqian3.tag) {
+                            a = self.headerImageView.biaoqian1.tag;
+                        }else{
+                            a = self.headerImageView.biaoqian3.tag;
+                        }
+                    }else{
+                        if (self.headerImageView.biaoqian2.tag<=self.headerImageView.biaoqian3.tag) {
+                            a = self.headerImageView.biaoqian2.tag;
+                        }else{
+                            a = self.headerImageView.biaoqian3.tag;
+                        }
+                    }
+                    
+                    if (a<20) {
+                        NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",a];
+                        NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
+                        NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",a]];
+                        [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
+                        rightlabel.attributedText = changeText;
+                    }else{
+                        
+                        NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",a];
+                        NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
+                        NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",a]];
+                        [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
+                        rightlabel.attributedText = changeText;
+                    }
+ 
+                }else{
+                    if (self.headerImageView.biaoqian2.text!=nil)
+                    {
+                        ziliao.textLabel.text = [NSString stringWithFormat:@"%@、%@",self.headerImageView.biaoqian1.text,self.headerImageView.biaoqian2.text];
+                        NSInteger a;
+                        if (self.headerImageView.biaoqian1.tag<=self.headerImageView.biaoqian2.tag) {
+                            
+                            a = self.headerImageView.biaoqian1.tag;
+                        }else{
+                            
+                            a = self.headerImageView.biaoqian2.tag;
+                        }
+                        
+                        if (a<20) {
+                            NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",a];
+                            NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
+                            NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",a]];
+                            [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
+                            rightlabel.attributedText = changeText;
+                        }else{
+                            
+                            NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",a];
+                            NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
+                            NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",a]];
+                            [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
+                            rightlabel.attributedText = changeText;
+                        }
+
+                    }else{
+                        if (self.headerImageView.biaoqian1.text!=nil) {
+                            ziliao.textLabel.text = [NSString stringWithFormat:@"%@",self.headerImageView.biaoqian1.text];
+                            NSInteger a;
+                            
+                            a = self.headerImageView.biaoqian1.tag;
+                            
+                            if (a<20) {
+                                NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",a];
+                                NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
+                                NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",a]];
+                                [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
+                                rightlabel.attributedText = changeText;
+                            }else{
+                                
+                                NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",a];
+                                NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
+                                NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",a]];
+                                [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
+                                rightlabel.attributedText = changeText;
+                            }
+
+                        }else{
+                            //none
+                        }
+                    }
+                }
+                
             }else{
                 ziliao.textLabel.text = _array[indexPath.row];
             }
@@ -296,12 +422,34 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         if (!dongtai) {
             dongtai = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dongtai"];
         }
+        if (indexPath.row==0) {
+            dongtai.textLabel.text = @"全部动态";
+            dongtai.backgroundColor = [CorlorTransform colorWithHexString:@"#f6f6f6"];
+            dongtai.textLabel.textColor = [CorlorTransform colorWithHexString:@"#d5d5d5"];
+        }else{
+            dongtai.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+            dongtai.backgroundColor = [UIColor whiteColor];
+        }
         return dongtai;
     }else if (flag==3){
-        UITableViewCell * fensi = [tableView dequeueReusableCellWithIdentifier:@"fensi"];
+        FocusTableViewCell * fensi = [tableView dequeueReusableCellWithIdentifier:@"fensi"];
         if (!fensi) {
-            fensi = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"v"];
+            fensi = [[FocusTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"fensi"];
         }
+        if (indexPath.row==0) {
+            fensi.textLabel.text = @"全部粉丝";
+            fensi.backgroundColor = [CorlorTransform colorWithHexString:@"#f6f6f6"];
+            fensi.textLabel.textColor = [CorlorTransform colorWithHexString:@"#d5d5d5"];
+            fensi.focusButton.hidden = YES;
+        }else{
+            if (self.array3.count>0) {
+                fensi.focusDic = self.array3[indexPath.row-1];
+            }
+            [fensi.focusButton setTitle:@"＋关注" forState:UIControlStateNormal];
+            [fensi.focusButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            fensi.focusButton.backgroundColor = [CorlorTransform colorWithHexString:@"#ffcccc"];
+        }
+        
         return fensi;
     }else if (flag==4){
         UITableViewCell * renzheng = [tableView dequeueReusableCellWithIdentifier:@"renzheng"];
@@ -340,5 +488,84 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 {
     flag = sender.tag;
     [self.tableview reloadData];
+}
+
+
+#pragma mark----获取粉丝列表
+
+- (void)focusFollowersBy:(int)offset{
+    NSString *sesstion = [PersistenceManager getLoginSession];
+    [UserConnector findMyFocus:sesstion offset:offset limit:limit_Num receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (error) {
+            [ShowMessage showMessage:@"服务器未响应"];
+        }else{
+            SBJsonParser*parser=[[SBJsonParser alloc]init];
+            NSMutableDictionary *json=[parser objectWithData:data];
+            int status = [[json objectForKey:@"status"]intValue];
+            if (status == 0) {
+                
+                if (offset==0) {
+                    [self.array3 removeAllObjects];
+                    self.array3 = [json objectForKey:@"entity"];
+                    for (int i = 0;  i < self.array3.count; i++) {
+                        if ([self.array3[i] isKindOfClass:[NSNull class]]) {
+                            [self.array3 removeObjectAtIndex:i];
+                        }
+                    }
+                    [_tableview reloadData];
+                    [_tableview.mj_header endRefreshing];
+                    
+                }else{
+                    [self.array3 addObjectsFromArray:json[@"entity"]];
+                    [self.tableview reloadData];
+                    [_tableview.mj_footer endRefreshing];
+                }
+            }else if (status == 1){
+
+                [self loginPush];
+                
+            }else{
+                
+            }
+            
+        }
+    }];
+}
+#pragma mark----用户动态
+- (void)findStatusBy:(NSNumber *)offset limit:(NSNumber*)limit
+{
+    NSString * session = [PersistenceManager getLoginSession];
+    [UserConnector findStates:session userId:[NSNumber numberWithDouble:[self.playerInfo[@"id"] doubleValue]] offset:offset limit:limit receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            SBJsonParser * parser = [[SBJsonParser alloc]init];
+            NSDictionary * json = [parser objectWithData:data];
+            int status = [json[@"status"] intValue];
+            if (status==0) {
+                if (offset==0) {
+                    self.statusArray = json[@"entity"];
+                    [self.tableview reloadData];
+                    [self.tableview.mj_header endRefreshing];
+                    
+                }else{
+                    [self.statusArray addObjectsFromArray:json[@"entity"]];
+                    [self.tableview reloadData];
+                    [self.tableview.mj_footer endRefreshing];
+                }
+            }else{
+                if (status==1) {
+                    [self loginPush];
+                }
+            }
+        }else{
+            [ShowMessage showMessage:@"服务器未响应"];
+        }
+    }];
+}
+- (void)loginPush
+{
+    [PersistenceManager setLoginSession:@""];
+    LoginViewController *lv = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+    lv.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:lv animated:YES];
 }
 @end

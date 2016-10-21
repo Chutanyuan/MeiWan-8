@@ -20,6 +20,7 @@
 @property (strong, nonatomic) UILabel *biaoqian1;
 @property (strong, nonatomic) UILabel *biaoqian2;
 @property (strong, nonatomic) UILabel *biaoqian3;
+@property(nonatomic,strong)UIView * redLine;
 
 @property(nonatomic,weak)id<PhohtsHeaderViewDelegate>delegate;
 

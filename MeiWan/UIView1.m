@@ -25,13 +25,23 @@
         tableview.backgroundColor = self.backgroundColor;
         [self addSubview:tableview];
         
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(20, 300, frame.size.width-40, 44);
+        [button setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [button setTitleColor:[CorlorTransform colorWithHexString:@""] forState:UIControlStateNormal];
+        [button setBackgroundColor:[CorlorTransform colorWithHexString:@""]];
+        button.layer.cornerRadius = 5;
+        button.clipsToBounds = YES;
+        [button addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
+        
     }
     return self;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray * titlearray = @[@"原密码:",@"新密码:",@"确认新密码:"];
+    NSArray * titlearray = @[@"原密码:",@"新密码:",@"确认新密码:",@"验证码:"];
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         UITextField  * textfiled = [[UITextField alloc]init];
@@ -43,9 +53,17 @@
         }else if (indexPath.row==1){
             textfiled.tag = 222;
             textfiled.frame = CGRectMake(70, 0, self.frame.size.width-55, 44);
-        }else{
+        }else if (indexPath.row==2){
             textfiled.tag = 333;
             textfiled.frame = CGRectMake(100, 0, self.frame.size.width-85, 44);
+        }else{
+            textfiled.tag = 444;
+            textfiled.frame = CGRectMake(70, 0, self.frame.size.width-55, 44);
+        }
+        if (textfiled.tag==444) {
+            textfiled.keyboardType = UIKeyboardTypeNumberPad;
+        }else{
+            
         }
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         [cell addSubview:textfiled];
@@ -60,7 +78,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 4;
 }
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
@@ -68,6 +86,13 @@
     [self.delegate textFieldEndEditing:textField];
     return YES;
 }
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField endEditing:YES];
+    return YES;
+}
+- (void)sendMessage{
+    
+}
 
 @end

@@ -1183,6 +1183,7 @@
 		2B7F4CAE1DB0D4CF00A86D88 /* UIView3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView3.m; sourceTree = "<group>"; };
 		2B7F4CB01DB0D4DD00A86D88 /* UIView4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView4.h; sourceTree = "<group>"; };
 		2B7F4CB11DB0D4DD00A86D88 /* UIView4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView4.m; sourceTree = "<group>"; };
+		2B8002E01DB9E8B5007DAFCA /* MeiWan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MeiWan.entitlements; sourceTree = "<group>"; };
 		2B96E1AE1DB07F7600B1DF1E /* personEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personEditViewController.h; sourceTree = "<group>"; };
 		2B96E1AF1DB07F7600B1DF1E /* personEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personEditViewController.m; sourceTree = "<group>"; };
 		2BA4F75B1D4DCB6700A6F68C /* fansCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fansCell.h; sourceTree = "<group>"; };
@@ -2469,6 +2470,7 @@
 		18EF7A1F1B74B67F005A4F64 /* MeiWan */ = {
 			isa = PBXGroup;
 			children = (
+				2B8002E01DB9E8B5007DAFCA /* MeiWan.entitlements */,
 				2BA7735D1DAF3BA100C76A6D /* alertView */,
 				2BE3BC921D780F720004501D /* 微信支付 */,
 				2B1C111A1D75188A00184BD3 /* 环信 */,
@@ -5179,7 +5181,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "aa82a804-252e-4466-afe2-9b79bdfd1cc6";
+				PROVISIONING_PROFILE = "dbbedba2-40a6-4d64-aeca-121e78b79137";
 				SDKROOT = iphoneos9.3;
 				VALID_ARCHS = "armv7 armv7s";
 			};
@@ -5220,7 +5222,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "aa82a804-252e-4466-afe2-9b79bdfd1cc6";
+				PROVISIONING_PROFILE = "dbbedba2-40a6-4d64-aeca-121e78b79137";
 				SDKROOT = iphoneos9.3;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s";
@@ -5235,6 +5237,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MeiWan/MeiWan.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Wei Liu (8RJ67A2F8R)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -5302,6 +5305,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MeiWan/MeiWan.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Wei Liu (8RJ67A2F8R)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";

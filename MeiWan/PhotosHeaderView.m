@@ -28,7 +28,6 @@
 @property (strong, nonatomic) UIImageView *biaoqianImage1;
 @property (strong, nonatomic) UIImageView *biaoqianImage2;
 @property (strong, nonatomic) UIImageView *biaoqianImage3;
-@property(nonatomic,strong)UIView * redLine;
 
 @property (nonatomic, strong) NSMutableArray * MyfriendArray;
 @property(nonatomic,strong)NSDictionary * othersDic;
@@ -222,18 +221,20 @@
     
     NSArray * usertimeTags = [userMessage objectForKey:@"userTimeTags"];
     if (usertimeTags.count==1) {
-        
         NSDictionary * dic1 = usertimeTags[0];
-        NSString * index = dic1[@"index"];
-        self.biaoqian1.text = [titlelabel objectAtIndex:[index integerValue]-1];
-        self.biaoqian1.textColor = [UIColor whiteColor];
-        self.biaoqian1.font = [FontOutSystem fontWithFangZhengSize:10.0];
         
+        NSString * index = dic1[@"index"];
+        
+        self.biaoqian1.text = [titlelabel objectAtIndex:[index integerValue]-1];
+        self.biaoqian1.font = [FontOutSystem fontWithFangZhengSize:10.0];
+        self.biaoqian1.textColor = [UIColor whiteColor];
         CGSize biao1size = [self.biaoqian1.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.biaoqian1.font,NSFontAttributeName, nil]];
-        self.biaoqian1.frame = CGRectMake(10, self.bottomView.frame.origin.y+5, biao1size.width, biao1size.height);
+        self.biaoqian1.frame = CGRectMake(10, self.bottomView.frame.origin.y+10, biao1size.width, biao1size.height);
         
         self.biaoqianImage1.frame = CGRectMake(self.biaoqian1.frame.origin.x-2,self.biaoqian1.frame.origin.y-6 , biao1size.width + 4, biao1size.height + 8);
         self.biaoqianImage1.image = [UIImage imageNamed:@"biaoqian"];
+        self.biaoqian1.tag = [dic1[@"price"] integerValue];
+
         
     }else if (usertimeTags.count==2){
         
@@ -260,7 +261,11 @@
         
         self.biaoqianImage2.frame = CGRectMake(self.biaoqian2.frame.origin.x-2,self.biaoqian2.frame.origin.y-6 , biao2size.width + 4, biao2size.height + 8);
         self.biaoqianImage2.image = [UIImage imageNamed:@"biaoqian"];
+        
+        self.biaoqian1.tag = [dic1[@"price"] integerValue];
+        self.biaoqian2.tag = [dic2[@"price"] integerValue];
 
+        
     }else if (usertimeTags.count==3){
         NSDictionary * dic1 = usertimeTags[0];
         
@@ -268,6 +273,7 @@
         
         self.biaoqian1.text = [titlelabel objectAtIndex:[index integerValue]-1];
         self.biaoqian1.font = [FontOutSystem fontWithFangZhengSize:10.0];
+        self.biaoqian1.tag = [dic1[@"price"] integerValue];
         self.biaoqian1.textColor = [UIColor whiteColor];
         CGSize biao1size = [self.biaoqian1.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.biaoqian1.font,NSFontAttributeName, nil]];
         self.biaoqian1.frame = CGRectMake(10, self.bottomView.frame.origin.y+10, biao1size.width, biao1size.height);
@@ -279,6 +285,8 @@
         NSString * index2 = dic2[@"index"];
         self.biaoqian2.text = [titlelabel objectAtIndex:[index2 integerValue]-1];
         self.biaoqian2.font = [FontOutSystem fontWithFangZhengSize:10.0];
+        self.biaoqian2.tag = [dic2[@"price"] integerValue];
+
         self.biaoqian2.textColor = [UIColor whiteColor];
         CGSize biao2size = [self.biaoqian2.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.biaoqian2.font,NSFontAttributeName, nil]];
         self.biaoqian2.frame = CGRectMake(self.biaoqian1.frame.origin.x+self.biaoqian1.frame.size.width+7, self.biaoqian1.frame.origin.y, biao2size.width, biao2size.height);
@@ -290,6 +298,8 @@
         NSString * index3 = dic3[@"index"];
         self.biaoqian3.text = [titlelabel objectAtIndex:[index3 integerValue]-1];
         self.biaoqian3.font = [FontOutSystem fontWithFangZhengSize:10.0];
+        self.biaoqian3.tag = [dic3[@"price"] integerValue];
+
         self.biaoqian3.textColor = [UIColor whiteColor];
         CGSize biao3size = [self.biaoqian3.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.biaoqian3.font,NSFontAttributeName, nil]];
         self.biaoqian3.frame = CGRectMake(self.biaoqian2.frame.origin.x+self.biaoqian2.frame.size.width+7, self.biaoqian2.frame.origin.y, biao3size.width, biao3size.height);
