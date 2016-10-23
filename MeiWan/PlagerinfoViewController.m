@@ -17,6 +17,7 @@
 #import "ShowMessage.h"
 #import "LoginViewController.h"
 #import "FocusTableViewCell.h"
+#import "DetailWithPlayerTableViewCell.h"
 
 #define limit_Num 2
 #define SCREEN_RECT [UIScreen mainScreen].bounds
@@ -67,8 +68,6 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
     [self initBaseData];
     [self focusFollowersBy:pages];
     [self findStatusBy:[NSNumber numberWithInt:statusPages] limit:[NSNumber numberWithInt:limit_Num]];
-    
-    
 }
 - (void)initBaseData {
     
@@ -246,7 +245,8 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         if (flag==1) {
              return 50;
         }else if (flag==2){
-            return 70;
+            DetailWithPlayerTableViewCell * cell = [self tableView:self.tableview cellForRowAtIndexPath:indexPath];
+            return cell.frame.size.height;
         }else if (flag==3){
             return 70;
         }else{
@@ -418,17 +418,19 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         
         return ziliao;
     }else if (flag==2){
-        UITableViewCell * dongtai = [tableView dequeueReusableCellWithIdentifier:@"dongtai"];
+        DetailWithPlayerTableViewCell * dongtai = [tableView dequeueReusableCellWithIdentifier:@"dongtai"];
         if (!dongtai) {
-            dongtai = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dongtai"];
+            dongtai = [[DetailWithPlayerTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dongtai"];
         }
         if (indexPath.row==0) {
-            dongtai.textLabel.text = @"全部动态";
-            dongtai.backgroundColor = [CorlorTransform colorWithHexString:@"#f6f6f6"];
-            dongtai.textLabel.textColor = [CorlorTransform colorWithHexString:@"#d5d5d5"];
+           UITableViewCell* dongtaicell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dontai"];
+            dongtaicell.textLabel.text = @"全部动态";
+            dongtaicell.backgroundColor = [CorlorTransform colorWithHexString:@"#f6f6f6"];
+            dongtaicell.textLabel.textColor = [CorlorTransform colorWithHexString:@"#d5d5d5"];
+            return dongtaicell;
         }else{
-            dongtai.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
             dongtai.backgroundColor = [UIColor whiteColor];
+            dongtai.detailDictionary = self.statusArray[indexPath.row-1];
         }
         return dongtai;
     }else if (flag==3){
@@ -475,6 +477,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%ld",indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView

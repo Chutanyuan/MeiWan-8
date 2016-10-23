@@ -334,6 +334,7 @@
 		2B7F4CAC1DB0D4B900A86D88 /* UIView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F4CAB1DB0D4B900A86D88 /* UIView2.m */; };
 		2B7F4CAF1DB0D4CF00A86D88 /* UIView3.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F4CAE1DB0D4CF00A86D88 /* UIView3.m */; };
 		2B7F4CB21DB0D4DD00A86D88 /* UIView4.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F4CB11DB0D4DD00A86D88 /* UIView4.m */; };
+		2B8A7B7C1DBC8B0600E4BAEE /* DetailWithPlayerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A7B7B1DBC8B0600E4BAEE /* DetailWithPlayerTableViewCell.m */; };
 		2B96E1B01DB07F7600B1DF1E /* personEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B96E1AF1DB07F7600B1DF1E /* personEditViewController.m */; };
 		2BA4F75D1D4DCB6700A6F68C /* fansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F75C1D4DCB6700A6F68C /* fansCell.m */; };
 		2BA773601DAF3BBB00C76A6D /* showAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7735F1DAF3BBB00C76A6D /* showAlertView.m */; };
@@ -1184,6 +1185,8 @@
 		2B7F4CB01DB0D4DD00A86D88 /* UIView4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView4.h; sourceTree = "<group>"; };
 		2B7F4CB11DB0D4DD00A86D88 /* UIView4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView4.m; sourceTree = "<group>"; };
 		2B8002E01DB9E8B5007DAFCA /* MeiWan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MeiWan.entitlements; sourceTree = "<group>"; };
+		2B8A7B7A1DBC8B0600E4BAEE /* DetailWithPlayerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailWithPlayerTableViewCell.h; sourceTree = "<group>"; };
+		2B8A7B7B1DBC8B0600E4BAEE /* DetailWithPlayerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailWithPlayerTableViewCell.m; sourceTree = "<group>"; };
 		2B96E1AE1DB07F7600B1DF1E /* personEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personEditViewController.h; sourceTree = "<group>"; };
 		2B96E1AF1DB07F7600B1DF1E /* personEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personEditViewController.m; sourceTree = "<group>"; };
 		2BA4F75B1D4DCB6700A6F68C /* fansCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fansCell.h; sourceTree = "<group>"; };
@@ -3955,6 +3958,8 @@
 			children = (
 				2BD712F81DB771D8002ACCCF /* TAauthenticateCell.h */,
 				2BD712F91DB771D8002ACCCF /* TAauthenticateCell.m */,
+				2B8A7B7A1DBC8B0600E4BAEE /* DetailWithPlayerTableViewCell.h */,
+				2B8A7B7B1DBC8B0600E4BAEE /* DetailWithPlayerTableViewCell.m */,
 			);
 			name = "认证cell";
 			sourceTree = "<group>";
@@ -4734,6 +4739,7 @@
 				18E57A111B7DE22700771063 /* AFURLConnectionOperation.m in Sources */,
 				2BD3C5DE1D73DCC0008CFE23 /* EMCDDeviceManager+Microphone.m in Sources */,
 				2BD3C6001D73DCC0008CFE23 /* MWPhotoBrowser.m in Sources */,
+				2B8A7B7C1DBC8B0600E4BAEE /* DetailWithPlayerTableViewCell.m in Sources */,
 				1883DA6F1B9A8ECC009F45A0 /* SettingPlayWithUIViewController.m in Sources */,
 				2BD3C64E1D73DCC0008CFE23 /* EaseRecordView.m in Sources */,
 				2BD3C6291D73DCC0008CFE23 /* NSString+Valid.m in Sources */,
