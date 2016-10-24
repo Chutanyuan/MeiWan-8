@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol dongtaiZanDelegate <NSObject>
+
+- (void)zanClickForNetAndAnimation:(UIButton *)sender userid:(double)userID statusID:(double)statusid;
+
+@end
+
 @interface DetailWithPlayerTableViewCell : UITableViewCell
 
 @property(nonatomic,strong)NSDictionary * detailDictionary;
+@property(nonatomic,weak)id<dongtaiZanDelegate>delegate;
 
 @end

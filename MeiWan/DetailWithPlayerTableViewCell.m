@@ -8,9 +8,15 @@
 
 #import "DetailWithPlayerTableViewCell.h"
 #import "MeiWan-Swift.h"
+#import "ShowMessage.h"
 
-@interface DetailWithPlayerTableViewCell ()
-
+@interface DetailWithPlayerTableViewCell ()<UITextFieldDelegate>
+{
+    double userid;
+    double stateid;
+    int touchCount;
+    int unlikeTouchCount;
+}
 @property(nonatomic,strong)NSMutableArray * statePhotots;
 @property(nonatomic,strong)UILabel * contentText;
 @property(nonatomic,strong)UILabel * dateLabel;
@@ -24,6 +30,7 @@
 
 @property(nonatomic,strong)UILabel * likelabel;
 @property(nonatomic,strong)UILabel * countlabel;
+@property(nonatomic,strong)UITextField * textfile;
 
 @end
 
@@ -58,6 +65,9 @@
         [self addSubview:_countlabel];
         _likelabel = [[UILabel alloc]init];
         [self addSubview:_likelabel];
+        
+        self.textfile = [[UITextField alloc]init];
+        [self addSubview:self.textfile];
         
     }
     return self;
@@ -105,15 +115,18 @@
     
     if (self.statePhotots.count>0) {
         self.scrollview.frame = CGRectMake(self.timeLabel.frame.origin.x, self.timeLabel.frame.origin.y+self.timeLabel.frame.size.height+5, (dtScreenWidth-self.timeLabel.frame.origin.x-11), (dtScreenWidth-self.timeLabel.frame.origin.x-11)/2);
+        self.scrollview.contentSize = CGSizeMake((dtScreenWidth-self.timeLabel.frame.origin.x-11)/2*self.statePhotots.count, (dtScreenWidth-self.timeLabel.frame.origin.x-11)/2);
         [self.statePhotots enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             self.photosImage = [[UIImageView alloc]init];
             self.photosImage.frame = CGRectMake(idx*(dtScreenWidth-self.timeLabel.frame.origin.x-11)/2, 0, (dtScreenWidth-self.timeLabel.frame.origin.x-11)/2, (dtScreenWidth-self.timeLabel.frame.origin.x-11)/2);
-            [self.photosImage sd_setImageWithURL:[NSURL URLWithString:obj]];
+            [self.photosImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@!1",obj]]];
             self.photosImage.contentMode = UIViewContentModeScaleAspectFill;
+            self.photosImage.clipsToBounds = YES;
             [self.scrollview addSubview:self.photosImage];
 
         }];
+        
     }
     
     if (self.statePhotots.count>0) {
@@ -128,16 +141,44 @@
     
 //    _zan
     
-    frame.size.height = labelsize.height+height_photos+20+size_timelabel.height+5+40;
+    frame.size.height = labelsize.height+height_photos+20+size_timelabel.height+5+40+50;
     
-    _pinglun.frame = CGRectMake(dtScreenWidth-10-20-5-10, frame.size.height-30, 20, 20);
+    _pinglun.frame = CGRectMake(dtScreenWidth-10-20-5-10, frame.size.height-30-50, 20, 20);
     [_pinglun setImage:[UIImage imageNamed:@"peiwan_discuss"] forState:UIControlStateNormal];
+    [_pinglun addTarget:self action:@selector(pinglunClick:) forControlEvents:UIControlEventTouchUpInside];
     _countlabel.frame = CGRectMake(_pinglun.frame.origin.x+20+5, _pinglun.frame.origin.y, 10, 20);
     _countlabel.text = [NSString stringWithFormat:@"%@",detailDictionary[@"count"]];
-    _countlabel.font = [FontOutSystem fontWithFangZhengSize:10];
+    self.countlabel.textColor = [CorlorTransform colorWithHexString:@"#AEBFBE"];
+    _countlabel.font = [FontOutSystem fontWithFangZhengSize:12.0];
+    _zan.frame = CGRectMake(_pinglun.frame.origin.x-45, _pinglun.frame.origin.y, 20, 20);
+    int isLike = [detailDictionary[@"isLike"] intValue];
+    if (isLike == 0) {
+        [_zan setImage:[UIImage imageNamed:@"peiwan_praise"] forState:UIControlStateNormal];
+        _zan.tag = 0;
+        self.likelabel.textColor = [CorlorTransform colorWithHexString:@"#AEBFBE"];
+    }else{
+        [_zan setImage:[UIImage imageNamed:@"peiwan_praise1"] forState:UIControlStateNormal];
+        _zan.tag = 1;
+        self.likelabel.textColor = [CorlorTransform colorWithHexString:@"#26A3E5"];
+    }
+    _likelabel.text = [NSString stringWithFormat:@"%@",detailDictionary[@"likes"]];
+    _likelabel.font = [FontOutSystem fontWithFangZhengSize:12.0];
+    _likelabel.frame = CGRectMake(_zan.frame.origin.x+_zan.frame.size.width+5, _zan.frame.origin.y, 10, 20);
+    [_zan addTarget:self action:@selector(zanClike:) forControlEvents:UIControlEventTouchUpInside];
+    stateid = [detailDictionary[@"id"] doubleValue];
+    userid = [detailDictionary[@"userId"] doubleValue];
     
-//    _zan.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    self.textfile.frame = CGRectMake(10, _pinglun.frame.size.height+_pinglun.frame.origin.y+10, dtScreenWidth-20, 30);
+    self.textfile.placeholder = @"  评论";
+    self.textfile.layer.cornerRadius = 5;
+    self.textfile.layer.borderColor = [CorlorTransform colorWithHexString:@"#AEBFBE"].CGColor;
+    self.textfile.layer.borderWidth = 0.5;
+    self.textfile.clipsToBounds = YES;
+    self.textfile.returnKeyType = UIReturnKeySend;
+
+    self.textfile.delegate = self;
     self.frame = frame;
+    
 }
 -(NSString*)getMonth:(NSInteger)Month
 {
@@ -181,4 +222,118 @@
     }
     return weekStr;
 }
+- (void)zanClike:(UIButton *)sender
+{
+    NSString * session = [PersistenceManager getLoginSession];
+    NSNumber * userID = [NSNumber numberWithDouble:userid];
+    NSNumber * stateID = [NSNumber numberWithDouble:stateid];
+    if (sender.tag==0) {
+        [UIView animateWithDuration:0.3 animations:^{
+            sender.bounds = CGRectMake(0, 0, 30, 30);
+        } completion:^(BOOL finished) {
+            if (finished == YES) {
+                sender.bounds = CGRectMake(0, 0, 20, 20);
+            }
+        }];
+        touchCount++;
+        if (touchCount%2==1) {
+            [UserConnector likeUserState:session toId:userID stateId:stateID receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+                if (!error) {
+                    SBJsonParser * parser = [[SBJsonParser alloc]init];
+                    NSDictionary * json = [parser objectWithData:data];
+                    int status;
+                    status = [json[@"status"] intValue];
+                    if (status==0) {
+                        [sender setImage:[UIImage imageNamed:@"peiwan_praise1"] forState:UIControlStateNormal];
+                        int textlike = [self.likelabel.text intValue];
+                        self.likelabel.text = [NSString stringWithFormat:@"%d",textlike+1];
+                        self.likelabel.textColor = [CorlorTransform colorWithHexString:@"#26A3E5"];
+                    }
+                }else{
+                    [ShowMessage showMessage:@"服务器未响应"];
+                }
+            }];
+        }else{
+            [UserConnector unlikeUserState:session toId:userID stateId:stateID receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+                if (!error) {
+                    SBJsonParser * parser = [[SBJsonParser alloc]init];
+                    NSDictionary * json = [parser objectWithData:data];
+                    int status;
+                    status = [json[@"status"] intValue];
+                    if (status==0) {
+                        [sender setImage:[UIImage imageNamed:@"peiwan_praise"] forState:UIControlStateNormal];
+                        int textlike = [self.likelabel.text intValue];
+                        self.likelabel.text = [NSString stringWithFormat:@"%d",textlike-1];
+                        self.likelabel.textColor = [CorlorTransform colorWithHexString:@"#AEBFBE"];
+                    }
+                }else{
+                    [ShowMessage showMessage:@"服务器未响应"];
+                }
+            }];
+        }
+
+       
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            sender.bounds = CGRectMake(0, 0, 30, 30);
+        } completion:^(BOOL finished) {
+            if (finished == YES) {
+                sender.bounds = CGRectMake(0, 0, 20, 20);
+            }
+        }];
+        unlikeTouchCount++;
+        if (unlikeTouchCount%2==1) {
+            [UserConnector unlikeUserState:session toId:userID stateId:stateID receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+                if (!error) {
+                    SBJsonParser * parser = [[SBJsonParser alloc]init];
+                    NSDictionary * json = [parser objectWithData:data];
+                    int status;
+                    status = [json[@"status"] intValue];
+                    if (status==0) {
+                        [sender setImage:[UIImage imageNamed:@"peiwan_praise"] forState:UIControlStateNormal];
+                        int textlike = [self.likelabel.text intValue];
+                        self.likelabel.text = [NSString stringWithFormat:@"%d",textlike-1];
+                        self.likelabel.textColor = [CorlorTransform colorWithHexString:@"#AEBFBE"];
+                    }
+                }else{
+                    [ShowMessage showMessage:@"服务器未响应"];
+                }
+            }];
+
+        }else{
+            [UserConnector likeUserState:session toId:userID stateId:stateID receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+                if (!error) {
+                    SBJsonParser * parser = [[SBJsonParser alloc]init];
+                    NSDictionary * json = [parser objectWithData:data];
+                    int status;
+                    status = [json[@"status"] intValue];
+                    if (status==0) {
+                        [sender setImage:[UIImage imageNamed:@"peiwan_praise1"] forState:UIControlStateNormal];
+                        int textlike = [self.likelabel.text intValue];
+                        self.likelabel.text = [NSString stringWithFormat:@"%d",textlike+1];
+                        self.likelabel.textColor = [CorlorTransform colorWithHexString:@"#26A3E5"];
+                    }
+                }else{
+                    [ShowMessage showMessage:@"服务器未响应"];
+                }
+            }];
+
+        }
+    }
+}
+- (void)pinglunClick:(UIButton *)sender
+{
+    
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    textField.returnKeyType = UIReturnKeySend;
+    NSLog(@"%@",textField.text);
+    [textField endEditing:YES];
+    /**
+     
+    */
+    return YES;
+}
+
 @end
