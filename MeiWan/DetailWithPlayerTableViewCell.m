@@ -29,8 +29,6 @@
 @property(nonatomic,strong)UIButton * fenxiang;
 
 @property(nonatomic,strong)UILabel * likelabel;
-@property(nonatomic,strong)UILabel * countlabel;
-@property(nonatomic,strong)UITextField * textfile;
 
 @end
 
@@ -65,9 +63,6 @@
         [self addSubview:_countlabel];
         _likelabel = [[UILabel alloc]init];
         [self addSubview:_likelabel];
-        
-        self.textfile = [[UITextField alloc]init];
-        [self addSubview:self.textfile];
         
     }
     return self;
@@ -136,14 +131,9 @@
         
     }
     
+    frame.size.height = labelsize.height+height_photos+20+size_timelabel.height+5+40;
     
-    
-    
-//    _zan
-    
-    frame.size.height = labelsize.height+height_photos+20+size_timelabel.height+5+40+50;
-    
-    _pinglun.frame = CGRectMake(dtScreenWidth-10-20-5-10, frame.size.height-30-50, 20, 20);
+    _pinglun.frame = CGRectMake(dtScreenWidth-10-20-5-10, frame.size.height-30, 20, 20);
     [_pinglun setImage:[UIImage imageNamed:@"peiwan_discuss"] forState:UIControlStateNormal];
     [_pinglun addTarget:self action:@selector(pinglunClick:) forControlEvents:UIControlEventTouchUpInside];
     _countlabel.frame = CGRectMake(_pinglun.frame.origin.x+20+5, _pinglun.frame.origin.y, 10, 20);
@@ -167,16 +157,6 @@
     [_zan addTarget:self action:@selector(zanClike:) forControlEvents:UIControlEventTouchUpInside];
     stateid = [detailDictionary[@"id"] doubleValue];
     userid = [detailDictionary[@"userId"] doubleValue];
-    
-    self.textfile.frame = CGRectMake(10, _pinglun.frame.size.height+_pinglun.frame.origin.y+10, dtScreenWidth-20, 30);
-    self.textfile.placeholder = @"  评论";
-    self.textfile.layer.cornerRadius = 5;
-    self.textfile.layer.borderColor = [CorlorTransform colorWithHexString:@"#AEBFBE"].CGColor;
-    self.textfile.layer.borderWidth = 0.5;
-    self.textfile.clipsToBounds = YES;
-    self.textfile.returnKeyType = UIReturnKeySend;
-
-    self.textfile.delegate = self;
     self.frame = frame;
     
 }
@@ -323,17 +303,31 @@
 }
 - (void)pinglunClick:(UIButton *)sender
 {
-    
+    [self.delegate KeyBoardLoadWithUserid:userid statusID:stateid];
 }
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    textField.returnKeyType = UIReturnKeySend;
-    NSLog(@"%@",textField.text);
-    [textField endEditing:YES];
-    /**
-     
-    */
-    return YES;
-}
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    /**
+//     
+//    */
+//    NSString * session = [PersistenceManager getLoginSession];
+//    [UserConnector insertStateComment:session toId:[NSNumber numberWithDouble:userid] content:textField.text stateId:[NSNumber numberWithDouble:stateid] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+//        if (!error) {
+//            SBJsonParser * parser = [[SBJsonParser alloc]init];
+//            NSDictionary * json = [parser objectWithData:data];
+//            int state = [json[@"state"] intValue];
+//            if (state == 0) {
+//                textField.text = nil;
+//                [textField resignFirstResponder];
+//                int counttext = [self.countlabel.text intValue];
+//                self.countlabel.text = [NSString stringWithFormat:@"%d",counttext+1];
+//            }
+//        }else{
+//            [ShowMessage showMessage:@"服务器未响应"];
+//        }
+//    }];
+//    
+//    return YES;
+//}
 
 @end

@@ -343,20 +343,6 @@
 		2BB14C061D728B0D00F6425D /* ConversationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB14C021D728B0D00F6425D /* ConversationListController.m */; };
 		2BB14C071D728B0D00F6425D /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB14C051D728B0D00F6425D /* ChatViewController.m */; };
 		2BB4D54D1D235B4D0004BFA9 /* blackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4D54C1D235B4D0004BFA9 /* blackModel.m */; };
-		2BB57FB41DBE0F8B00467C9D /* EmojiToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57F9A1DBE0F8B00467C9D /* EmojiToolBar.m */; };
-		2BB57FB51DBE0F8B00467C9D /* EmojiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57F9D1DBE0F8B00467C9D /* EmojiCell.m */; };
-		2BB57FB61DBE0F8B00467C9D /* EmojiCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57F9F1DBE0F8B00467C9D /* EmojiCollectionView.m */; };
-		2BB57FB71DBE0F8B00467C9D /* SinglePageEmojiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FA11DBE0F8B00467C9D /* SinglePageEmojiCell.m */; };
-		2BB57FB81DBE0F8B00467C9D /* HCEmojiKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FA31DBE0F8B00467C9D /* HCEmojiKeyboard.m */; };
-		2BB57FB91DBE0F8B00467C9D /* HCEmojiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FA51DBE0F8B00467C9D /* HCEmojiManager.m */; };
-		2BB57FBA1DBE0F8B00467C9D /* ExpandingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FA91DBE0F8B00467C9D /* ExpandingCell.m */; };
-		2BB57FBB1DBE0F8B00467C9D /* HCInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FAB1DBE0F8B00467C9D /* HCInputBar.m */; };
-		2BB57FBC1DBE0F8B00467C9D /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BB57FAC1DBE0F8B00467C9D /* Resources.bundle */; };
-		2BB57FBD1DBE0F8B00467C9D /* UIColor+MyColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FAF1DBE0F8B00467C9D /* UIColor+MyColor.m */; };
-		2BB57FBE1DBE0F8B00467C9D /* UIFont+MyFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FB11DBE0F8B00467C9D /* UIFont+MyFont.m */; };
-		2BB57FBF1DBE0F8B00467C9D /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FB31DBE0F8B00467C9D /* UIView+Frame.m */; };
-		2BB57FC11DBE0F9900467C9D /* son_reply_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB57FC01DBE0F9900467C9D /* son_reply_icon@3x.png */; };
-		2BB57FC41DBE0FAD00467C9D /* LayoutTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57FC31DBE0FAD00467C9D /* LayoutTextView.m */; };
 		2BBB51BA1D596F5B007045EC /* newViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBB51B91D596F5B007045EC /* newViewController.m */; };
 		2BCE86231D77DB2E007B0358 /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCE86101D77DB2E007B0358 /* EMAlertView.m */; };
 		2BCE86241D77DB2E007B0358 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCE86121D77DB2E007B0358 /* Bolts.framework */; };
@@ -369,6 +355,10 @@
 		2BCE862B1D77DB2E007B0358 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCE86201D77DB2E007B0358 /* libMobClickLibrary.a */; };
 		2BCF88201DB49EA600B7504C /* EditpersonalMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF881F1DB49EA600B7504C /* EditpersonalMessageTableViewCell.m */; };
 		2BCF88231DB4C8B800B7504C /* MXNavigationBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF88221DB4C8B800B7504C /* MXNavigationBarManager.m */; };
+		2BD366B11DBF43BA001DE31B /* StateOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD366B01DBF43BA001DE31B /* StateOneViewController.m */; };
+		2BD366B61DBF5799001DE31B /* XYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD366B41DBF5799001DE31B /* XYView.m */; };
+		2BD366B71DBF5799001DE31B /* XYView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD366B51DBF5799001DE31B /* XYView.xib */; };
+		2BD366BA1DBF695A001DE31B /* stateRepliesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD366B91DBF695A001DE31B /* stateRepliesTableViewCell.m */; };
 		2BD3C4B11D73D799008CFE23 /* EMRobotChatTextBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C4A81D73D799008CFE23 /* EMRobotChatTextBubbleView.m */; };
 		2BD3C4B21D73D799008CFE23 /* EMRotbotChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C4AA1D73D799008CFE23 /* EMRotbotChatViewCell.m */; };
 		2BD3C4B31D73D799008CFE23 /* RobotChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3C4AC1D73D799008CFE23 /* RobotChatViewController.m */; };
@@ -1254,33 +1244,6 @@
 		2BB14C051D728B0D00F6425D /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		2BB4D54B1D235B4D0004BFA9 /* blackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blackModel.h; sourceTree = "<group>"; };
 		2BB4D54C1D235B4D0004BFA9 /* blackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = blackModel.m; sourceTree = "<group>"; };
-		2BB57F991DBE0F8B00467C9D /* EmojiToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiToolBar.h; sourceTree = "<group>"; };
-		2BB57F9A1DBE0F8B00467C9D /* EmojiToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiToolBar.m; sourceTree = "<group>"; };
-		2BB57F9C1DBE0F8B00467C9D /* EmojiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiCell.h; sourceTree = "<group>"; };
-		2BB57F9D1DBE0F8B00467C9D /* EmojiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiCell.m; sourceTree = "<group>"; };
-		2BB57F9E1DBE0F8B00467C9D /* EmojiCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiCollectionView.h; sourceTree = "<group>"; };
-		2BB57F9F1DBE0F8B00467C9D /* EmojiCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiCollectionView.m; sourceTree = "<group>"; };
-		2BB57FA01DBE0F8B00467C9D /* SinglePageEmojiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePageEmojiCell.h; sourceTree = "<group>"; };
-		2BB57FA11DBE0F8B00467C9D /* SinglePageEmojiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePageEmojiCell.m; sourceTree = "<group>"; };
-		2BB57FA21DBE0F8B00467C9D /* HCEmojiKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEmojiKeyboard.h; sourceTree = "<group>"; };
-		2BB57FA31DBE0F8B00467C9D /* HCEmojiKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEmojiKeyboard.m; sourceTree = "<group>"; };
-		2BB57FA41DBE0F8B00467C9D /* HCEmojiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCEmojiManager.h; sourceTree = "<group>"; };
-		2BB57FA51DBE0F8B00467C9D /* HCEmojiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCEmojiManager.m; sourceTree = "<group>"; };
-		2BB57FA61DBE0F8B00467C9D /* HCHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHeader.h; sourceTree = "<group>"; };
-		2BB57FA81DBE0F8B00467C9D /* ExpandingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingCell.h; sourceTree = "<group>"; };
-		2BB57FA91DBE0F8B00467C9D /* ExpandingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandingCell.m; sourceTree = "<group>"; };
-		2BB57FAA1DBE0F8B00467C9D /* HCInputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputBar.h; sourceTree = "<group>"; };
-		2BB57FAB1DBE0F8B00467C9D /* HCInputBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputBar.m; sourceTree = "<group>"; };
-		2BB57FAC1DBE0F8B00467C9D /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
-		2BB57FAE1DBE0F8B00467C9D /* UIColor+MyColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyColor.h"; sourceTree = "<group>"; };
-		2BB57FAF1DBE0F8B00467C9D /* UIColor+MyColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyColor.m"; sourceTree = "<group>"; };
-		2BB57FB01DBE0F8B00467C9D /* UIFont+MyFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MyFont.h"; sourceTree = "<group>"; };
-		2BB57FB11DBE0F8B00467C9D /* UIFont+MyFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MyFont.m"; sourceTree = "<group>"; };
-		2BB57FB21DBE0F8B00467C9D /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		2BB57FB31DBE0F8B00467C9D /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		2BB57FC01DBE0F9900467C9D /* son_reply_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "son_reply_icon@3x.png"; sourceTree = "<group>"; };
-		2BB57FC21DBE0FAD00467C9D /* LayoutTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutTextView.h; sourceTree = "<group>"; };
-		2BB57FC31DBE0FAD00467C9D /* LayoutTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutTextView.m; sourceTree = "<group>"; };
 		2BBB51B81D596F5B007045EC /* newViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newViewController.h; sourceTree = "<group>"; };
 		2BBB51B91D596F5B007045EC /* newViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newViewController.m; sourceTree = "<group>"; };
 		2BCE860F1D77DB2E007B0358 /* EMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAlertView.h; sourceTree = "<group>"; };
@@ -1303,6 +1266,13 @@
 		2BCF881F1DB49EA600B7504C /* EditpersonalMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditpersonalMessageTableViewCell.m; sourceTree = "<group>"; };
 		2BCF88211DB4C8B800B7504C /* MXNavigationBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXNavigationBarManager.h; sourceTree = "<group>"; };
 		2BCF88221DB4C8B800B7504C /* MXNavigationBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXNavigationBarManager.m; sourceTree = "<group>"; };
+		2BD366AF1DBF43BA001DE31B /* StateOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateOneViewController.h; sourceTree = "<group>"; };
+		2BD366B01DBF43BA001DE31B /* StateOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateOneViewController.m; sourceTree = "<group>"; };
+		2BD366B31DBF5799001DE31B /* XYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYView.h; sourceTree = "<group>"; };
+		2BD366B41DBF5799001DE31B /* XYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYView.m; sourceTree = "<group>"; };
+		2BD366B51DBF5799001DE31B /* XYView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XYView.xib; sourceTree = "<group>"; };
+		2BD366B81DBF695A001DE31B /* stateRepliesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stateRepliesTableViewCell.h; sourceTree = "<group>"; };
+		2BD366B91DBF695A001DE31B /* stateRepliesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stateRepliesTableViewCell.m; sourceTree = "<group>"; };
 		2BD3C4A71D73D799008CFE23 /* EMRobotChatTextBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRobotChatTextBubbleView.h; sourceTree = "<group>"; };
 		2BD3C4A81D73D799008CFE23 /* EMRobotChatTextBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRobotChatTextBubbleView.m; sourceTree = "<group>"; };
 		2BD3C4A91D73D799008CFE23 /* EMRotbotChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRotbotChatViewCell.h; sourceTree = "<group>"; };
@@ -2603,6 +2573,7 @@
 				18F359DC1B7AFB07005E3838 /* ExploitsTableViewController.m */,
 				18EB4E4E1B8081C5000AE087 /* AssesserInfoViewController.h */,
 				18EB4E4F1B8081C5000AE087 /* AssesserInfoViewController.m */,
+				2BD366B21DBF4C3F001DE31B /* 单条动态 */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3328,83 +3299,11 @@
 		2BB57F931DBE0F3C00467C9D /* 键盘 */ = {
 			isa = PBXGroup;
 			children = (
-				2BB57F961DBE0F8B00467C9D /* HCEmoji */,
+				2BD366B31DBF5799001DE31B /* XYView.h */,
+				2BD366B41DBF5799001DE31B /* XYView.m */,
+				2BD366B51DBF5799001DE31B /* XYView.xib */,
 			);
 			name = "键盘";
-			sourceTree = "<group>";
-		};
-		2BB57F961DBE0F8B00467C9D /* HCEmoji */ = {
-			isa = PBXGroup;
-			children = (
-				2BB57FC21DBE0FAD00467C9D /* LayoutTextView.h */,
-				2BB57FC31DBE0FAD00467C9D /* LayoutTextView.m */,
-				2BB57FC01DBE0F9900467C9D /* son_reply_icon@3x.png */,
-				2BB57F971DBE0F8B00467C9D /* EmojiKeyboard */,
-				2BB57FA61DBE0F8B00467C9D /* HCHeader.h */,
-				2BB57FA71DBE0F8B00467C9D /* InputBar */,
-				2BB57FAC1DBE0F8B00467C9D /* Resources.bundle */,
-				2BB57FAD1DBE0F8B00467C9D /* Utils */,
-			);
-			path = HCEmoji;
-			sourceTree = "<group>";
-		};
-		2BB57F971DBE0F8B00467C9D /* EmojiKeyboard */ = {
-			isa = PBXGroup;
-			children = (
-				2BB57F981DBE0F8B00467C9D /* EmojiToolBar */,
-				2BB57F9B1DBE0F8B00467C9D /* EmojiView */,
-				2BB57FA21DBE0F8B00467C9D /* HCEmojiKeyboard.h */,
-				2BB57FA31DBE0F8B00467C9D /* HCEmojiKeyboard.m */,
-				2BB57FA41DBE0F8B00467C9D /* HCEmojiManager.h */,
-				2BB57FA51DBE0F8B00467C9D /* HCEmojiManager.m */,
-			);
-			path = EmojiKeyboard;
-			sourceTree = "<group>";
-		};
-		2BB57F981DBE0F8B00467C9D /* EmojiToolBar */ = {
-			isa = PBXGroup;
-			children = (
-				2BB57F991DBE0F8B00467C9D /* EmojiToolBar.h */,
-				2BB57F9A1DBE0F8B00467C9D /* EmojiToolBar.m */,
-			);
-			path = EmojiToolBar;
-			sourceTree = "<group>";
-		};
-		2BB57F9B1DBE0F8B00467C9D /* EmojiView */ = {
-			isa = PBXGroup;
-			children = (
-				2BB57F9C1DBE0F8B00467C9D /* EmojiCell.h */,
-				2BB57F9D1DBE0F8B00467C9D /* EmojiCell.m */,
-				2BB57F9E1DBE0F8B00467C9D /* EmojiCollectionView.h */,
-				2BB57F9F1DBE0F8B00467C9D /* EmojiCollectionView.m */,
-				2BB57FA01DBE0F8B00467C9D /* SinglePageEmojiCell.h */,
-				2BB57FA11DBE0F8B00467C9D /* SinglePageEmojiCell.m */,
-			);
-			path = EmojiView;
-			sourceTree = "<group>";
-		};
-		2BB57FA71DBE0F8B00467C9D /* InputBar */ = {
-			isa = PBXGroup;
-			children = (
-				2BB57FA81DBE0F8B00467C9D /* ExpandingCell.h */,
-				2BB57FA91DBE0F8B00467C9D /* ExpandingCell.m */,
-				2BB57FAA1DBE0F8B00467C9D /* HCInputBar.h */,
-				2BB57FAB1DBE0F8B00467C9D /* HCInputBar.m */,
-			);
-			path = InputBar;
-			sourceTree = "<group>";
-		};
-		2BB57FAD1DBE0F8B00467C9D /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				2BB57FAE1DBE0F8B00467C9D /* UIColor+MyColor.h */,
-				2BB57FAF1DBE0F8B00467C9D /* UIColor+MyColor.m */,
-				2BB57FB01DBE0F8B00467C9D /* UIFont+MyFont.h */,
-				2BB57FB11DBE0F8B00467C9D /* UIFont+MyFont.m */,
-				2BB57FB21DBE0F8B00467C9D /* UIView+Frame.h */,
-				2BB57FB31DBE0F8B00467C9D /* UIView+Frame.m */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		2BBB51B71D596F37007045EC /* subviews */ = {
@@ -3479,6 +3378,17 @@
 				2BCE86221D77DB2E007B0358 /* MobClickSocialAnalytics.h */,
 			);
 			path = UMeng;
+			sourceTree = "<group>";
+		};
+		2BD366B21DBF4C3F001DE31B /* 单条动态 */ = {
+			isa = PBXGroup;
+			children = (
+				2BD366AF1DBF43BA001DE31B /* StateOneViewController.h */,
+				2BD366B01DBF43BA001DE31B /* StateOneViewController.m */,
+				2BD366B81DBF695A001DE31B /* stateRepliesTableViewCell.h */,
+				2BD366B91DBF695A001DE31B /* stateRepliesTableViewCell.m */,
+			);
+			name = "单条动态";
 			sourceTree = "<group>";
 		};
 		2BD3C4A61D73D799008CFE23 /* Robot */ = {
@@ -4630,7 +4540,6 @@
 			files = (
 				27CA5A731CEEACCB00CC6956 /* register_bg@2x.png in Resources */,
 				27CA5A5E1CEEACCB00CC6956 /* peiwan_location.png in Resources */,
-				2BB57FC11DBE0F9900467C9D /* son_reply_icon@3x.png in Resources */,
 				2B5805B41D2A386800721653 /* label3.png in Resources */,
 				2B5805BA1D2A386800721653 /* label9.png in Resources */,
 				27ADB83D1CFEC50F00F11453 /* information2@2x.png in Resources */,
@@ -4711,6 +4620,7 @@
 				27CA5A3F1CEEACCB00CC6956 /* first_4.png in Resources */,
 				27CA5A501CEEACCB00CC6956 /* peiwan_chat@3x.png in Resources */,
 				27CA5A601CEEACCB00CC6956 /* peiwan_locked.png in Resources */,
+				2BD366B71DBF5799001DE31B /* XYView.xib in Resources */,
 				27CA5A321CEEACCB00CC6956 /* 3_loadingҳ.png in Resources */,
 				18F0E8261BAA6C64007A8DD2 /* AMap.bundle in Resources */,
 				2BDEE42A1D5B0BF900767F8B /* UMSCommentInputController.xib in Resources */,
@@ -4750,7 +4660,6 @@
 				27CA5A5C1CEEACCB00CC6956 /* peiwan_invite.png in Resources */,
 				27CA5A5D1CEEACCB00CC6956 /* peiwan_jian.png in Resources */,
 				27CA5A4C1CEEACCB00CC6956 /* order.png in Resources */,
-				2BB57FBC1DBE0F8B00467C9D /* Resources.bundle in Resources */,
 				18A741081BF46F150082855E /* DiscussCell.xib in Resources */,
 				2B5805B61D2A386800721653 /* label5.png in Resources */,
 				27CA5A701CEEACCB00CC6956 /* personWhite@2x.png in Resources */,
@@ -4895,6 +4804,7 @@
 				18E57A121B7DE22700771063 /* AFURLRequestSerialization.m in Sources */,
 				2B7E9F801D5D6F9100207CB7 /* findPeiWanCell.m in Sources */,
 				04B138AB1BA07EAF00AAD93F /* NSDataEx.m in Sources */,
+				2BD366B61DBF5799001DE31B /* XYView.m in Sources */,
 				2BCE86291D77DB2E007B0358 /* SRSlimeView.m in Sources */,
 				1883F92D1B9E89FE004A19BA /* LOLInfo.swift in Sources */,
 				2B5B7D2E1D3893C700CF5354 /* UserDynamicTableViewCell.m in Sources */,
@@ -4927,7 +4837,6 @@
 				2BD3C62E1D73DCC0008CFE23 /* EaseMessageReadManager.m in Sources */,
 				18E579F41B7DDDB000771063 /* UIImageView+AFNetworking.m in Sources */,
 				2BE39E8B1D72984500CC3F0F /* UserProfileViewController.m in Sources */,
-				2BB57FBB1DBE0F8B00467C9D /* HCInputBar.m in Sources */,
 				2BD3C5EA1D73DCC0008CFE23 /* MJRefreshBackFooter.m in Sources */,
 				18E579F31B7DDDB000771063 /* UIButton+AFNetworking.m in Sources */,
 				2BD3C5EC1D73DCC0008CFE23 /* MJRefreshFooter.m in Sources */,
@@ -4969,7 +4878,6 @@
 				18F6D2C51B8FF42A00B1F0C3 /* MoveActionViewCell.m in Sources */,
 				2BD3C6091D73DCC0008CFE23 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				2B2D08681D530D3200139467 /* CashManagementViewController.m in Sources */,
-				2BB57FB51DBE0F8B00467C9D /* EmojiCell.m in Sources */,
 				1883F92B1B9E89F5004A19BA /* LOLHelper.swift in Sources */,
 				2BD3C5E91D73DCC0008CFE23 /* MJRefreshAutoFooter.m in Sources */,
 				98EFD35C1D4AE82C002A1913 /* FocusTableViewCell.m in Sources */,
@@ -4978,7 +4886,6 @@
 				2BE035D81D85630400CDA3FA /* dycussImageShow.m in Sources */,
 				2BE542051D7E9C2700BB5C43 /* editOwnMessage.m in Sources */,
 				2BD3C60E1D73DCC0008CFE23 /* UIButton+EMWebCache.m in Sources */,
-				2BB57FB61DBE0F8B00467C9D /* EmojiCollectionView.m in Sources */,
 				98EFD35E1D4AE82C002A1913 /* FansTableViewCell.m in Sources */,
 				18DDB9BA1BB4E548003E4163 /* PeiwanHeadViewController.m in Sources */,
 				2B2D09601D532BC300139467 /* qrinput.c in Sources */,
@@ -5017,6 +4924,7 @@
 				18F14BD11B8DE20000C74E37 /* PayInfo.m in Sources */,
 				2BE39EB41D729E0D00CC3F0F /* PublicGroupListViewController.m in Sources */,
 				2B7F4CAC1DB0D4B900A86D88 /* UIView2.m in Sources */,
+				2BD366BA1DBF695A001DE31B /* stateRepliesTableViewCell.m in Sources */,
 				2B5B12601D815F3C006E2A32 /* JobChooseViewController.m in Sources */,
 				2BD3C6211D73DCC0008CFE23 /* PSTGridLayoutSection.m in Sources */,
 				2BE542151D7ECEA800BB5C43 /* changeImageCollectionViewCell.m in Sources */,
@@ -5044,6 +4952,7 @@
 				2BE236BB1D508F6600D7A859 /* WGS84TOGCJ02.m in Sources */,
 				18C05CD11BC89A8C0028A220 /* BanlanceViewController.m in Sources */,
 				18CC8EEA1BC39CE1000281CE /* Validation.swift in Sources */,
+				2BD366B11DBF43BA001DE31B /* StateOneViewController.m in Sources */,
 				2BDD84EB1DAE14E100541F5D /* EditPersonalMessageVC.m in Sources */,
 				18A319681C02A493005E9010 /* HotCountController.m in Sources */,
 				2BDAF7A31D228762008B05EA /* blackNameTableViewCell.m in Sources */,
@@ -5053,7 +4962,6 @@
 				18E579F01B7DDDB000771063 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				2BD3C6261D73DCC0008CFE23 /* EaseUserModel.m in Sources */,
 				2BD3C5E41D73DCC0008CFE23 /* EMVoiceConverter.mm in Sources */,
-				2BB57FC41DBE0FAD00467C9D /* LayoutTextView.m in Sources */,
 				18841F361B8C441A00E2728B /* setting.m in Sources */,
 				2BE39EC71D729EEB00CC3F0F /* ContactListSelectViewController.m in Sources */,
 				18CC8EE41BC39CE1000281CE /* Response.swift in Sources */,
@@ -5075,7 +4983,6 @@
 				2BD3C6071D73DCC0008CFE23 /* EMSDWebImageDecoder.m in Sources */,
 				2BD3C5EE1D73DCC0008CFE23 /* MJRefreshAutoGifFooter.m in Sources */,
 				2B28F1991D8261A100EF5EFD /* bookChooseVC.m in Sources */,
-				2BB57FB91DBE0F8B00467C9D /* HCEmojiManager.m in Sources */,
 				18E579F21B7DDDB000771063 /* UIAlertView+AFNetworking.m in Sources */,
 				04B138A81BA07EAF00AAD93F /* DataSigner.m in Sources */,
 				2BDD84EE1DAE36EF00541F5D /* photosView.m in Sources */,
@@ -5088,7 +4995,6 @@
 				2BD3C6361D73DCC0008CFE23 /* EaseMessageViewController.m in Sources */,
 				2B2D095D1D532BC300139467 /* mask.c in Sources */,
 				2B2B56C71D473D170048AA20 /* PrepaidViewController.m in Sources */,
-				2BB57FBD1DBE0F8B00467C9D /* UIColor+MyColor.m in Sources */,
 				2BD3C64B1D73DCC0008CFE23 /* EaseFaceView.m in Sources */,
 				2BE39ECA1D729EEB00CC3F0F /* AddFriendViewController.m in Sources */,
 				18EB4E4D1B803471000AE087 /* AddPlayerBeingViewController.m in Sources */,
@@ -5113,7 +5019,6 @@
 				2BE39EB01D729E0D00CC3F0F /* GroupListViewController.m in Sources */,
 				2BD3C5E11D73DCC0008CFE23 /* EMCDDeviceManagerBase.m in Sources */,
 				2BD3C6401D73DCC0008CFE23 /* EaseBubbleView+Gif.m in Sources */,
-				2BB57FBF1DBE0F8B00467C9D /* UIView+Frame.m in Sources */,
 				2BD3C6241D73DCC0008CFE23 /* EaseConversationModel.m in Sources */,
 				18888E831BA3F11800F7FEEE /* StateTableViewController.m in Sources */,
 				04B138A91BA07EAF00AAD93F /* DataVerifier.m in Sources */,
@@ -5125,7 +5030,6 @@
 				18A319641C02A266005E9010 /* HotCountCell.m in Sources */,
 				18841F301B8C390700E2728B /* UMUUploaderOperation.m in Sources */,
 				2BD3C5F31D73DCC0008CFE23 /* MJRefreshBackStateFooter.m in Sources */,
-				2BB57FBE1DBE0F8B00467C9D /* UIFont+MyFont.m in Sources */,
 				18E579F71B7DDDB000771063 /* UIWebView+AFNetworking.m in Sources */,
 				2B159AD91DAB7A1400AEA055 /* PersonViewController.m in Sources */,
 				18F6D2C81B8FF47300B1F0C3 /* MyMoveActionTableViewController.m in Sources */,
@@ -5157,7 +5061,6 @@
 				2BD3C60A1D73DCC0008CFE23 /* EMSDWebImageManager.m in Sources */,
 				2BE39EF51D72A04000CC3F0F /* UIViewController+HUD.m in Sources */,
 				18F6D2BF1B8FF2CB00B1F0C3 /* MoveAction.m in Sources */,
-				2BB57FB71DBE0F8B00467C9D /* SinglePageEmojiCell.m in Sources */,
 				2BE39EF31D72A04000CC3F0F /* UIImageView+HeadImage.m in Sources */,
 				2BF6E6E11DB5E1570050DD82 /* PhotosHeaderView.m in Sources */,
 				2BD3C5F11D73DCC0008CFE23 /* MJRefreshBackGifFooter.m in Sources */,
@@ -5178,12 +5081,10 @@
 				2BD3C6471D73DCC0008CFE23 /* EaseChatToolbar.m in Sources */,
 				2BD3C5F21D73DCC0008CFE23 /* MJRefreshBackNormalFooter.m in Sources */,
 				2BA773631DAF7BDE00C76A6D /* EditPersonalFootView.m in Sources */,
-				2BB57FB41DBE0F8B00467C9D /* EmojiToolBar.m in Sources */,
 				98EFD3531D4AE816002A1913 /* FocusViewController.m in Sources */,
 				2B96E1B01DB07F7600B1DF1E /* personEditViewController.m in Sources */,
 				18EF7A231B74B67F005A4F64 /* main.m in Sources */,
 				0446C71F1D0946EB005A3684 /* AddPlayGameViewController.m in Sources */,
-				2BB57FBA1DBE0F8B00467C9D /* ExpandingCell.m in Sources */,
 				18824A4B1B85D5920063EC03 /* SBJsonStreamParser.m in Sources */,
 				2BE39EC81D729EEB00CC3F0F /* ContactListViewController.m in Sources */,
 				2BE39EAB1D729E0D00CC3F0F /* ChatGroupDetailViewController.m in Sources */,
@@ -5235,7 +5136,6 @@
 				18824A501B85D5920063EC03 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				18F1CC0A1B948C51003EF78A /* JiNode.swift in Sources */,
 				18C8C7AF1B760C2A00BC8EEA /* GetinViewController.m in Sources */,
-				2BB57FB81DBE0F8B00467C9D /* HCEmojiKeyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

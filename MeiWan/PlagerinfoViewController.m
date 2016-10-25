@@ -18,13 +18,14 @@
 #import "LoginViewController.h"
 #import "FocusTableViewCell.h"
 #import "DetailWithPlayerTableViewCell.h"
+#import "StateOneViewController.h"
 
 #define limit_Num 2
 #define SCREEN_RECT [UIScreen mainScreen].bounds
 static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 
 
-@interface PlagerinfoViewController ()<UITableViewDelegate,UITableViewDataSource,PhohtsHeaderViewDelegate>{
+@interface PlagerinfoViewController ()<UITableViewDelegate,UITableViewDataSource,PhohtsHeaderViewDelegate,dongtaiZanDelegate>{
     NSInteger flag;
     int pages;
     int statusPages;
@@ -429,6 +430,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
             dongtaicell.textLabel.textColor = [CorlorTransform colorWithHexString:@"#d5d5d5"];
             return dongtaicell;
         }else{
+            dongtai.delegate = self;
             dongtai.backgroundColor = [UIColor whiteColor];
             dongtai.detailDictionary = self.statusArray[indexPath.row-1];
         }
@@ -477,8 +479,13 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%ld",indexPath.row);
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (flag==2) {
+        StateOneViewController * oneMessage = [[StateOneViewController alloc]init];
+        oneMessage.stateMessage = self.statusArray[indexPath.row-1];
+        [self.navigationController pushViewController:oneMessage animated:YES];
+    }
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -570,5 +577,9 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
     LoginViewController *lv = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
     lv.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:lv animated:YES];
+}
+-(void)KeyBoardLoadWithUserid:(double)userID statusID:(double)statusid
+{
+    
 }
 @end
