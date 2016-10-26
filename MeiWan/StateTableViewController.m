@@ -37,10 +37,7 @@
     [super viewDidLoad];
     self.stateCount = 5;
     [self setupRefresh];
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.title = [NSString stringWithFormat:@"%@的动态",[self.myUserInfo objectForKey:@"nickname"]];
-    //self.tableView.backgroundColor = [UIColor redColor];
-    //NSLog(@"%@",self.myUserInfo);
     [UserConnector findStates:[PersistenceManager getLoginSession]userId:[self.myUserInfo objectForKey:@"id"] offset:[NSNumber numberWithInt:0] limit:[NSNumber numberWithInt:5] receiver:^(NSData *data, NSError *error){
         if (error) {
             [ShowMessage showMessage:@"服务器未响应"];

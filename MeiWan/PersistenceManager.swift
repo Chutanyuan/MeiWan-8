@@ -11,6 +11,7 @@ import UIKit
 @objc public class PersistenceManager: NSObject {
     public static func setLoginUser(userDict:NSDictionary){
         NSUserDefaults.standardUserDefaults().setObject(userDict, forKey: "loginUser");
+//        NSUserDefaults.standardUserDefaults().setObject(userDict,forKey:"loginUser")
     }
     public static func getLoginUser()->NSDictionary?{
         return NSUserDefaults.standardUserDefaults().objectForKey("loginUser")as? NSDictionary;

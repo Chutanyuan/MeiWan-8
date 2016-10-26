@@ -13,7 +13,7 @@
 #import "ShowMessage.h"
 #import "stateRepliesTableViewCell.h"
 
-@interface StateOneViewController ()<UITableViewDelegate,UITableViewDataSource,dongtaiZanDelegate,UITextViewDelegate>
+@interface StateOneViewController ()<UITableViewDelegate,UITableViewDataSource,dongtaiZanDelegate,UITextFieldDelegate>
 {
     DetailWithPlayerTableViewCell * cell;
 }
@@ -37,6 +37,7 @@
     UITableView * tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenHeight) style:UITableViewStylePlain];
     tableview.delegate = self;
     tableview.dataSource =  self;
+    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableview];
     self.tableview = tableview;
     
@@ -78,14 +79,52 @@
         DetailWithPlayerTableViewCell * cell1 = [self tableView:self.tableview cellForRowAtIndexPath:indexPath];
         return cell1.frame.size.height;
     }else{
-        return 30;
+        stateRepliesTableViewCell * cellOther = [self tableView:self.tableview cellForRowAtIndexPath:indexPath];
+        return cellOther.frame.size.height;
     }
 }
-#pragma mark---
--(void)KeyBoardLoadWithUserid:(double)userID statusID:(double)statusid
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row>0) {
+        [self.views.textTF becomeFirstResponder];
+        self.views.textTF.placeholder = [NSString stringWithFormat:@"回复 %@",self.countsArrays[indexPath.row-1][@"fromUser"][@"nickname"]];
+        self.views.textTF.delegate = self;
+        
+        self.views.btn.tag = indexPath.row-1;
+        [self.views.btn addTarget:self action:@selector(sendRemessage:) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+- (void)sendRemessage:(UIButton *)sender
+{
+    NSDictionary * sendDic = self.countsArrays[sender.tag];
+    /**
+     发送 评论
+     */
+    NSString * session = [PersistenceManager getLoginSession];
+    [UserConnector insertStateComment:session toId:[NSNumber numberWithDouble:[sendDic[@"fromId"] doubleValue]] content:self.views.textTF.text stateId:[NSNumber numberWithDouble:[sendDic[@"stateId"] doubleValue]] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            SBJsonParser * parser = [[SBJsonParser alloc]init];
+            NSDictionary * json = [parser objectWithData:data];
+            int state = [json[@"state"] intValue];
+            if (state == 0) {
+                self.views.textTF.text = nil;
+                [self.views.textTF resignFirstResponder];
+                [self.tableview reloadData];
+                
+            }
+        }else{
+            [ShowMessage showMessage:@"服务器未响应"];
+        }
+    }];
+
+}
+
 
 #pragma mark---键盘处理
 - (void)handleKeyBoardAction:(NSNotification *)notification {
@@ -125,8 +164,22 @@
             NSDictionary * json = [parser objectWithData:data];
             int status = [json[@"status"] intValue];
             if (status==0) {
-                self.countsArrays = json[@"entity"];
-                [self.tableview reloadData];
+                
+                NSMutableArray * states = [NSMutableArray array];
+                NSArray * statesFromJson = [json objectForKey:@"entity"];
+                for (NSDictionary *dic in statesFromJson) {
+                    [states addObject:dic];
+                    NSArray * subStates = [dic objectForKey:@"stateReplies"];
+                    if (subStates.count > 0) {
+                        for (NSDictionary *dic in subStates) {
+                            [states addObject:dic];
+                        }
+                    }
+                }
+                self.countsArrays = [NSMutableArray arrayWithArray:states];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableview reloadData];
+                });
             }
         }else{
             [ShowMessage showMessage:@"服务器未响应"];
