@@ -11,10 +11,10 @@
 #import "MeiWan-Swift.h"
 #import "ShowMessage.h"
 #import "SBJsonParser.h"
-@interface schoolChooseVC ()
+@interface schoolChooseVC ()<UIPickerViewDelegate,UIPickerViewDataSource>
 {
-    UITextField* textfile;
-    NSArray * statusArray;
+    NSArray * pickviewOneArray;
+    NSString * selectHeight;
 }
 @end
 
@@ -22,73 +22,70 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    statusArray = @[@45,@50,@55,@60,@65,@70,@75,@80,@85];
+    self.view.backgroundColor = self.navigationController.navigationBar.backgroundColor;
+    pickviewOneArray =@[@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59",@"60",@"61",@"62",@"63",@"64",@"65",@"66",@"67",@"68",@"69",@"70",@"71",@"72",@"73",@"74",@"75",@"76",@"77",@"78",@"79",@"80"];
     
-    self.view.backgroundColor  = [UIColor whiteColor];
-    CGFloat ButtonWidth = (dtScreenWidth-15)/3;
-    for (int i = 0; i<statusArray.count; i++) {
-        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(10+i%3*ButtonWidth, 74+i/3*45,ButtonWidth-5, 40);
-        button.tag = i;
-        [button setTitle:[NSString stringWithFormat:@"%@kg",statusArray[i]] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont systemFontOfSize:15.0];
-        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        button.layer.cornerRadius = 3;
-        [button.layer setBorderColor:[UIColor grayColor].CGColor];
-        [button.layer setBorderWidth:0.4];
-        button.clipsToBounds = YES;
-        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
-        
-    }
-    textfile = [[UITextField alloc]initWithFrame:CGRectMake(10, 75+3*45, dtScreenWidth-20-100, 40)];
-    textfile.placeholder = @"   其他";
-    textfile.backgroundColor =  [CorlorTransform colorWithHexString:@"#EEE8CD"];
-    textfile.layer.cornerRadius = 5;
-    textfile.clipsToBounds = YES;
-    [self.view addSubview:textfile];
+    UIPickerView * pickview = [[UIPickerView alloc]init];
+    pickview.center = self.view.center;
+    pickview.bounds = CGRectMake(0, 0, dtScreenWidth/4*3, dtScreenWidth/4*3);
+    pickview.showsSelectionIndicator = YES;
+    pickview.dataSource = self;
+    pickview.delegate = self;
+    [self.view addSubview:pickview];
+    [pickview selectRow:pickviewOneArray.count/2 inComponent:0 animated:NO];
+    selectHeight = [NSString stringWithFormat:@"%@",pickviewOneArray[pickviewOneArray.count/2]];
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(textfile.frame.origin.x+textfile.frame.size.width+10, textfile.frame.origin.y, 90, textfile.frame.size.height);
-    button.layer.cornerRadius = 5;
-    button.clipsToBounds = YES;
-    [button setTitle:@"确认" forState:UIControlStateNormal];
+    button.frame = CGRectMake(pickview.frame.origin.x, pickview.frame.origin.y+pickview.frame.size.height, pickview.frame.size.width, 40);
+    [button setTitle:@"选中" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:15.0];
-    button.backgroundColor = [CorlorTransform colorWithHexString:@"009999"];
-    [button addTarget:self action:@selector(textfileTextSave:) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    button.layer.cornerRadius = 3;
+    [button.layer setBorderColor:[UIColor grayColor].CGColor];
+    [button.layer setBorderWidth:0.4];
+    button.clipsToBounds = YES;
+    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
 }
-- (void)textfileTextSave:(UIButton *)sender
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    NSLog(@"%@",textfile.text);
-    if ([textfile.text isEqualToString:@""]) {
-        
-        [ShowMessage showMessage:@"字符不能为空"];
-        
+    return 2;
+}
+-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    if (component==0) {
+        return pickerView.frame.size.width/3*2;
     }else{
-        
-        NSString * session = [PersistenceManager getLoginSession];
-        NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:textfile.text,@"weight", nil];
-        [UserConnector update:session parameters:userInfoDic receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
-            if (!error) {
-                SBJsonParser * parser = [[SBJsonParser alloc]init];
-                NSDictionary * json = [parser objectWithData:data];
-                int status = [json[@"status"] intValue];
-                if (status==0) {
-                    [PersistenceManager setLoginUser:json[@"entity"]];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_weight" object:textfile.text];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-            }
-        }];
-        
+        return 60;
+    }
+}
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (component==0) {
+        return pickviewOneArray.count;
+    }else{
+        return 1;
+    }
+}
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (component==0) {
+        return pickviewOneArray[row];
+    }else{
+        return @"KG";
+    }
+}
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (component==0) {
+        selectHeight = [NSString stringWithFormat:@"%@",pickviewOneArray[row]];
     }
 }
 - (void)buttonClick:(UIButton *)sender
 {
     NSString * session = [PersistenceManager getLoginSession];
-    NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:[statusArray[sender.tag] integerValue]],@"weight", nil];
+    NSMutableDictionary *userInfoDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:selectHeight,@"weight", nil];
     [UserConnector update:session parameters:userInfoDic receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (!error) {
             SBJsonParser * parser = [[SBJsonParser alloc]init];
@@ -96,7 +93,7 @@
             int status = [json[@"status"] intValue];
             if (status==0) {
                 [PersistenceManager setLoginUser:json[@"entity"]];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_weight" object:sender.titleLabel.text];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"finish_weight" object:selectHeight];
                 [self.navigationController popViewControllerAnimated:YES];
                 
             }

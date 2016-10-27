@@ -20,7 +20,7 @@
 #import "DetailWithPlayerTableViewCell.h"
 #import "StateOneViewController.h"
 
-#define limit_Num 2
+#define limit_Num 6
 #define SCREEN_RECT [UIScreen mainScreen].bounds
 static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 

@@ -130,7 +130,9 @@
             int status = [json[@"status"] intValue];
             if (status==0) {
                 self.UserMessage = json[@"entity"];
-                [PersistenceManager setLoginUser:self.UserMessage];
+                NSMutableDictionary * saveMessage = json[@"entity"];
+                [saveMessage removeObjectForKey:@"userStates"];
+                [PersistenceManager setLoginUser:saveMessage];
                 [self.tableview reloadData];
             }
         }

@@ -332,11 +332,13 @@
     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
         [PersistenceManager setLoginSession:@""];
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginViewController *lv = [mainStoryboard instantiateViewControllerWithIdentifier:@"login"];
-        lv.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:lv animated:YES];
-        
+        EMError * error = [[EMClient sharedClient] logout:YES];
+        if (!error) {
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            LoginViewController *lv = [mainStoryboard instantiateViewControllerWithIdentifier:@"login"];
+            lv.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:lv animated:YES];
+        }        
     }];
     [alertController addAction:cancelAction];
     [alertController addAction:sureAction];

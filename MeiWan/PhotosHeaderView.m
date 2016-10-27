@@ -164,22 +164,25 @@
     if (self.array.count<1) {
         
     }
-    self.scrollview.contentSize = CGSizeMake(dtScreenWidth*self.array.count, dtScreenWidth);
+    self.scrollview.contentSize = CGSizeMake(dtScreenWidth*self.array.count+dtScreenWidth, dtScreenWidth);
     
-    self.pagecontrol.numberOfPages = self.array.count;
+    self.pagecontrol.numberOfPages = self.array.count+1;
     self.pagecontrol.currentPage = 0;
     [self.pagecontrol setCurrentPageIndicatorTintColor:[CorlorTransform colorWithHexString:@"#ed5b5b"]];
     [self.pagecontrol setPageIndicatorTintColor:[CorlorTransform colorWithHexString:@"#ffcccc"]];
-    
-    [self.array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        self.imageview = [[UIImageView alloc]initWithFrame:CGRectMake(idx*dtScreenWidth, 0, dtScreenWidth, dtScreenWidth)];
-        self.imageview.contentMode = UIViewContentModeScaleAspectFill;
-        [self.imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@!1",obj[@"url"]]]];
-        [self.scrollview addSubview:self.imageview];
-
-        
-    }];
-    
+    for (int i = 0; i<self.array.count+1; i++) {
+        if (i == 0) {
+            UIImageView * headerImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, dtScreenWidth)];
+            headerImage.contentMode = UIViewContentModeScaleAspectFill;
+            [headerImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@!1",userMessage[@"headUrl"]]]];
+            [self.scrollview addSubview:headerImage];
+        }else{
+            self.imageview = [[UIImageView alloc]initWithFrame:CGRectMake(i*dtScreenWidth, 0, dtScreenWidth, dtScreenWidth)];
+            self.imageview.contentMode = UIViewContentModeScaleAspectFill;
+            [self.imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@!1",self.array[i-1][@"url"]]]];
+            [self.scrollview addSubview:self.imageview];
+        }
+    }
     self.nikename.text = [NSString stringWithFormat:@"%@",userMessage[@"nickname"]];
     CGSize size_name = [self.nikename.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.nikename.font,NSFontAttributeName, nil]];
     self.nikename.frame = CGRectMake(10, self.locationImage.frame.origin.y-14-size_name.height, size_name.width, size_name.height);

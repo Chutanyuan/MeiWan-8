@@ -2917,13 +2917,13 @@
 			name = "工作";
 			sourceTree = "<group>";
 		};
-		2B28F18B1D8260B500EF5EFD /* 情感 */ = {
+		2B28F18B1D8260B500EF5EFD /* 身高 */ = {
 			isa = PBXGroup;
 			children = (
 				2BE542091D7EBF0700BB5C43 /* emotionalState.h */,
 				2BE5420A1D7EBF0700BB5C43 /* emotionalState.m */,
 			);
-			name = "情感";
+			name = "身高";
 			sourceTree = "<group>";
 		};
 		2B28F18C1D8260B800EF5EFD /* 签名 */ = {
@@ -2944,13 +2944,13 @@
 			name = "昵称";
 			sourceTree = "<group>";
 		};
-		2B28F18E1D82612600EF5EFD /* 学校 */ = {
+		2B28F18E1D82612600EF5EFD /* 体重 */ = {
 			isa = PBXGroup;
 			children = (
 				2B28F1911D82617800EF5EFD /* schoolChooseVC.h */,
 				2B28F1921D82617800EF5EFD /* schoolChooseVC.m */,
 			);
-			name = "学校";
+			name = "体重";
 			sourceTree = "<group>";
 		};
 		2B28F18F1D82612F00EF5EFD /* 兴趣爱好 */ = {
@@ -4352,10 +4352,10 @@
 			children = (
 				2B28F1901D82614200EF5EFD /* 书籍。电影。音乐 */,
 				2B28F18F1D82612F00EF5EFD /* 兴趣爱好 */,
-				2B28F18E1D82612600EF5EFD /* 学校 */,
+				2B28F18E1D82612600EF5EFD /* 体重 */,
 				2B28F18D1D8260C400EF5EFD /* 昵称 */,
 				2B28F18C1D8260B800EF5EFD /* 签名 */,
-				2B28F18B1D8260B500EF5EFD /* 情感 */,
+				2B28F18B1D8260B500EF5EFD /* 身高 */,
 				2B28F18A1D8260B100EF5EFD /* 工作 */,
 				2B28F1891D8260AF00EF5EFD /* 照片墙 */,
 				2BE542121D7ECE9200BB5C43 /* collectionViewcell */,

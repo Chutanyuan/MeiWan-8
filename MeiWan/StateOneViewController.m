@@ -16,6 +16,8 @@
 @interface StateOneViewController ()<UITableViewDelegate,UITableViewDataSource,dongtaiZanDelegate,UITextFieldDelegate>
 {
     DetailWithPlayerTableViewCell * cell;
+    double userid;
+    double stateid;
 }
 @property(nonatomic,assign)NSInteger number;
 @property(nonatomic,strong)NSMutableArray * countsArrays;
@@ -47,6 +49,8 @@
     
     self.views = [XYView XYveiw];
     self.views.frame = CGRectMake(0, self.view.frame.size.height- 40, self.view.frame.size.width, 40);
+    self.views.textTF.tag = 1000;
+    self.views.textTF.placeholder = @"评论";
     [self.views.btn addTarget:self action:@selector(ceacllBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.views];
 }
@@ -90,9 +94,8 @@
         [self.views.textTF becomeFirstResponder];
         self.views.textTF.placeholder = [NSString stringWithFormat:@"回复 %@",self.countsArrays[indexPath.row-1][@"fromUser"][@"nickname"]];
         self.views.textTF.delegate = self;
-        
+        self.views.textTF.tag = 10;
         self.views.btn.tag = indexPath.row-1;
-        [self.views.btn addTarget:self action:@selector(sendRemessage:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -100,31 +103,15 @@
     [textField resignFirstResponder];
     return YES;
 }
-- (void)sendRemessage:(UIButton *)sender
+
+-(void)KeyBoardLoadWithUserid:(double)userID statusID:(double)statusid
 {
-    NSDictionary * sendDic = self.countsArrays[sender.tag];
-    /**
-     发送 评论
-     */
-    NSString * session = [PersistenceManager getLoginSession];
-    [UserConnector insertStateComment:session toId:[NSNumber numberWithDouble:[sendDic[@"fromId"] doubleValue]] content:self.views.textTF.text stateId:[NSNumber numberWithDouble:[sendDic[@"stateId"] doubleValue]] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
-        if (!error) {
-            SBJsonParser * parser = [[SBJsonParser alloc]init];
-            NSDictionary * json = [parser objectWithData:data];
-            int state = [json[@"state"] intValue];
-            if (state == 0) {
-                self.views.textTF.text = nil;
-                [self.views.textTF resignFirstResponder];
-                [self.tableview reloadData];
-                
-            }
-        }else{
-            [ShowMessage showMessage:@"服务器未响应"];
-        }
-    }];
-
+    [self.views.textTF becomeFirstResponder];
+    self.views.textTF.placeholder = @" 评论 ";
+    self.views.textTF.tag = 1000;
+    userid = userID;
+    stateid = statusid;
 }
-
 
 #pragma mark---键盘处理
 - (void)handleKeyBoardAction:(NSNotification *)notification {
@@ -141,11 +128,81 @@
     self.views.frame = CGRectMake(0, frame, self.view.frame.size.width, 40);
     
 }
-- (void)ceacllBtn:(id)sender {
+- (void)ceacllBtn:(UIButton *)sender {
     int number = [cell.countlabel.text intValue];
     cell.countlabel.text = [NSString stringWithFormat:@"%d",number+1];
-
     [_views.textTF resignFirstResponder];
+    
+    if (self.views.textTF.tag==1000) {
+        if (self.views.textTF.text.length>0) {
+            NSString * session = [PersistenceManager getLoginSession];
+            [UserConnector insertStateComment:session toId:[NSNumber numberWithDouble:userid] content:self.views.textTF.text stateId:[NSNumber numberWithDouble:stateid] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+                if (!error) {
+                    SBJsonParser * parser = [[SBJsonParser alloc]init];
+                    NSDictionary * json = [parser objectWithData:data];
+                    int state = [json[@"state"] intValue];
+                    if (state == 0) {
+                        NSString * neirong = self.views.textTF.text;
+
+                        self.views.textTF.text = nil;
+                        [self.views.textTF resignFirstResponder];
+                        [self findStateComment];
+                        
+                        EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:[NSString stringWithFormat:@"评论了您:'%@'",neirong]];
+                        NSString *from = [[EMClient sharedClient] currentUsername];
+                        
+                        EMMessage * Sendmessage = [[EMMessage alloc]initWithConversationID:[NSString stringWithFormat:@"product_%f",userid] from:from to:[NSString stringWithFormat:@"product_%f",userid] body:body ext:@{@"动态评论":@"动态回复"}];
+                        [[EMClient sharedClient].chatManager sendMessage:Sendmessage progress:^(int progress) {
+                            NSLog(@"%d",progress);
+                        } completion:^(EMMessage *message, EMError *error) {
+                            NSLog(@"发送信息de %@\n%@",message,error);
+                        }];
+
+                    }
+                }else{
+                    [ShowMessage showMessage:@"服务器未响应"];
+                }
+            }];
+        }
+    }else{
+        if (![self.views.textTF.text isEqualToString:@""]) {
+            NSDictionary * sendDic = self.countsArrays[sender.tag];
+            NSString * session = [PersistenceManager getLoginSession];
+          
+            double stateCommentID = [sendDic[@"id"] doubleValue];
+            if ([sendDic objectForKey:@"stateCommentId"]) {
+                stateCommentID = [sendDic[@"stateCommentId"] doubleValue];
+            }
+            [UserConnector insertStateReplay:session toId:[NSNumber numberWithDouble:[sendDic[@"fromId"] doubleValue]] content:self.views.textTF.text stateCommentId:[NSNumber numberWithDouble:stateCommentID] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+                if (!error) {
+                    SBJsonParser * parser = [[SBJsonParser alloc]init];
+                    NSDictionary * json = [parser objectWithData:data];
+                    int state = [json[@"state"] intValue];
+                    if (state == 0) {
+                        NSString * neirong = self.views.textTF.text;
+
+                        self.views.textTF.text = nil;
+                        [self.views.textTF resignFirstResponder];
+                        [self findStateComment];
+                        
+                        EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:[NSString stringWithFormat:@"回复了您:'%@'",neirong]];
+                        NSString *from = [[EMClient sharedClient] currentUsername];
+                        
+                        EMMessage * Sendmessage = [[EMMessage alloc]initWithConversationID:[NSString stringWithFormat:@"product_%@",sendDic[@"fromId"]] from:from to:[NSString stringWithFormat:@"product_%@",sendDic[@"fromId"]] body:body ext:@{@"动态评论":@"动态回复"}];
+                        [[EMClient sharedClient].chatManager sendMessage:Sendmessage progress:^(int progress) {
+                            NSLog(@"%d",progress);
+                        } completion:^(EMMessage *message, EMError *error) {
+                            NSLog(@"发送信息de %@\n%@",message,error);
+                        }];
+
+                    }
+                }else{
+                    [ShowMessage showMessage:@"服务器未响应"];
+                }
+            }];
+        }
+    }
+
 }
 
 -(void)dealloc{
