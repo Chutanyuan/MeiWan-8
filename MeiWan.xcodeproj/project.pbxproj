@@ -575,6 +575,7 @@
 		2BF43CE71D56D92C00C5B6C6 /* daRenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF43CE61D56D92C00C5B6C6 /* daRenCell.m */; };
 		2BF43CEA1D56D93E00C5B6C6 /* subGuildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF43CE91D56D93E00C5B6C6 /* subGuildCell.m */; };
 		2BF6E6E11DB5E1570050DD82 /* PhotosHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6E6E01DB5E1570050DD82 /* PhotosHeaderView.m */; };
+		2BF8977A1DC32C010023B209 /* RatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF897791DC32C010023B209 /* RatedViewController.m */; };
 		987E7F811D4EE79C00613C6F /* UserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E7F801D4EE79C00613C6F /* UserInfoTableViewCell.m */; };
 		98BB8B811D570FCB001C79A4 /* GreatGuildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BB8B801D570FCB001C79A4 /* GreatGuildViewController.m */; };
 		98CCB9211D58369000BC86AA /* LastGuildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CCB9201D58369000BC86AA /* LastGuildViewController.m */; };
@@ -1718,6 +1719,8 @@
 		2BF43CE91D56D93E00C5B6C6 /* subGuildCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = subGuildCell.m; sourceTree = "<group>"; };
 		2BF6E6DF1DB5E1570050DD82 /* PhotosHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosHeaderView.h; sourceTree = "<group>"; };
 		2BF6E6E01DB5E1570050DD82 /* PhotosHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosHeaderView.m; sourceTree = "<group>"; };
+		2BF897781DC32C010023B209 /* RatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatedViewController.h; sourceTree = "<group>"; };
+		2BF897791DC32C010023B209 /* RatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatedViewController.m; sourceTree = "<group>"; };
 		987E7F7F1D4EE79C00613C6F /* UserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewCell.h; sourceTree = "<group>"; };
 		987E7F801D4EE79C00613C6F /* UserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewCell.m; sourceTree = "<group>"; };
 		98BB8B7F1D570FCB001C79A4 /* GreatGuildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreatGuildViewController.h; sourceTree = "<group>"; };
@@ -1917,6 +1920,7 @@
 			children = (
 				2B5B7D1C1D38932500CF5354 /* PlagerinfoViewController.h */,
 				2B5B7D1D1D38932500CF5354 /* PlagerinfoViewController.m */,
+				2BF897771DC32BCF0023B209 /* 评价界面 */,
 				2BD712F71DB77127002ACCCF /* 认证cell */,
 				2B7D0EA11D6BF942009B4278 /* 展示图片 */,
 				2B5B7D1F1D38934500CF5354 /* cell */,
@@ -2953,13 +2957,13 @@
 			name = "体重";
 			sourceTree = "<group>";
 		};
-		2B28F18F1D82612F00EF5EFD /* 兴趣爱好 */ = {
+		2B28F18F1D82612F00EF5EFD /* 星座 */ = {
 			isa = PBXGroup;
 			children = (
 				2B28F1941D82619000EF5EFD /* insterestChooseVC.h */,
 				2B28F1951D82619000EF5EFD /* insterestChooseVC.m */,
 			);
-			name = "兴趣爱好";
+			name = "星座";
 			sourceTree = "<group>";
 		};
 		2B28F1901D82614200EF5EFD /* 书籍。电影。音乐 */ = {
@@ -4351,7 +4355,7 @@
 			isa = PBXGroup;
 			children = (
 				2B28F1901D82614200EF5EFD /* 书籍。电影。音乐 */,
-				2B28F18F1D82612F00EF5EFD /* 兴趣爱好 */,
+				2B28F18F1D82612F00EF5EFD /* 星座 */,
 				2B28F18E1D82612600EF5EFD /* 体重 */,
 				2B28F18D1D8260C400EF5EFD /* 昵称 */,
 				2B28F18C1D8260B800EF5EFD /* 签名 */,
@@ -4379,6 +4383,15 @@
 				2BF6E6E01DB5E1570050DD82 /* PhotosHeaderView.m */,
 			);
 			name = "个人照片墙tableviewheader";
+			sourceTree = "<group>";
+		};
+		2BF897771DC32BCF0023B209 /* 评价界面 */ = {
+			isa = PBXGroup;
+			children = (
+				2BF897781DC32C010023B209 /* RatedViewController.h */,
+				2BF897791DC32C010023B209 /* RatedViewController.m */,
+			);
+			name = "评价界面";
 			sourceTree = "<group>";
 		};
 		45BCC003E365D0C4121A79F9 /* Pods */ = {
@@ -4768,6 +4781,7 @@
 				18CD050B1B91538E00B56288 /* GZIP.m in Sources */,
 				18824A521B85D5920063EC03 /* SBJsonTokeniser.m in Sources */,
 				18F1CC131B952A3D003EF78A /* NetBarViewController.m in Sources */,
+				2BF8977A1DC32C010023B209 /* RatedViewController.m in Sources */,
 				18E57A131B7DE22700771063 /* AFURLResponseSerialization.m in Sources */,
 				98EFD3661D4AF19A002A1913 /* Myorder.m in Sources */,
 				2BD3C6461D73DCC0008CFE23 /* EaseBubbleView.m in Sources */,

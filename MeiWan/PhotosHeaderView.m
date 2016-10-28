@@ -21,7 +21,6 @@
 @property(nonatomic,strong)UIImageView * sex;
 @property(nonatomic,strong)UILabel * distance;
 @property(nonatomic,strong)UIImageView * locationImage;
-@property(nonatomic,strong)UIButton * concern;//关注
 @property(nonatomic,strong)UILabel * ID;
 @property(nonatomic,assign)NSMutableArray * array;
 @property(nonatomic,strong)UIView * bottomView;
@@ -137,6 +136,7 @@
 {
     
     NSString * session = [PersistenceManager getLoginSession];
+    
     [UserConnector findMyFriends:session receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (error) {
             [ShowMessage showMessage:@"服务器未响应"];
@@ -149,8 +149,8 @@
                 self.MyfriendArray = json[@"entity"];
                 [self.MyfriendArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
-                    if ([obj isEqualToDictionary:userMessage]) {
-                        [self.concern setTitle:@"取消关注" forState:UIControlStateNormal];
+                    if ([obj[@"id"] isEqual:userMessage[@"id"]]) {
+                         [self.concern setTitle:@"取消关注" forState:UIControlStateNormal];
                     }
                 }];
 

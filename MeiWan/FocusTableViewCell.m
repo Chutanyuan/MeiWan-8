@@ -10,6 +10,10 @@
 #import "UIImageView+WebCache.h"
 #import "Meiwan-Swift.h"
 
+@interface FocusTableViewCell ()
+
+@end
+
 @implementation FocusTableViewCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -100,9 +104,7 @@
 - (void)chlikFocusButton:(UIButton *)sender{
     
     NSString * userID =[self.focusDic objectForKey:@"id"];
-//    if ([self.delegate respondsToSelector:@selector(focusTableViewCell:userID:)]) {
-//        
-//    }
+
     [self.delegate focusTableViewCell:self userID:userID];
 
     

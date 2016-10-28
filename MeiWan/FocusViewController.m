@@ -30,7 +30,7 @@
 @implementation FocusViewController
 
 -(void)viewWillAppear:(BOOL)animated{
-
+    [self findMyFriendList];
 }
 
 - (void)viewDidLoad {
@@ -39,7 +39,6 @@
     self.title = @"我的粉丝";
 
     [self focusFollowersBy:self.offset];
-    [self findMyFriendList];
     [self CreatTableView];
     
     // Do any additional setup after loading the view.
@@ -145,8 +144,8 @@
 
 /**获取粉丝列表*/
 - (void)focusFollowersBy:(int)offset{
-    NSString *sesstion = [PersistenceManager getLoginSession];
-    [UserConnector findMyFocus:sesstion offset:offset limit:10 receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+//    NSString *sesstion = [PersistenceManager getLoginSession];
+    [UserConnector findMyFocus:[NSNumber numberWithInteger:[[PersistenceManager getLoginUser][@"id"] integerValue]] offset:offset limit:10 receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (error) {
             [ShowMessage showMessage:@"服务器未响应"];
         }else{

@@ -18,6 +18,9 @@
 @interface DetailWithPlayerTableViewCell : UITableViewCell
 
 @property(nonatomic,strong)UILabel * countlabel;
+@property(nonatomic,strong)UIScrollView * scrollview;
+@property(nonatomic,strong)UIImageView * photosImage;
+
 
 @property(nonatomic,strong)NSDictionary * detailDictionary;
 @property(nonatomic,weak)id<dongtaiZanDelegate>delegate;

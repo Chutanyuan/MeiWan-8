@@ -21,8 +21,6 @@
 @property(nonatomic,strong)UILabel * contentText;
 @property(nonatomic,strong)UILabel * dateLabel;
 @property(nonatomic,strong)UILabel * timeLabel;
-@property(nonatomic,strong)UIScrollView * scrollview;
-@property(nonatomic,strong)UIImageView * photosImage;
 
 @property(nonatomic,strong)UIButton * zan;
 @property(nonatomic,strong)UIButton * pinglun;

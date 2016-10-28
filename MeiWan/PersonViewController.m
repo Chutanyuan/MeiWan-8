@@ -223,11 +223,18 @@
         threeNumber.font = [FontOutSystem fontWithFangZhengSize:15.0];
         
         if (i==0) {
+            
             threeNumber.text = [NSString stringWithFormat:@"%@",self.userMessage[@"stateCount"]];
+            NSLog(@"************************************************%@",self.userMessage[@"stateCount"]);
+
         }else if (i==1){
             threeNumber.text = [NSString stringWithFormat:@"%@",self.userMessage[@"watchCount"]];
+            NSLog(@"************************************************%@",self.userMessage[@"stateCount"]);
+
         }else{
             threeNumber.text = [NSString stringWithFormat:@"%@",self.userMessage[@"followCount"]];
+            NSLog(@"************************************************%@",self.userMessage[@"stateCount"]);
+
         }
         
         threeNumber.textColor = [UIColor whiteColor];

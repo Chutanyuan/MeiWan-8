@@ -19,13 +19,14 @@
 #import "FocusTableViewCell.h"
 #import "DetailWithPlayerTableViewCell.h"
 #import "StateOneViewController.h"
+#import "RatedViewController.h"
 
 #define limit_Num 6
 #define SCREEN_RECT [UIScreen mainScreen].bounds
 static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 
 
-@interface PlagerinfoViewController ()<UITableViewDelegate,UITableViewDataSource,PhohtsHeaderViewDelegate,dongtaiZanDelegate>{
+@interface PlagerinfoViewController ()<UITableViewDelegate,UITableViewDataSource,PhohtsHeaderViewDelegate,dongtaiZanDelegate,FocusTableViewCellDelegate>{
     NSInteger flag;
     int pages;
     int statusPages;
@@ -40,6 +41,8 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 @property(nonatomic,strong)NSMutableArray * statusArray;
 @property(nonatomic,strong)NSMutableArray * array3;
 @property(nonatomic,strong)NSArray * array4;
+@property(nonatomic,strong)NSArray * pinglunCount;
+@property (nonatomic, strong) NSMutableArray * MyfriendArray;
 
 
 @end
@@ -61,16 +64,30 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
     self.title  = @"个人详情";
     pages=0;
     statusPages=0;
-    _array  =@[@"个人详情",@"当地向导",@"身高",@"体重",@"职业",@"星座",@"个性签名",@"常出没地"];
+    _array  =@[@"个人详情",@"当地向导",@"身高",@"体重",@"职业",@"星座",@"个性签名",@"常出没地",@"用户评价信息"];
     _statusArray = [[NSMutableArray alloc]initWithCapacity:0];
     _array3 = [[NSMutableArray alloc]initWithCapacity:0];
     _array4 = @[@"Ta的认证",@"",@"商家认证",@""];
     flag = 1;
+    _MyfriendArray = [[NSMutableArray alloc]initWithCapacity:0];
+    [self findMyFriendList];
     [self initBaseData];
     [self focusFollowersBy:pages];
     [self findStatusBy:[NSNumber numberWithInt:statusPages] limit:[NSNumber numberWithInt:limit_Num]];
+    
 }
 - (void)initBaseData {
+    
+    [UserConnector findOrderEvaluationByUserId:[NSNumber numberWithInteger:[self.playerInfo[@"id"] integerValue]] offset:@0 limit:@100000 receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            SBJsonParser * parser = [[SBJsonParser alloc] init];
+            NSDictionary * json = [parser objectWithData:data];
+            int status = [json[@"status"] intValue];
+            if (status==0) {
+                self.pinglunCount = [[NSArray alloc]initWithArray:json[@"entity"]];
+            }
+        }
+    }];
     
     NSString * session = [PersistenceManager getLoginSession];
     [UserConnector findPeiwanById:session userId:[NSNumber numberWithDouble:[self.playerInfo[@"id"] doubleValue]] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
@@ -90,6 +107,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
             }
         }
     }];
+
 }
 
 -(void)initView
@@ -107,6 +125,8 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         //开始网络请求
         self.getData = nil;
         [self initBaseData];
+        [self.MyfriendArray removeAllObjects];
+        [self findMyFriendList];
 
         if (flag==1) {
             
@@ -138,7 +158,6 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
     self.headerImageView = [[PhotosHeaderView alloc] initWithFrame:CGRectMake(0,0,dtScreenWidth , dtScreenWidth+40)];
     self.headerImageView.delegate = self;
     self.tableview.tableHeaderView = self.headerImageView;
-    
     self.alphaView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, dtScreenWidth, 64)];
     self.alphaView.backgroundColor = [UIColor clearColor];
     
@@ -152,7 +171,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
     
     UIButton * backbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backbutton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    backbutton.frame  = CGRectMake(10, 32, 20, 20);
+    backbutton.frame  = CGRectMake(10, 32, 10, 20);
     [backbutton addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
     [self.alphaView addSubview:backbutton];
     
@@ -310,16 +329,16 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                     }
                     
                     if (a<20) {
-                        NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",a];
+                        NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",(long)a];
                         NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
-                        NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",a]];
+                        NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",(long)a]];
                         [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
                         rightlabel.attributedText = changeText;
                     }else{
                         
-                        NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",a];
+                        NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",(long)a];
                         NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
-                        NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",a]];
+                        NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",(long)a]];
                         [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
                         rightlabel.attributedText = changeText;
                     }
@@ -338,16 +357,16 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                         }
                         
                         if (a<20) {
-                            NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",a];
+                            NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",(long)a];
                             NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
-                            NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",a]];
+                            NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",(long)a]];
                             [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
                             rightlabel.attributedText = changeText;
                         }else{
                             
-                            NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",a];
+                            NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",(long)a];
                             NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
-                            NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",a]];
+                            NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",(long)a]];
                             [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
                             rightlabel.attributedText = changeText;
                         }
@@ -360,16 +379,16 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                             a = self.headerImageView.biaoqian1.tag;
                             
                             if (a<20) {
-                                NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",a];
+                                NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/次",(long)a];
                                 NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
-                                NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",a]];
+                                NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/次",(long)a]];
                                 [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
                                 rightlabel.attributedText = changeText;
                             }else{
                                 
-                                NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",a];
+                                NSString * textForRightLabel = [NSString stringWithFormat:@"最低 %ld元/小时",(long)a];
                                 NSMutableAttributedString * changeText = [[NSMutableAttributedString alloc]initWithString:textForRightLabel];
-                                NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",a]];
+                                NSRange range = [[changeText string]rangeOfString:[NSString stringWithFormat:@" %ld元/小时",(long)a]];
                                 [changeText addAttribute:NSForegroundColorAttributeName value:[CorlorTransform colorWithHexString:@"#ed5b5b"] range:range];
                                 rightlabel.attributedText = changeText;
                             }
@@ -413,6 +432,9 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                 rightlabel.text = self.getData[@"description"];
             }else if (indexPath.row==7){
                 rightlabel.text = self.getData[@"location"];
+            }else if (indexPath.row==8){
+                rightlabel.text  = [NSString stringWithFormat:@"%lu ➡️",(unsigned long)self.pinglunCount.count];
+                rightlabel.alpha = 0.7;
             }
             
         }
@@ -432,6 +454,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         }else{
             dongtai.delegate = self;
             dongtai.backgroundColor = [UIColor whiteColor];
+            [dongtai.photosImage removeFromSuperview];
             dongtai.detailDictionary = self.statusArray[indexPath.row-1];
         }
         return dongtai;
@@ -439,6 +462,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         FocusTableViewCell * fensi = [tableView dequeueReusableCellWithIdentifier:@"fensi"];
         if (!fensi) {
             fensi = [[FocusTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"fensi"];
+            fensi.delegate = self;
         }
         if (indexPath.row==0) {
             fensi.textLabel.text = @"全部粉丝";
@@ -449,7 +473,11 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
             if (self.array3.count>0) {
                 fensi.focusDic = self.array3[indexPath.row-1];
             }
-            [fensi.focusButton setTitle:@"＋关注" forState:UIControlStateNormal];
+            [_MyfriendArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj[@"id"] isEqual:fensi.focusDic[@"id"]]) {
+                    [fensi.focusButton setTitle:@"已关注" forState:UIControlStateNormal];
+                }
+            }];
             [fensi.focusButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             fensi.focusButton.backgroundColor = [CorlorTransform colorWithHexString:@"#ffcccc"];
         }
@@ -485,6 +513,13 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         StateOneViewController * oneMessage = [[StateOneViewController alloc]init];
         oneMessage.stateMessage = self.statusArray[indexPath.row-1];
         [self.navigationController pushViewController:oneMessage animated:YES];
+    }else if (flag==1){
+        if (indexPath.row==8) {
+            RatedViewController * rated = [[RatedViewController alloc]init];
+            rated.title = @"用户评价";
+            rated.playerInfo = self.playerInfo;
+            [self.navigationController pushViewController:rated animated:YES];
+        }
     }
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -504,8 +539,8 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 #pragma mark----获取粉丝列表
 
 - (void)focusFollowersBy:(int)offset{
-    NSString *sesstion = [PersistenceManager getLoginSession];
-    [UserConnector findMyFocus:sesstion offset:offset limit:limit_Num receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+
+    [UserConnector findMyFocus:[NSNumber numberWithInteger:[self.playerInfo[@"id"] integerValue]] offset:offset limit:limit_Num receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (error) {
             [ShowMessage showMessage:@"服务器未响应"];
         }else{
@@ -531,7 +566,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
                     [_tableview.mj_footer endRefreshing];
                 }
             }else if (status == 1){
-
+                
                 [self loginPush];
                 
             }else{
@@ -539,6 +574,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
             }
             
         }
+
     }];
 }
 #pragma mark----用户动态
@@ -581,5 +617,40 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 -(void)KeyBoardLoadWithUserid:(double)userID statusID:(double)statusid
 {
     
+}
+-(void)focusTableViewCell:(FocusTableViewCell *)cell userID:(NSString *)userID
+{
+    NSString * session  = [PersistenceManager getLoginSession];
+    [UserConnector addFriend:session friendId:[NSNumber numberWithInteger:[userID integerValue]] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            SBJsonParser * parser = [[SBJsonParser alloc]init];
+            NSDictionary * json = [parser objectWithData:data];
+            int status = [json[@"status"] intValue];
+            if (status==0) {
+                [cell.focusButton setTitle:@"已关注" forState:UIControlStateNormal];
+            }else if (status==1){
+                [self loginPush];
+            }
+        }else{
+            [ShowMessage showMessage:@"服务器未响应"];
+        }
+    }];
+}
+
+/**获取好友*/
+- (void)findMyFriendList
+{
+    NSString * session = [PersistenceManager getLoginSession];
+    [UserConnector findMyFans:session offset:0 limit:99 receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (error) {
+            [ShowMessage showMessage:@"服务器未响应"];
+        }else{
+            SBJsonParser*parser=[[SBJsonParser alloc]init];
+            NSMutableDictionary *json=[parser objectWithData:data];
+            self.MyfriendArray = json[@"entity"];
+            [self.tableview reloadData];
+        }
+
+    }];
 }
 @end

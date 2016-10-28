@@ -21,6 +21,7 @@
 @property (strong, nonatomic) UILabel *biaoqian2;
 @property (strong, nonatomic) UILabel *biaoqian3;
 @property(nonatomic,strong)UIView * redLine;
+@property(nonatomic,strong)UIButton * concern;//关注
 
 @property(nonatomic,weak)id<PhohtsHeaderViewDelegate>delegate;
 

@@ -1172,6 +1172,28 @@ import UIKit
                 receiver(data:data!.gunzippedData(), error:error)
         }
     }
+    /** 获取粉丝 */
+    public static func findFriendsByUserId(userId:NSNumber!,offset:Int,limit:Int,receiver:(data:NSData?,error:NSError?)->()){
+        var parameters:Dictionary<String,AnyObject> = [:]
+        if (userId != nil) {
+            parameters["userId"]=userId
+        }
+        parameters["offset"]=offset
+        parameters["limit"]=limit
+        
+        request(.GET, userUrl+"findFriendsByUserId", parameters:parameters as? [String : NSObject])
+            .response { request, r, data, error in
+                if (error==nil){
+                    
+                }else{
+                    setting .adjustIps()
+                    userUrl = setting.getIp()+"peiwan-server/rest/users/"
+                }
+                
+                receiver(data:data!.gunzippedData(), error:error)
+        }
+    }
+
     /**直接充值*/
     public static func aliRechargeSigh(session:String!,price:NSNumber!,receiver:(data:NSData?,error:NSError?)->()){
         
@@ -1367,15 +1389,15 @@ import UIKit
     
     
     //查找关注列表
-    public static func findMyFocus(session:String!,offset:Int,limit:Int,receiver:(data:NSData?,error:NSError?)->()){
+    public static func findMyFocus(userId:NSNumber!,offset:Int,limit:Int,receiver:(data:NSData?,error:NSError?)->()){
         var parameters:Dictionary<String,AnyObject> = [:]
-        if (session != nil) {
-            parameters["session"]=session
+        if (userId != nil) {
+            parameters["userId"]=userId
         }
         parameters["offset"]=offset
         parameters["limit"]=limit
         
-        request(.GET, userUrl+"findFollowersByUserId", parameters:parameters as? [String : NSObject])
+        request(.GET, userUrl+"findFollowersByUserId2", parameters:parameters as? [String : NSObject])
             .response { request, r, data, error in
                 if (error==nil){
                     
