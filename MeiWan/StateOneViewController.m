@@ -12,6 +12,7 @@
 #import "XYView.h"
 #import "ShowMessage.h"
 #import "stateRepliesTableViewCell.h"
+#import "showImageController.h"
 
 @interface StateOneViewController ()<UITableViewDelegate,UITableViewDataSource,dongtaiZanDelegate,UITextFieldDelegate>
 {
@@ -242,5 +243,16 @@
             [ShowMessage showMessage:@"服务器未响应"];
         }
     }];
+}
+
+/** 展示图片 */
+-(void)touchUpInsidImageView:(NSMutableArray *)photos PhotosTag:(NSInteger)PhotosTag
+{
+    NSLog(@"%ld--%@",PhotosTag,photos);
+    showImageController * showimage = [[showImageController alloc]init];
+    showimage.imagesArray = photos;
+    showimage.imageNumber = PhotosTag;
+    showimage.flagType = 1000;
+    [self.navigationController pushViewController:showimage animated:NO];
 }
 @end

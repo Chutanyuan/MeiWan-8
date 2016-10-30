@@ -20,6 +20,8 @@
 #import "DetailWithPlayerTableViewCell.h"
 #import "StateOneViewController.h"
 #import "RatedViewController.h"
+#import "showImageController.h"
+
 
 #define limit_Num 6
 #define SCREEN_RECT [UIScreen mainScreen].bounds
@@ -617,6 +619,16 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
 -(void)KeyBoardLoadWithUserid:(double)userID statusID:(double)statusid
 {
     
+}
+/** 展示图片 */
+-(void)touchUpInsidImageView:(NSMutableArray *)photos PhotosTag:(NSInteger)PhotosTag
+{
+    NSLog(@"%ld--%@",PhotosTag,photos);
+    showImageController * showimage = [[showImageController alloc]init];
+    showimage.imagesArray = photos;
+    showimage.imageNumber = PhotosTag;
+    showimage.flagType = 1000;
+    [self.navigationController pushViewController:showimage animated:NO];
 }
 -(void)focusTableViewCell:(FocusTableViewCell *)cell userID:(NSString *)userID
 {

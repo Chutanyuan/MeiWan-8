@@ -14,5 +14,7 @@
 @property(nonatomic,strong)NSArray * imagesArray;
 /** 图片偏移量的定位 */
 @property(nonatomic,assign)NSInteger imageNumber;
+/** 跳转类型 */
+@property(nonatomic,assign)NSInteger flagType;
 
 @end

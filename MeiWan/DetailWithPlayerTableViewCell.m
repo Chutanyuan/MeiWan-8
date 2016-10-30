@@ -116,6 +116,10 @@
             [self.photosImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@!1",obj]]];
             self.photosImage.contentMode = UIViewContentModeScaleAspectFill;
             self.photosImage.clipsToBounds = YES;
+            self.photosImage.tag = idx;
+            self.photosImage.userInteractionEnabled = YES;
+            UITapGestureRecognizer * tapges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(photosTapGesture:)];
+            [self.photosImage addGestureRecognizer:tapges];
             [self.scrollview addSubview:self.photosImage];
 
         }];
@@ -303,29 +307,9 @@
 {
     [self.delegate KeyBoardLoadWithUserid:userid statusID:stateid];
 }
-//-(BOOL)textFieldShouldReturn:(UITextField *)textField
-//{
-//    /**
-//     
-//    */
-//    NSString * session = [PersistenceManager getLoginSession];
-//    [UserConnector insertStateComment:session toId:[NSNumber numberWithDouble:userid] content:textField.text stateId:[NSNumber numberWithDouble:stateid] receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
-//        if (!error) {
-//            SBJsonParser * parser = [[SBJsonParser alloc]init];
-//            NSDictionary * json = [parser objectWithData:data];
-//            int state = [json[@"state"] intValue];
-//            if (state == 0) {
-//                textField.text = nil;
-//                [textField resignFirstResponder];
-//                int counttext = [self.countlabel.text intValue];
-//                self.countlabel.text = [NSString stringWithFormat:@"%d",counttext+1];
-//            }
-//        }else{
-//            [ShowMessage showMessage:@"服务器未响应"];
-//        }
-//    }];
-//    
-//    return YES;
-//}
-
+- (void)photosTapGesture:(UITapGestureRecognizer *)gesture
+{
+    UIImageView * photo = (UIImageView *)[gesture view];
+    [self.delegate touchUpInsidImageView:self.statePhotots PhotosTag:photo.tag];
+}
 @end

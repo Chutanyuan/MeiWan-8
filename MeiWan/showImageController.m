@@ -61,15 +61,24 @@
         scv.bounces = NO;
         UIImageView *im = [[UIImageView alloc]initWithFrame:scv.bounds];
         im.tag = idx+10;
-        NSURL *url = [NSURL URLWithString:obj[@"url"]];
-        [im setImageWithURL:url];
-        im.contentMode = UIViewContentModeScaleAspectFill;
+        NSURL *url;
+        if (_flagType!=1000) {
+            url = [NSURL URLWithString:obj[@"url"]];
+            [im setImageWithURL:url];
+        }else{
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",obj]];
+            [im setImageWithURL:url];
+
+        }
+        im.contentMode = UIViewContentModeScaleAspectFit;
+        im.clipsToBounds = YES;
         UILongPressGestureRecognizer * longpress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressGerture:)];
         im.userInteractionEnabled = YES;
         longpress.minimumPressDuration = 0.8;
         [im addGestureRecognizer:longpress];
         [scv addSubview:im];
         [self.sv addSubview:scv];
+        
 
     }];
 
@@ -78,6 +87,7 @@
     [self.view addSubview:self.sv];
     
 }
+
 - (void)taphiddenAction:(UITapGestureRecognizer *)tap
 {
     [[self navigationController] setNavigationBarHidden:![[self navigationController] isNavigationBarHidden] animated:YES];
