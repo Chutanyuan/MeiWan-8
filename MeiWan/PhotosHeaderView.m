@@ -136,8 +136,7 @@
 {
     
     NSString * session = [PersistenceManager getLoginSession];
-    
-    [UserConnector findMyFriends:session receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
+    [UserConnector findMyFans:session offset:0 limit:99 receiver:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (error) {
             [ShowMessage showMessage:@"服务器未响应"];
         }else{
@@ -150,10 +149,10 @@
                 [self.MyfriendArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if ([obj[@"id"] isEqual:userMessage[@"id"]]) {
-                         [self.concern setTitle:@"取消关注" forState:UIControlStateNormal];
+                        [self.concern setTitle:@"取消关注" forState:UIControlStateNormal];
                     }
                 }];
-
+                
             }else{}
             
         }

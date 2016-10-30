@@ -10,13 +10,11 @@
 #import "guildMementCell.h"
 #import "daRenCell.h"
 #import "subGuildCell.h"
-#import "LastGuildViewController.h"
 #import "Meiwan-Swift.h"
 #import "ShowMessage.h"
 #import "SBJsonParser.h"
 #import "LoginViewController.h"
 #import "PlagerinfoViewController.h"
-#import "newViewController.h"
 @interface GuildMembersViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UIView * lineView;
@@ -33,6 +31,7 @@
 @property(nonatomic,strong)NSMutableArray * darenArray;
 /**子公会组*/
 @property(nonatomic,strong)NSMutableArray * subGuildArray;
+
 @property(nonatomic,assign)CGFloat lastScrollOffset;
 @end
 

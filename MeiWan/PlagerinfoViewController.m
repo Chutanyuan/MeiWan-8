@@ -459,7 +459,7 @@ static NSString *const kMXCellIdentifer = @"kMXCellIdentifer";
         }
         return dongtai;
     }else if (flag==3){
-        FocusTableViewCell * fensi = [tableView dequeueReusableCellWithIdentifier:@"fensi"];
+        FocusTableViewCell * fensi = [tableView cellForRowAtIndexPath:indexPath];
         if (!fensi) {
             fensi = [[FocusTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"fensi"];
             fensi.delegate = self;

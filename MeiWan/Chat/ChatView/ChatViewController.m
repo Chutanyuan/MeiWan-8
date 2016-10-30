@@ -31,7 +31,6 @@
 #import "AssessViewController.h"
 #import "AccusationViewController.h"
 #import "LoginViewController.h"
-#import "PersonTableViewController.h"
 #import "PersonViewController.h"
 #import "AFNetworking.h"
 

@@ -22,8 +22,9 @@
 #import "WXApi.h"
 #import "MD5.h"
 #import "AFNetworking/AFNetworking.h"
-#import "PersonTableViewController.h"
 #import "HTMView.h"
+#import "PersonViewController.h"
+
 @interface InviteViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,MBProgressHUDDelegate,HTMViewButtonAction>
 {
     NSArray * titlelabel;
@@ -256,7 +257,7 @@
     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        PersonTableViewController *personvc = [mainStoryboard instantiateViewControllerWithIdentifier:@"persontableview"];
+        PersonViewController *personvc = [mainStoryboard instantiateViewControllerWithIdentifier:@"personview"];
         [self.navigationController pushViewController:personvc animated:YES];
         
         

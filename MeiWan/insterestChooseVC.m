@@ -42,8 +42,8 @@
         
     }
     
-    StarSign = [[UIImageView alloc]initWithFrame:CGRectMake(dtScreenWidth/2-42, 74+4*45+52, 84, 84)];
-    StarSign.layer.cornerRadius = 42;
+    StarSign = [[UIImageView alloc]initWithFrame:CGRectMake(dtScreenWidth/2-35, 74+4*45+52, 70, 70)];
+    StarSign.layer.cornerRadius = 35;
     StarSign.clipsToBounds = YES;
     [self.view addSubview:StarSign];
 

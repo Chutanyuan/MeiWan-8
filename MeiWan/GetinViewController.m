@@ -17,6 +17,9 @@
 #import "MBProgressHUD.h"
 
 @interface GetinViewController ()<MBProgressHUDDelegate>
+{
+    MBProgressHUD * HUD;
+}
 @property (weak, nonatomic) IBOutlet UITextField *phone;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 
@@ -33,13 +36,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"登录";
-    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
+    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObject:[UIColor whiteColor]forKey:NSForegroundColorAttributeName];
     self.loginButton.layer.cornerRadius = 8;
     self.loginButton.layer.masksToBounds = YES;
     
-    self.phone.layer.borderColor = (__bridge CGColorRef _Nullable)([CorlorTransform colorWithHexString:@"#3f90a4"]);
+    self.phone.layer.borderColor = (__bridge CGColorRef _Nullable)([CorlorTransform colorWithHexString:@"78cdf8"]);
     self.phone.layer.borderWidth = 0.1f;
     
     self.password.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor clearColor]);
@@ -82,7 +85,7 @@
      限制手机号码位数更改 目前不限制手机号码
      
      */
-    MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.delegate = self;
     HUD.labelText = @"登录中";
 
@@ -151,7 +154,7 @@
         
     }];
     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        
+        [HUD hide:YES];
     }];
     alertController.message = string;
     [alertController addAction:cancelAction];

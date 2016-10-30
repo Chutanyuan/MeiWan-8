@@ -41,7 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"#3f90a4"]];
+    [self.navigationController.navigationBar setBarTintColor:[CorlorTransform colorWithHexString:@"78cdf8"]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.userProtocol.userInteractionEnabled=YES;
 //    self.view.backgroundColor=[UIColor whiteColor];
