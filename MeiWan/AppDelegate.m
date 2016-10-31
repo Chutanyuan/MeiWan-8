@@ -38,7 +38,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-
+    self.window.backgroundColor = [UIColor whiteColor];
     [setting getOpen];
     
     [UserConnector acceptInvalidSSLCerts];

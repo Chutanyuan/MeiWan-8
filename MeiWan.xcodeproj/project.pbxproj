@@ -5228,8 +5228,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MeiWan/MeiWan.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wei Liu (8RJ67A2F8R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wei Liu (8RJ67A2F8R)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Liu (A998BHQHS8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Liu (A998BHQHS8)";
 				DEVELOPMENT_TEAM = 8RJ67A2F8R;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -5273,8 +5273,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.chuangjike.MeiWan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "80e86da6-379c-4c43-be7d-7b9d6e4358a6";
-				PROVISIONING_PROFILE_SPECIFIER = shangjiaMeiWanEightDistribution;
+				PROVISIONING_PROFILE = "cc0fa1c9-8ff1-4211-b5e1-9a084c7176d2";
+				PROVISIONING_PROFILE_SPECIFIER = ChuangJKDeveloper;
 				SDKROOT = iphoneos9.3;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "MeiWan/MeiWan-Bridging-Header.h";
@@ -5296,8 +5296,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MeiWan/MeiWan.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wei Liu (8RJ67A2F8R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wei Liu (8RJ67A2F8R)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Liu (A998BHQHS8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Liu (A998BHQHS8)";
 				DEVELOPMENT_TEAM = 8RJ67A2F8R;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -5345,8 +5345,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.chuangjike.MeiWan;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "80e86da6-379c-4c43-be7d-7b9d6e4358a6";
-				PROVISIONING_PROFILE_SPECIFIER = shangjiaMeiWanEightDistribution;
+				PROVISIONING_PROFILE = "cc0fa1c9-8ff1-4211-b5e1-9a084c7176d2";
+				PROVISIONING_PROFILE_SPECIFIER = ChuangJKDeveloper;
 				SDKROOT = iphoneos9.3;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "MeiWan/MeiWan-Bridging-Header.h";

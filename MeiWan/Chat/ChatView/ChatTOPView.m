@@ -18,7 +18,7 @@
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(dtScreenWidth-10-70, frame.size.height/2-20, 70, 30);
         [button setTitle:@"邀请" forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont fontWithName:@"华文仿宋" size:15.0];
+        button.titleLabel.font = [FontOutSystem fontWithFangZhengSize:14.0];
 
         button.backgroundColor = [CorlorTransform colorWithHexString:@"#87CEFA"];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -42,7 +42,7 @@
         UILabel * title = [[UILabel alloc]init];
         title.center = CGPointMake(imageView.center.x, imageView.center.y+imageView.frame.size.height/2+5);
         title.bounds = CGRectMake(0, 0, 40, 15);
-        title.font = [UIFont systemFontOfSize:10.0];
+        title.font = [FontOutSystem fontWithFangZhengSize:10.0];
         title.textAlignment = NSTextAlignmentCenter;
         [self addSubview:title];
         NSDictionary * dic = userTimeTags[0];
@@ -56,7 +56,7 @@
         UILabel * title = [[UILabel alloc]init];
         title.center = CGPointMake(imageView.center.x, imageView.center.y+imageView.frame.size.height/2+5);
         title.bounds = CGRectMake(0, 0, 40, 15);
-        title.font = [UIFont systemFontOfSize:10.0];
+        title.font = [FontOutSystem fontWithFangZhengSize:10.0];
         title.textAlignment = NSTextAlignmentCenter;
         [self addSubview:title];
         NSDictionary * dic = userTimeTags[0];
@@ -69,7 +69,7 @@
         UILabel * title2 = [[UILabel alloc]init];
         title2.center = CGPointMake(imageView2.center.x, imageView2.center.y+imageView2.frame.size.height/2+5);
         title2.bounds = CGRectMake(0, 0, 40, 15);
-        title2.font = [UIFont systemFontOfSize:10.0];
+        title2.font = [FontOutSystem fontWithFangZhengSize:10.0];
         title2.textAlignment = NSTextAlignmentCenter;
         [self addSubview:title2];
         NSDictionary * dic2 = userTimeTags[1];
@@ -85,7 +85,7 @@
         UILabel * title = [[UILabel alloc]init];
         title.center = CGPointMake(imageView.center.x, imageView.center.y+imageView.frame.size.height/2+5);
         title.bounds = CGRectMake(0, 0, 40, 15);
-        title.font = [UIFont systemFontOfSize:10.0];
+        title.font = [FontOutSystem fontWithFangZhengSize:10.0];
         title.textAlignment = NSTextAlignmentCenter;
         [self addSubview:title];
         NSDictionary * dic = userTimeTags[0];
@@ -98,7 +98,7 @@
         UILabel * title2 = [[UILabel alloc]init];
         title2.center = CGPointMake(imageView2.center.x, imageView2.center.y+imageView2.frame.size.height/2+5);
         title2.bounds = CGRectMake(0, 0, 40, 15);
-        title2.font = [UIFont systemFontOfSize:10.0];
+        title2.font = [FontOutSystem fontWithFangZhengSize:10.0];
         title2.textAlignment = NSTextAlignmentCenter;
         [self addSubview:title2];
         NSDictionary * dic2 = userTimeTags[1];
@@ -112,7 +112,7 @@
         UILabel * title3 = [[UILabel alloc]init];
         title3.center = CGPointMake(imageView3.center.x, imageView3.center.y+imageView3.frame.size.height/2+5);
         title3.bounds = CGRectMake(0, 0, 40, 15);
-        title3.font = [UIFont systemFontOfSize:10.0];
+        title3.font = [FontOutSystem fontWithFangZhengSize:10.0];
         title3.textAlignment = NSTextAlignmentCenter;
         [self addSubview:title3];
         NSDictionary * dic3 = userTimeTags[2];

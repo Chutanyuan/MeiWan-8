@@ -136,7 +136,10 @@
     }
     [[EMClient sharedClient] removeDelegate:self];
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

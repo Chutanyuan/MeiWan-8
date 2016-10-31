@@ -62,13 +62,16 @@
         UIImageView *im = [[UIImageView alloc]initWithFrame:scv.bounds];
         im.tag = idx+10;
         NSURL *url;
+        NSURL *url2;
         if (_flagType!=1000) {
-            url = [NSURL URLWithString:obj[@"url"]];
-            [im setImageWithURL:url];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",obj[@"url"]]];
+            url2 = [NSURL URLWithString:[NSString stringWithFormat:@"%@!1",obj[@"url"]]];
+            [im sd_setImageWithURL:url placeholderImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:url2]]];
         }else{
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",obj]];
-            [im setImageWithURL:url];
-
+            url2 = [NSURL URLWithString:[NSString stringWithFormat:@"%@!1",obj]];
+            [im sd_setImageWithURL:url placeholderImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:url2]]];
+            
         }
         im.contentMode = UIViewContentModeScaleAspectFit;
         im.clipsToBounds = YES;
@@ -78,7 +81,6 @@
         [im addGestureRecognizer:longpress];
         [scv addSubview:im];
         [self.sv addSubview:scv];
-        
 
     }];
 

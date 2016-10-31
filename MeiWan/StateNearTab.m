@@ -82,7 +82,7 @@
                     [HUD hide:YES afterDelay:0.5];
                 });
             }else if(status == 1){
-                
+                [self loginPush];
             }else{
                 
             }
@@ -90,6 +90,13 @@
         
     }];
 
+}
+- (void)loginPush
+{
+    [PersistenceManager setLoginSession:@""];
+    LoginViewController *lv = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+    lv.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:lv animated:YES];
 }
 #pragma mark - refresh
 - (void)setupRefresh

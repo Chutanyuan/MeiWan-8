@@ -37,7 +37,7 @@
     
     UILabel * contentText = [[UILabel alloc]init];
     
-    contentText.font = [UIFont systemFontOfSize:14.0];
+    contentText.font = [FontOutSystem fontWithFangZhengSize:13.0];
     [self addSubview:contentText];
 
     

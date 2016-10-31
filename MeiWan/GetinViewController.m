@@ -132,10 +132,7 @@
                                 [self performSegueWithIdentifier:@"players" sender:nil];
                                 [HUD hide:YES afterDelay:0];
                                 [[EMClient sharedClient].chatManager getAllConversations];
-                            }else{
-                                [ShowMessage showMessage:@"登录失败，请重新登录"];
                             }
-                
                             
                         }
                     }
